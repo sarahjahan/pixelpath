@@ -104,16 +104,13 @@ Parameters: `filter` (optional), `sort` (optional)
 Response Body: 
 `200 OK`
 
-[
-  {
-    "gameID": 1,
-    "title": "The Legend of Zelda",
-    "status": "Playing",
-    "rating": 5,
-    "notes": "Amazing game!",
-    "tags": ["Adventure", "Action"]
-  }
-]
+`{ "gameID": 1,
+"title": "The Legend of Zelda",
+"status": "Playing",
+"rating": 5,
+"notes": "Amazing game!",
+"tags": ["Adventure", "Action"] 
+}`
 
 
 **GET /games/search**
@@ -121,16 +118,13 @@ Response Body:
 
 Response Body: 
 `200 OK`
-
-[
-  {
+`{
     "id": 101,
     "title": "The Legend of Zelda",
     "coverArt": "exampleimage.jpg",
     "genres": ["Adventure", "Action"],
     "summary": "Link is awakened in a room by a voice calling him and learns that he has been asleep for 100 years after failing to stop a monster called Calamity Ganon. Although the monster is being held in Hyrule Castle by Princess Zelda, Calamity Ganon's power continues to grow and if not stopped he will eventually break free with enough power to destroy the entire world. Link embarks on his quest to defeat Calamity Ganon and save Hyrule and Zelda."
-  }
-]
+  }`
 
 **POST /games/add**
 - Adds a new game to the library.
@@ -141,7 +135,7 @@ Parameters:
 Response Body: 
 `201 Created`
 
-[ 
+`[ 
   { 
     "message": "Game added successfully!",
     "gameID": 3, 
@@ -149,7 +143,7 @@ Response Body:
     "genres": ["Simulation", "Relaxing"]
     "status": "Want to Play"
   }
-]
+]`
 
 **PUT /games/update**
 - Updates an existing game from the user's library.
@@ -160,9 +154,8 @@ Parameters:
 Response Body: 
 `201 Created`
 
-[ 
-  { 
-    "message": "Game updated successfully!",
+`[ 
+  { "message": "Game updated successfully!",
     "gameID": 3, 
     "title": "Animal Crossing", 
     "genres": ["Simulation", "Relaxing"]
@@ -170,7 +163,7 @@ Response Body:
     "tags": "Chill", "Cute" 
     "notes": "Great for a rainy day!" 
   }
-]
+]`
 
 **DELETE /games/remove**
 - Removes a game from the user’s library.
@@ -188,16 +181,13 @@ Response Body:
 Response Body: 
 `200 OK`
 
-[
-  {
-    "tagID": 1,
+`{ "tagID": 1,
     "name": "Relaxed"
-  },
-  {
-    "tagID": 2,
+},
+{ "tagID": 2,
     "name": "Adventure"
-  }
-]
+  }`
+
 
 **GET /tags/user/:userID**
 - Get all tags for a game. 
@@ -205,18 +195,15 @@ Response Body:
 Response Body: 
 `200 OK`
 
-[
-  {
-    "tagID": 1,
+`{ "tagID": 1,
     "gameID": 123,
     "name": "Relaxed"
   },
-  {
-    "tagID": 2,
+  { "tagID": 2,
     "gameID": 124,
     "name": "Challenging"
-  }
-]
+  }`
+
 
 
 **POST /tags/add**
@@ -252,8 +239,8 @@ Parameters:
 Response Body: 
 `200 OK`
 
-{
-  "userLibraryRecommendations": 
+`{ 
+"userLibraryRecommendations": 
   [
     {
       "gameID": 1,
@@ -271,7 +258,7 @@ Response Body:
       "releaseDate": "2012-03-13"
     }
   ]
-}
+}`
 
 **POST /users/register**
 
@@ -285,9 +272,7 @@ Parameters:
 
 Response Body:
 
-{
-    "token": "seyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6I..."
-}
+`{ "token": "seyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6I..." }`
 
 
 **POST /users/login**
@@ -298,11 +283,7 @@ Parameters:
 - username: User's provided username
 - password: User's provided password
 
-Response Body:
-
-{
-    "token": "seyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6I..."
-}
+Response Body: `{ "token": "seyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6I..." }`
 
 
 ---
