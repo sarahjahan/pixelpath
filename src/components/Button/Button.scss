@@ -1,0 +1,17 @@
+@import '../../styles/partials/global.scss';
+@import '../../styles/partials/variables.scss';
+
+
+.button {
+  background-color: $primary-color;
+  color: $background-color;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $secondary-color;
+  }
+}
