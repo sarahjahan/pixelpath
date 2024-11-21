@@ -1,9 +1,9 @@
 import './Button.scss';
 
-function Button() {
+function Button({onClick}) {
   return (
     <>
-    <button className="button"> Get Games </button>
+    <button className="button" onClick={onClick}> Get Games </button>
     </>
   );
 };
