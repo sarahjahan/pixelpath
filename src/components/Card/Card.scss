@@ -1,0 +1,15 @@
+
+@import '../../styles/partials/global.scss';
+@import '../../styles/partials/variables.scss';
+
+.card {
+    background-color: var(--accent-color);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-divider {
+    border-bottom: 2px solid var(--accent-color);
+    margin: 20px 0;
+  }
