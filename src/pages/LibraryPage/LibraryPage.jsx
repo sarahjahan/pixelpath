@@ -2,6 +2,7 @@ import GamesLibrary from "../../components/GamesLibrary/GamesLibrary";
 import { useEffect, useState } from 'react'
 import axios from "axios";
 
+
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 
@@ -10,8 +11,21 @@ function LibraryPage() {
     const [sortOrder, setSortOrder] = useState("asc");
     const [searchKeyword, setSearchKeyword] = useState("");
     const [filteredGames, setFilteredGames] = useState([]);
+    const [gameToDelete, setGameToDelete] = useState(null);
 
+    const delGame = async (id) => {
+      try {
+        const { data } = await axios.delete(`${BASE_URL}/api/games/${id}`);
+        setGamesList(gamesList.filter(game => game.id !== id)); // Remove from state
+        alert(`Game was sucessfully deleted. Refreshing Games list.`);
+      } catch (error) {
+        alert(`Error deleting game with id`);
+      }
+    };
 
+    useEffect(() => {
+        setGameToDelete()
+    }, [gamesList, gameToDelete]);
 
     const getGamesLibrary = async () => {
         try {
@@ -27,23 +41,10 @@ function LibraryPage() {
         }
       };
 
-      // useEffect(() => {
-      //   setGamesList(gamesList);
-    
-      //   const lowerCaseKey = searchKeyword.toLowerCase();
-    
-      //   setFilteredGames(
-      //     gamesList.filter((game) =>
-      //       Object.keys(game).filter((key) => key !== 'id').some((field) =>
-      //         game[field]?.toString().toLowerCase().includes(lowerCaseKey)
-      //       )
-      //     )
-      //   );
-      // }, [searchKeyword,gamesList]);
-    
       useEffect(() => {
         getGamesLibrary();
       }, []);
+
 
     const handleSort = async (
         sortBy = "title" || "status" || "rating") => {
@@ -58,7 +59,6 @@ function LibraryPage() {
         }
       };
 
-
     if (!gamesList.length === 0) {
         return (
             <div>no games found...</div>
@@ -66,7 +66,8 @@ function LibraryPage() {
 
     return(
         <div>
-            <GamesLibrary gamesList={gamesList} handleSort={handleSort} handleSearch={setSearchKeyword} />
+          {/* <Modal game={gameToDelete} onClose={() => setGameToDelete(null)}/> */}
+          <GamesLibrary gamesList={gamesList} handleSort={handleSort} handleSearch={setSearchKeyword} onClick={delGame} />
         </div>
        
     )
