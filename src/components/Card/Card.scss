@@ -2,7 +2,10 @@
 @import '../../styles/partials/variables.scss';
 
 .card {
-    background-color: var(--accent-color);
+
+  &__container {
+    margin: 30px;
+    // background-color: var(--accent-color);
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -10,10 +13,21 @@
     &__title {
       font-size: 1.5rem;
     }
+
     &__subtitle {
       font-size: 1rem;
     }
   }
+}
+
+.card__action {
+
+  display: flex;
+  width: 30px;
+  padding: 5px;
+  justify-content: left;
+
+}
   
   .section-divider {
     border-bottom: 2px solid var(--accent-color);
