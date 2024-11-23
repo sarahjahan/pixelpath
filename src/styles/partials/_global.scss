@@ -1,13 +1,346 @@
-@import '../partials/variables';
+@use "./variables" as *;
+@use "./mixins" as *;
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap");
 
-body {
-  background-color: $background-color;
-  color: $text-color;
-  font-family: Arial, sans-serif;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+body,
+input,
+textarea,
 button {
+  background-color: $background-color;
+  font-family: "Titillium Web", sans-serif;
+  color: $text-color;
+}
+
+// body {
+//   background: linear-gradient(
+//     rgba(35, 41, 65, 1) 200px,
+//     rgba(247, 248, 249, 1) 200px
+//   );
+//   min-height: 100vh;
+
+//   @include tablet {
+//     background: linear-gradient(
+//       rgba(35, 41, 65, 1) 196px,
+//       rgba(247, 248, 249, 1) 196px
+//     );
+//   }
+// }
+
+button {
+  border: none;
+  background: none;
   cursor: pointer;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+img {
+  width: 100%;
+}
+
+// Typography
+
+.page-header {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  font-weight: $semibold;
+
+  @include tablet {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+
+.subheader {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: $semibold;
+
+  @include tablet {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+.label-text,
+.link-text,
+.button-text {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  font-weight: $semibold;
+
+  @include tablet {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+}
+
+.table-header,
+.tag-text {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  font-weight: $semibold;
+  text-transform: uppercase;
+
+  @include tablet {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+}
+
+.body-large {
+  font-size: 0.9375rem;
+  line-height: 1.625rem;
+  font-weight: $regular;
+
+  @include tablet {
+    font-size: 1rem;
+    line-height: 1.75rem;
+  }
+}
+
+.body-medium {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  font-weight: $regular;
+
+  @include tablet {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+}
+
+.body-small {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  font-weight: $regular;
+
+  @include tablet {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+}
+
+// Layout
+
+.container {
+  padding: 0 1rem;
+
+  @include tablet {
+    padding: 0 2.25rem;
+  }
+
+  @include desktop {
+    padding: 0 8.125rem;
+  }
+}
+
+// Icons
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+// Buttons and Links
+
+.button {
+  @extend .button-text;
+  width: 100%;
+  height: 2.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 1.25rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+
+  @include tablet {
+    width: auto;
+    height: 2.375rem;
+  }
+}
+
+.button-primary {
+  @extend .button;
+  background-color: $background-color;
+  color: white;
+  border: none;
+
+  &:hover {
+    background-color: gray;
+  }
+}
+
+.button-secondary {
+  @extend .button;
+  background-color: white;
+  color: gray;
+  border: 1px solid lightgray;
+
+  &:hover {
+    color: $secondary-color;
+    border-color: gray;
+  }
+}
+
+.button-delete {
+  @extend .button;
+  background-color: red;
+  color: white;
+  border: none;
+
+  &:hover {
+    background-color: gray;
+  }
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  color: indigo;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &__copy {
+    @extend .link-text;
+  }
+
+  &__icon { 
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover .link__icon {
+    transform: trangrayX(0.25rem);
+  }
+}
+
+// Form Fields
+
+.form {
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border: 0;
+    width: 100%;
+  }
+
+  &__label {
+    @extend .label-text;
+  }
+
+  &__input,
+  &__textarea {
+    @extend .body-medium;
+    width: 100%;
+    height: 2.25rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1.25rem;
+    border: 1px solid lightgray;
+    outline: none;
+    background-color: white;
+
+    @include tablet {
+      width: auto;
+    }
+
+    &::placeholder {
+      color: lightgray;
+    }
+
+    &:focus {
+      border: 1px solid navy;
+    }
+
+    &.error {
+      border: 1px solid red;
+    }
+  }
+
+  &__input {
+    @include tablet {
+      height: 2.375rem;
+    }
+  }
+
+  &__textarea {
+    height: 7.5rem;
+    resize: none;
+  }
+
+  &__radio-group {
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  &__radio-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__radio-label {
+    @extend .body-medium;
+    color: gray;
+  }
+
+  &__radio-input:checked + label {
+    color: black;
+  }
+}
+
+// Tags
+
+.tag {
+  @extend .tag-text;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  height: 1.5rem;
+  border-radius: 1.25rem;
+
+  @include tablet {
+    height: 1.625rem;
+  }
+}
+
+// Responsive Displays
+
+.mobile-only {
+  @include tablet {
+    display: none;
+  }
+}
+
+//Seach Results
+.result-message{
+  text-align: center;
+  margin: 1rem;
 }

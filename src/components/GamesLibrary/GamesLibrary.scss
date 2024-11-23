@@ -1,4 +1,63 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global";
+
 .gamesList {
+    &__header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        // flex-grow: 1;
+        // width: 30%;
+        // padding: 20px;
+        // margin: 20px;
+    }
+
+    &__searcher {
+            @extend .form__input;
+            background-image: url("../../public/assets/icons/search.svg");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.5rem 1.5rem;
+            width: 60vh;
+        
+            @include tablet {
+              width: 11.5625rem;
+            }
+        
+            @include desktop {
+              width: 17.125rem;
+            }
+          
+        // border-radius: 48px;
+        // border: solid 1px $success-color;
+        // width: 100%;
+        // height: 24px;
+        // margin: 12px;
+        // width: 60vh;
+        // background-color: lightcyan;
+    }
+
+    &__sorter {
+        background-image: url("../../public/assets/icons/sort-24px.svg");
+        background-repeat: no-repeat;
+        background-position: right 1rem;
+        background-size: 1.25rem 1.25rem;
+        padding: 16px;
+        font-size: .75rem;
+        font-weight: 600;
+    }
+
+    &__filter {
+        background-image: url("../../public/assets/icons/filter.svg");
+        background-repeat: no-repeat;
+        background-position: right 1rem;
+        background-size: 1.25rem 1.25rem;
+        padding: 16px;
+        font-size: .75rem;
+        font-weight: 600;
+    }
+
     &__container {
         display: flex;
         flex-wrap: wrap;
