@@ -4,6 +4,7 @@
 
 
 .gamesList {
+
     &__header {
         display: flex;
         flex-wrap: wrap;
@@ -62,7 +63,7 @@
     &__container {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
 
     }
 }
