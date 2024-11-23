@@ -3,13 +3,13 @@ import './GamesLibrary.scss'
 import { useState } from 'react'
 
 
-function GamesLibrary({gamesList}) {
-    const [searchKeyword, setSearchKeyword] = useState("");
-    const [filteredGames, setFilteredGames] = useState([]);
-    const [sortOrder, setSortOrder] = useState("asc");
+function GamesLibrary({ gamesList }) {
+    // const [searchKeyword, setSearchKeyword] = useState("");
+    // const [filteredGames, setFilteredGames] = useState([]);
+    // const [sortOrder, setSortOrder] = useState("asc");
 
 
-    const [{ id, title, summary, coverArt, status, notes }] = gamesList
+    const [{ id, title, summary, coverArt, status, notes, rating }] = gamesList
     console.log(gamesList)
     console.log(title)
 
@@ -33,7 +33,7 @@ function GamesLibrary({gamesList}) {
             <div className="gamesList__container">
                 {gamesList.length > 0 &&
                 gamesList.map((game, index) => (
-                    <Card key={index} title={game.title} genre={game.summary} imgURL={game.coverArt}/>
+                    <Card key={index} title={game.title} summary={game.summary} status={game.status} rating={game.rating} tags={rating.tags} imgURL={game.coverArt}/>
                 ))}
             </div>
 
