@@ -1,20 +1,14 @@
-import Card from "../../components/Card/Card"
+import GamesLibrary from "../../components/GamesLibrary/GamesLibrary";
 
 function LibraryPage({gamesList}) {
-    const [{ id, title, summary, coverArt, status, notes }] = gamesList
-    console.log(gamesList)
-    console.log(title)
 
     return(
         <div>
-            {gamesList.length > 0 &&
-            gamesList.map((game, index) => (
-                <Card key={index} title={game.title} genre={game.summary} />
-            ))}
+            <GamesLibrary gamesList={gamesList}/>
         </div>
        
     )
 }
 
 
-export default LibraryPage
+export default LibraryPage;
