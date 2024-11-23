@@ -35,14 +35,14 @@ function App() {
     getGamesAPI();
   }, []);
 
-  // if (gamesList.length === 0) {
-  //   return <div>no games found...</div>
-  // }
+  if (gamesList.length === 0) {
+    return <div>no games found...</div>
+  }
 
   return (
     <>
       <Navbar />
-      <Button onClick={getGamesAPI}/>
+      <Button />
       <Card />
 
 
@@ -50,7 +50,7 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path="/signin" element={<SigninPage />}/>
-        <Route path="/library" element={<LibraryPage />} />
+        <Route path="/library" element={<LibraryPage gamesList={gamesList}/>} />
         <Route path="/details" element={<GameDetailsPage />} />
         <Route path="/search" element={<GamesSearchPage />} />
         <Route path="/mood" />

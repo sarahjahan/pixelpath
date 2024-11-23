@@ -1,13 +1,11 @@
 import './Card.scss';
 
-function Card() {
+function Card({title, genre}) {
   return (
-    <>
-       <div className="card">
-            <h2>Title</h2>
-            <p>Genre</p>
-        </div>  
-    </>
+    <div className="card">
+      <h2 className="card__title">{title}</h2>
+      <p className="card__subtitle">{genre}</p>
+    </div>  
   );
 };
 
