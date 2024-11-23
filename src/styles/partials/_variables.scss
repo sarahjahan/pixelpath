@@ -1,6 +1,23 @@
-$background-color: #F7F3EB; /* Soft Beige */
+// Breakpoints for Responsive Design
+$tablet: 768px;
+$desktop: 1280px;
+
+// Font Weights
+$regular: 400;
+$semibold: 600;
+
+//Primary Colours
 $primary-color: #F28C82; /* Pastel Coral */
+$text-color: #2E2E2E; /* Dark gray Gray */
+
+//Secondary Colours
 $secondary-color: #89CFF0; /* Sky Blue */
-$success-color: #A8E6CF; /* Mint Green */
+
+//Background Colours
+$background-color: #F7F3EB; /* Soft Beige */
+
+//Supporting Colors
 $accent-color: #D6BBE3; /* Subtle Lavender */
-$text-color: #2E2E2E; /* Dark Slate Gray */
+$success-color: #A8E6CF; /* Mint Green */
+
+
