@@ -42,11 +42,6 @@ function App() {
   return (
     <>
       <Navbar />
-      <Button />
-      <Card />
-
-
-
       <BrowserRouter>
       <Routes>
         <Route path="/signin" element={<SigninPage />}/>
