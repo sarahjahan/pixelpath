@@ -15,29 +15,6 @@ import Card from './components/Card/Card'
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 function App() {
-  const [gamesList, setGamesList] = useState([])
-
-  console.log(gamesList);
-
-
-  const getGamesAPI = async () => {
-    try {
-      const { data } = await axios.get(`${BASE_URL}/api/games`);
-        setGamesList(data)
-        console.log(data)
-        console.log("Client side confirmed");
-    } catch (error) {
-      console.error("Error fetching games", error);
-    }
-  };
-
-  useEffect(() => {
-    getGamesAPI();
-  }, []);
-
-  if (gamesList.length === 0) {
-    return <div>no games found...</div>
-  }
 
   return (
     <>
@@ -45,7 +22,7 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path="/signin" element={<SigninPage />}/>
-        <Route path="/library" element={<LibraryPage gamesList={gamesList}/>} />
+        <Route path="/library" element={<LibraryPage />} />
         <Route path="/details" element={<GameDetailsPage />} />
         <Route path="/search" element={<GamesSearchPage />} />
         <Route path="/mood" />
