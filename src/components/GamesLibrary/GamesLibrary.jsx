@@ -7,7 +7,7 @@ import './GamesLibrary.scss'
 import { useState, useEffect } from 'react'
 
 
-function GamesLibrary({ gamesList, handleSort, handleSearch, onClick }) {
+function GamesLibrary({ gamesList, handleSort, handleSearch, onClick, getGamesLibrary }) {
     const [searchKeyword, setSearchKeyword] = useState("");
     const [filteredGames, setFilteredGames] = useState(gamesList);
 
@@ -28,13 +28,13 @@ function GamesLibrary({ gamesList, handleSort, handleSearch, onClick }) {
         );
       }, [searchKeyword, gamesList]);
 
+
       if (!filteredGames) return <div>Loading games...</div>;
 
 
 
     return(
         <div>
-
             <div className="gamesList__header">
                 <div className="gamesList__sorter"onClick={() => handleSort("title")} >Sort</div>
                 {/* <div className="gamesList__filter" onChange={(e) => setFilteredGames(e.target.value)}>Filter</div> */}
@@ -49,11 +49,11 @@ function GamesLibrary({ gamesList, handleSort, handleSearch, onClick }) {
                         onChange={(e) => setSearchKeyword(e.target.value)}/>
                 </div>
             </div>
-            <div className="gamesList__container">
+            <div className="gamesList__coner">
                 {filteredGames.length ==0? (<p className="result-message">No results found.</p>):
                 filteredGames.map((game, index) => (
                     <Card key={game.id} game={game} title={game.title} summary={game.summary} status={game.status} rating={game.rating} tags={game.tags} imgURL={game.coverArt}
-                    onClick={onClick} gameid={game.id}/>
+                    onClick={onClick} gameid={game.id} getGamesLibrary={getGamesLibrary}/>
                 ))}
 
 
