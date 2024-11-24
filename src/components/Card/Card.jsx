@@ -18,7 +18,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
     setIsOpen(false);
   }
 
-  const { coverArt, title, summary, status, rating, notes, tags, name, genres, cover } = game
+  const { coverArt, title, summary, status, rating, notes, tags, genres, id } = game
 
 
 
@@ -27,12 +27,12 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
     <div className="card__container">
       {isSearchPage ? ( 
         <>
-        <img src={cover.url}/>
-        <h2 className="card__title">{name}</h2>
-        <p className="card__subtitle">{genres[0].name}</p>
+        <img src={coverArt}/>
+        <h2 className="card__title">{title}</h2>
+        <p className="card__subtitle">{genres}</p>
         <p className="card__subtitle">{rating}</p>
         <p className="card__subtitle">{notes}</p>
-        <p className="card__subtitle">{tags}</p> 
+        <p className="card__subtitle">{summary}</p> 
         </>
       ) : (
         <>
@@ -48,7 +48,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
 
         <div className="card__action">
         {isSearchPage ? (
-           <img className="card__action--add" src={addicon} onClick={() => addGame(gameid)}/>
+           <img className="card__action--add" src={addicon} onClick={() => addGame(title, coverArt)}/>
           ) : (
             <>
             <img className="card__action--delete" src={delicon} onClick={() => delGame(gameid)} />
