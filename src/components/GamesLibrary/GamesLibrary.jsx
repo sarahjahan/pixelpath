@@ -7,7 +7,7 @@ import './GamesLibrary.scss'
 import { useState, useEffect } from 'react'
 
 
-function GamesLibrary({ gamesList, handleSort, handleSearch, onClick, getGamesLibrary }) {
+function GamesLibrary({ gamesList, handleSort, onClick, getGamesLibrary }) {
     const [searchKeyword, setSearchKeyword] = useState("");
     const [filteredGames, setFilteredGames] = useState(gamesList);
 
@@ -52,16 +52,9 @@ function GamesLibrary({ gamesList, handleSort, handleSearch, onClick, getGamesLi
             <div className="gamesList__coner">
                 {filteredGames.length ==0? (<p className="result-message">No results found.</p>):
                 filteredGames.map((game, index) => (
-                    <Card key={game.id} game={game} title={game.title} summary={game.summary} status={game.status} rating={game.rating} tags={game.tags} imgURL={game.coverArt}
-                    onClick={onClick} gameid={game.id} getGamesLibrary={getGamesLibrary}/>
+                    <Card key={game.id} gameid={game.id} title={game.title} summary={game.summary} status={game.status} rating={game.rating} tags={game.tags} imgURL={game.coverArt}
+                    onClick={onClick} getGamesLibrary={getGamesLibrary}/>
                 ))}
-
-
-                
-                {/* {gamesList.length > 0 &&
-                gamesList.map((game, index) => (
-                    <Card key={index} title={game.title} summary={game.summary} status={game.status} rating={game.rating} tags={game.tags} imgURL={game.coverArt}/>
-                ))} */}
             </div>
 
         </div>

@@ -1,13 +1,11 @@
 import GamesLibrary from "../../components/GamesLibrary/GamesLibrary";
 import { useEffect, useState } from 'react'
 import axios from "axios";
-import Modal from '../../components/Modal/Modal';
-
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 
-function LibraryPage(formSubmit) {
+function LibraryPage() {
     const [gamesList, setGamesList] = useState([]);
     const [sortOrder, setSortOrder] = useState("asc");
     const [searchKeyword, setSearchKeyword] = useState("");
@@ -24,9 +22,9 @@ function LibraryPage(formSubmit) {
       }
     };
 
-    useEffect(() => {
-        setGameToDelete()
-    }, [gamesList, gameToDelete]);
+    // useEffect(() => {
+    //     setGameToDelete()
+    // }, [gamesList, gameToDelete]);
 
     const getGamesLibrary = async () => {
         try {
