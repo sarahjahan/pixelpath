@@ -4,22 +4,15 @@ import LibraryPage from '../src/pages/LibraryPage/LibraryPage'
 import GamesSearchPage from './pages/GamesSearchPage/GamesSearchPage'
 import GameDetailsPage from './pages/GameDetailsPage/GameDetailsPage'
 
-
 import { useEffect, useState } from 'react'
 import axios from "axios";
 import './App.css'
-import Button from './components/Button/Button'
 import Navbar from './components/Navbar/Navbar'
-import Card from './components/Card/Card'
-
-const BASE_URL = import.meta.env.VITE_API_URL;
 
 function App() {
-
   return (
-    <>
-      <Navbar />
       <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/signin" element={<SigninPage />}/>
         <Route path="/library" element={<LibraryPage />} />
@@ -30,7 +23,6 @@ function App() {
 
       </Routes>
       </BrowserRouter>       
-    </>
   )
 }
 
