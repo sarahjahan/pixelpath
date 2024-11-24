@@ -1,18 +1,21 @@
-@import '../../styles/partials/global.scss';
-@import '../../styles/partials/variables.scss';
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global";
 
 .card {
 
 
   &__container {
-    margin: 30px;
-    background-color: $accent-color;
-    padding: 15px;
-    border-radius: 10px;
+    // margin: 30px;
+    background-color: #BDCFB5;
+    padding: 36px;
+    // border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 80%;
+    // min-width: 80%;
     justify-items: center;
-    // width: 100%;
+    width: 100%;
+    border-bottom: .5px solid #373F47;
+
 
 
     &__title {
@@ -22,6 +25,12 @@
     &__subtitle {
       font-size: 1rem;
     }
+  }
+  
+  &__coverart {
+    width: 300px;
+    border-radius: 10px;
+
   }
 }
 

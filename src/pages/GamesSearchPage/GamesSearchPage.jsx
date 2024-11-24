@@ -1,6 +1,8 @@
 import GamesLibrary from "../../components/GamesLibrary/GamesLibrary";
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from "axios";
+import backicon from '../../public/assets/icons/arrow-left.svg'
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -51,6 +53,9 @@ function GamesSearchPage() {
     
     return(
       <div>
+        <Link to="/library">
+          <img className="icon" src={backicon}/>
+        </Link>
         <GamesLibrary gamesAPIList={gamesAPIList} isSearchPage={true} addGame={addGame} setGamesList={setGamesList} />
       </div>
     )

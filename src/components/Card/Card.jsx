@@ -27,7 +27,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
     <div className="card__container">
       {isSearchPage ? ( 
         <>
-        <img src={coverArt}/>
+        <img className="card__coverart" src={coverArt}/>
         <h2 className="card__title">{title}</h2>
         <p className="card__subtitle">{genres}</p>
         <p className="card__subtitle">{rating}</p>
