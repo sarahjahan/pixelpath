@@ -12,6 +12,18 @@ function LibraryPage() {
     const [filteredGames, setFilteredGames] = useState([]);
     const [gameToDelete, setGameToDelete] = useState(null);
 
+
+    const addGame = async (id) => {
+      try {
+        const { data } = await axios.post(`${BASE_URL}/api/games/${id}`);
+        setGamesList(gamesList.push(game => game.id === id)); // Add to state
+        alert(`Game was sucessfully added to library. Refreshing Games list.`);
+      } catch (error) {
+        alert(`Error adding game with id`);
+      }
+    };
+
+
     const delGame = async (id) => {
       try {
         const { data } = await axios.delete(`${BASE_URL}/api/games/${id}`);
@@ -64,8 +76,8 @@ function LibraryPage() {
         )}
 
     return(
-        <div>
-          <GamesLibrary gamesList={gamesList} handleSort={handleSort} handleSearch={setSearchKeyword} onClick={delGame} getGamesLibrary={getGamesLibrary} />
+        <div> 
+          <GamesLibrary isSearchPage={false} gamesList={gamesList} handleSort={handleSort} delGame={delGame} addGame={addGame} getGamesLibrary={getGamesLibrary} />
         </div>
        
     )
