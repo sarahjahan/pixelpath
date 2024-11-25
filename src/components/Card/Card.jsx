@@ -20,6 +20,21 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
 
   const { coverArt, title, summary, status, rating, notes, tags, genres, id } = game
 
+  // const coverBigUrl = `https://images.igdb.com/igdb/image/upload/t_cover_big/${imageId}.jpg`;
+  function adjustCoverArtUrl(url, size = 't_cover_big') {
+    if (!url) return '';
+    const imageIdMatch = url.match(/\/t_([a-zA-Z0-9_]+)\/([a-zA-Z0-9]+)\.jpg/);
+    if (!imageIdMatch) return url; 
+    const imageId = imageIdMatch[2];
+    return `https://images.igdb.com/igdb/image/upload/${size}/${imageId}.jpg`;
+  }
+
+  // const originalUrl = "//images.igdb.com/igdb/image/upload/t_thumb/co6x5r.jpg";
+  // const newUrl = adjustCoverArtUrl(originalUrl, 't_cover_big'); // Replacing 't_thumb' with 't_cover_big'
+
+  const newUrl = adjustCoverArtUrl(coverArt,'t_cover_big')
+
+
 
 
   return (
@@ -27,7 +42,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
     <div className="card__container">
       {isSearchPage ? ( 
         <>
-        <img className="card__coverart" src={coverArt}/>
+        <img className="card__coverart" src={newUrl}/>
         <h2 className="card__title">{title}</h2>
         <p className="card__subtitle">{genres}</p>
         <p className="card__subtitle">{rating}</p>
@@ -37,7 +52,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
       ) : (
         <>
         <p className="card__subtitle--status">{status}</p>
-        <img src={coverArt}/>
+        <img className="card__coverart" src={newUrl}/>
         <h2 className="card__title">{title}</h2>
         <p className="card__subtitle">{summary}</p>
         <p className="card__subtitle">{rating}</p>
