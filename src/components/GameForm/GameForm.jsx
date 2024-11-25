@@ -23,13 +23,12 @@ const customStyles = {
   
 
 
-function GameForm({gameid, onClick, getGamesLibrary}) {
+function GameForm({gameid, onClick, getGamesLibrary, game}) {
     const [modalIsOpen, setIsOpen] = useState(true);
-    // const [ game, setGame] = useState(gameid)
     const [gameDetails, setGameDetails] = useState({
-        title: '',
-        summary: '',
-        rating: ''
+        status: '',
+        notes: '',
+        tags: ''
       });
 
     const navigate = useNavigate();
@@ -62,12 +61,12 @@ function GameForm({gameid, onClick, getGamesLibrary}) {
         e.preventDefault();
         try {
           const { data } = await axios.put(`${BASE_URL}/api/games/${gameid}`, gameDetails);
-          alert(`${gameid} was sucessfully updated. Refreshing Games list.`);
+          alert(`${game.title} was sucessfully updated. Refreshing Games list.`);
           closeModal(); 
           getGamesLibrary();
         } catch (error) {
-          alert(`Error updating game with id: ${gameid}`, error);
-          console.log(error)
+          alert(`Error updating ${game.title}`, error);
+          console.log(error.response.data.message)
         }
       };
 
@@ -81,32 +80,38 @@ function GameForm({gameid, onClick, getGamesLibrary}) {
             contentLabel="Example Modal">
               
               <h2>Edit Game</h2>
-                <div>Edit game below:</div>
+                <div>Edit your game experiences below:</div>
                 
                 <form className="form__field" onSubmit={handleSubmit}>
                 <label> Title: 
                     <input
                     className="form__input"
                     type="text"
-                    value={gameDetails.title}
-                    onChange={(e) => setGameDetails({ ...gameDetails, title: e.target.value })}/>
-                    </label>
-                <label> Summary:
-                    <input
-                    className="form__input"
-                    type="text"
-                    value={gameDetails.summary}
-                    onChange={(e) => setGameDetails({ ...gameDetails, summary: e.target.value })}/>
+                    value={game.title}/>
                 </label>
-                <label> Rating:
+                <label> Status:
                     <input
                     className="form__input"
                     type="text"
-                    value={gameDetails.rating}
-                    onChange={(e) => setGameDetails({ ...gameDetails, rating: e.target.value })}/>
+                    value={game.status}
+                    onChange={(e) => setGameDetails({ ...gameDetails, status: e.target.value })}/>
+                </label>
+                <label> Notes:
+                    <input
+                    className="form__input"
+                    type="text"
+                    value={game.notes}
+                    onChange={(e) => setGameDetails({ ...gameDetails, notes: e.target.value })}/>
+                </label>
+                <label> Tags:
+                    <input
+                    className="form__input"
+                    type="text"
+                    value={game.tags}
+                    onChange={(e) => setGameDetails({ ...gameDetails, tags: e.target.value })}/>
                 </label>
              
-                <button>Save</button>
+                <button type="submit">Save</button>
                 <button onClick={closeModal}>Close</button>
                 </form>
               

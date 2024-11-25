@@ -83,7 +83,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage, i
           {modalIsOpen && (<GameForm gameid={gameid} closeModal={closeModal} getGamesLibrary={getGamesLibrary} />)}
         </div> */}
 
-          {modalIsOpen && (<GameForm gameid={gameid} closeModal={closeModal} getGamesLibrary={getGamesLibrary} />)}
+          {modalIsOpen && (<GameForm gameid={gameid} game={game} closeModal={closeModal} getGamesLibrary={getGamesLibrary} />)}
 
       </div>  
 
