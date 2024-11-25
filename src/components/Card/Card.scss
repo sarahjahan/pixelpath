@@ -9,8 +9,8 @@
     // margin: 30px;
     background-color: $background-color;
     padding: 36px;
+    margin: 0px 90px;
     // border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     // min-width: 80%;
     justify-items: center;
     width: 100%;
@@ -30,7 +30,7 @@
   &__coverart {
     width: 300px;
     border-radius: 10px;
-
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -44,5 +44,5 @@
   
   .section-divider {
     border-bottom: 2px solid var(--accent-color);
-    margin: 20px 0;
+    margin: 20px;
   }

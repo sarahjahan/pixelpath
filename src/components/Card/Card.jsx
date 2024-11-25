@@ -2,13 +2,15 @@ import './Card.scss';
 import delicon from '../../public/assets/icons/trash-2.svg';
 import editicon from '../../public/assets/icons/edit-2.svg';
 import addicon from '../../public/assets/icons/plus-circle.svg';
+import minusicon from '../../public/assets/icons/minus-circle.svg'
 import GameForm from '../GameForm/GameForm';
 import { useState, useEffect } from "react";
 
 
 
-function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage }) {
+function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage, isGameAdded }) {
   const [modalIsOpen, setIsOpen] = useState(false);
+
 
   function openModal() {
     setIsOpen(true);
@@ -63,8 +65,12 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
 
         <div className="card__action">
         {isSearchPage ? (
-           <img className="card__action--add" src={addicon} onClick={() => addGame(title, coverArt)}/>
+          isGameAdded ? (
+            <img className="card__action--add" src={addicon} onClick={() => addGame(title, coverArt)}/>
           ) : (
+            <img className="card__action--del" src={minusicon} onClick={() => setIsGameAdded(false)}/>
+          )
+        ) : (
             <>
             <img className="card__action--delete" src={delicon} onClick={() => delGame(gameid)} />
             <img className="card__action--edit" src={editicon} onClick={openModal} />
