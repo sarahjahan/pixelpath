@@ -7,7 +7,7 @@ import './GamesLibrary.scss'
 import { useState, useEffect } from 'react'
 
 
-function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary, gamesAPIList, isSearchPage, isGameAdded }) {
+function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary, gamesAPIList, isSearchPage }) {
     const [searchKeyword, setSearchKeyword] = useState("");
 
     const filteredGames = (isSearchPage ? gamesAPIList : gamesList).filter((game) =>
@@ -20,7 +20,7 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
     return(
         <div>
             <div className="gamesList__header">
-                <div className="gamesList__sorter"onClick={() => handleSort("title")} >Sort</div>
+                <div className="gamesList__sorter"onClick={() => handleSort("title")}>Sort by Title</div>
                 {/* <div className="gamesList__filter" onChange={(e) => setFilteredGames(e.target.value)}>Filter</div> */}
                 
                 <div className="gamesList__search">
@@ -43,7 +43,7 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
                     delGame={delGame}
                     addGame={addGame} 
                     getGamesLibrary={getGamesLibrary}
-                    isSearchPage={isSearchPage} isGameAdded={isGameAdded}  />
+                    isSearchPage={isSearchPage} />
                 ))}
             </div>
         </div>

@@ -11,7 +11,6 @@ import { useState, useEffect } from "react";
 function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage, isGameAdded }) {
   const [modalIsOpen, setIsOpen] = useState(false);
 
-
   function openModal() {
     setIsOpen(true);
   }
@@ -38,7 +37,6 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage, i
 
 
 
-
   return (
 
     <div className="card__container">
@@ -49,7 +47,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage, i
         <p className="card__subtitle">{genres}</p>
         <p className="card__subtitle">{rating}</p>
         <p className="card__subtitle">{notes}</p>
-        <p className="card__subtitle">{summary}</p> 
+        {/* <p className="card__subtitle">{summary}</p>  */}
         </>
       ) : (
         <>
@@ -66,13 +64,14 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage, i
         <div className="card__action">
         {isSearchPage ? (
           isGameAdded ? (
-            <img className="card__action--add" src={addicon} onClick={() => addGame(title, coverArt)}/>
+            <img className="card__action--del" src={minusicon}/>
+
           ) : (
-            <img className="card__action--del" src={minusicon} onClick={() => setIsGameAdded(false)}/>
+            <img className="card__action--add" src={addicon} onClick={() => addGame(title, coverArt) }/>
           )
         ) : (
             <>
-            <img className="card__action--delete" src={delicon} onClick={() => delGame(gameid)} />
+            <img className="card__action--delete" src={minusicon} onClick={() => delGame(gameid)} />
             <img className="card__action--edit" src={editicon} onClick={openModal} />
             </>
         )}
