@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 
 
 
-function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage, isGameAdded }) {
+function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage }) {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
@@ -19,7 +19,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage, i
     setIsOpen(false);
   }
 
-  const { coverArt, title, summary, status, rating, notes, tags, genres, id } = game
+  const { coverArt, title, summary, status, rating, notes, tags, genres, id, isOwned} = game
 
   // const coverBigUrl = `https://images.igdb.com/igdb/image/upload/t_cover_big/${imageId}.jpg`;
   function adjustCoverArtUrl(url, size = 't_cover_big') {
@@ -63,12 +63,11 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage, i
 
         <div className="card__action">
         {isSearchPage ? (
-          isGameAdded ? (
+          isOwned ? (
             <img className="card__action--del" src={minusicon}/>
-
           ) : (
-            <img className="card__action--add" src={addicon} onClick={() => addGame(title, coverArt) }/>
-          )
+
+            <img className="card__action--add" src={addicon} onClick={() => addGame(id, title, coverArt)}/>          )
         ) : (
             <>
             <img className="card__action--delete" src={minusicon} onClick={() => delGame(gameid)} />
@@ -76,12 +75,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage, i
             </>
         )}
       </div>
-          {/* <img className="card__action--delete" src={delicon} onClick={() => onClick(gameid)}/>
-          <button className="icon" onClick={openModal}><img src={editIcon}/></button>
-          <img className="card__action--edit" src={editicon} onClick={() => openModal()}/>
-          {modalIsOpen && (<GameForm gameid={gameid} closeModal={closeModal} getGamesLibrary={getGamesLibrary} />)}
-        </div> */}
-
+      
           {modalIsOpen && (<GameForm gameid={gameid} game={game} closeModal={closeModal} getGamesLibrary={getGamesLibrary} />)}
 
       </div>  

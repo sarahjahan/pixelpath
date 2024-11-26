@@ -9,8 +9,21 @@ const BASE_URL = import.meta.env.VITE_API_URL;
 
 function GamesSearchPage() {
     const [gamesAPIList, setGamesAPIList] = useState([]);
+    const [gamesList, setGamesList] = useState([]);
 
 
+    const addGame = async (id, title, coverArt) => {
+      try {
+        const { data } = await axios.post(`${BASE_URL}/api/games/`, 
+        {game_id: id, user_id: 1, title, coverArt}
+        );
+        setGamesList((prevGamesList) => [...prevGamesList, data]);
+        alert(`Game was sucessfully added to library. Refreshing Games list.`);
+      } catch (error) {
+        alert(`Error adding game`);
+        console.log(error.response?.data || error)
+      }
+    };
 
     const getGamesAPI = async () => {
         try {
@@ -41,7 +54,7 @@ function GamesSearchPage() {
         <Link to="/library">
           <img className="icon" src={backicon}/>
         </Link>
-        <GamesLibrary gamesAPIList={gamesAPIList} isSearchPage={true} />
+        <GamesLibrary gamesAPIList={gamesAPIList} isSearchPage={true} addGame={addGame} />
       </div>
     )
 }
