@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/signin" element={<SigninPage />}/>
         <Route path="/library" element={<LibraryPage />} />
-        <Route path="/details" element={<GameDetailsPage />} />
+        <Route path="/details/:gameid" element={<GameDetailsPage />} />
         <Route path="/search" element={<GamesSearchPage />} />
         <Route path="/mood" />
         <Route path="*" element={<Navigate to="/" />} />
