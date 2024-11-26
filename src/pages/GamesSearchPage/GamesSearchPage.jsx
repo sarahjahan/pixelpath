@@ -25,6 +25,17 @@ function GamesSearchPage() {
       }
     };
 
+    const delGame = async (id) => {
+      try {
+        const { data } = await axios.delete(`${BASE_URL}/api/games/${id}`);
+        setGamesList(gamesList.filter(game => game.id !== id)); // Remove from state
+        alert(`Game was removed from your library. Refreshing Games list.`);
+      } catch (error) {
+        alert(`Error deleting game: ${error}`);
+        console.log(error.response)
+      }
+    };
+
     const getGamesAPI = async () => {
         try {
           const { data } = await axios.get(`${BASE_URL}/api/games/search`)
@@ -40,7 +51,7 @@ function GamesSearchPage() {
 
       useEffect(() => {
         getGamesAPI();
-      }, []);
+      }, [gamesList]);
 
       if (!gamesAPIList.length === 0) {
         return (
@@ -54,7 +65,7 @@ function GamesSearchPage() {
         <Link to="/library">
           <img className="icon" src={backicon}/>
         </Link>
-        <GamesLibrary gamesAPIList={gamesAPIList} isSearchPage={true} addGame={addGame} />
+        <GamesLibrary gamesAPIList={gamesAPIList} isSearchPage={true} addGame={addGame} delGame={delGame} />
       </div>
     )
 }

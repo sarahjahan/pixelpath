@@ -42,29 +42,29 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
     <div className="card__container">
       {isSearchPage ? ( 
         <>
-        <img className="card__coverart" src={newUrl}/>
-        <h2 className="card__title">{title}</h2>
-        <p className="card__subtitle">{genres}</p>
-        <p className="card__subtitle">{rating}</p>
-        <p className="card__subtitle">{notes}</p>
-        {/* <p className="card__subtitle">{summary}</p>  */}
+          <img className="card__coverart" src={newUrl}/>
+          <h2 className="card__title">{title}</h2>
+          <p className="card__subtitle">{genres}</p>
+          <p className="card__subtitle">{rating}</p>
+          <p className="card__subtitle">{notes}</p>
+          {/* <p className="card__subtitle">{summary}</p>  */}
         </>
       ) : (
-        <>
-        <p className="card__subtitle--status">{status}</p>
-        <img className="card__coverart" src={newUrl}/>
-        <h2 className="card__title">{title}</h2>
-        <p className="card__subtitle">{summary}</p>
-        <p className="card__subtitle">{rating}</p>
-        <p className="card__subtitle">{notes}</p>
-        <p className="card__subtitle">{tags}</p> 
-        </>
+        <div className="card__myGame">
+          <p className="card__subtitle--status">{status}</p>
+          <img className="card__coverart" src={newUrl}/>
+          <h2 className="card__title">{title}</h2>
+          <p className="card__subtitle">{summary}</p>
+          <p className="card__subtitle">{rating}</p>
+          <p className="card__subtitle">{notes}</p>
+          <p className="card__subtitle">{tags}</p> 
+        </div>
       )}
 
         <div className="card__action">
         {isSearchPage ? (
           isOwned ? (
-            <img className="card__action--del" src={minusicon}/>
+            <img className="card__action--del" src={minusicon} onClick={() => delGame(gameid)}/>
           ) : (
 
             <img className="card__action--add" src={addicon} onClick={() => addGame(id, title, coverArt)}/>          )
@@ -75,7 +75,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
             </>
         )}
       </div>
-      
+
           {modalIsOpen && (<GameForm gameid={gameid} game={game} closeModal={closeModal} getGamesLibrary={getGamesLibrary} />)}
 
       </div>  
