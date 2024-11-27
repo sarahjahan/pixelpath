@@ -1,6 +1,12 @@
+import logo from "../../public/assets/pixelpath-home-logo.jpg"
+
 function SigninPage() {
     return(
-        <>Sign in or Register</>
+        <>
+            <img className="logo" src={logo} />
+            <h2>Sign in</h2>
+            <h2>Register</h2>
+        </>
     )
 }
 
