@@ -5,14 +5,17 @@
 .card {
 
   &__container {
+    text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background-color: $background-color;
     margin: 15px;
     max-width: 100%;
     border-bottom: .5px solid lightgray;
+    flex-shrink: 0;
+    flex-grow: 0;
 
 
       @include tablet {
@@ -31,7 +34,7 @@
 
 
         @include desktop {
-          width: calc(20% - 20px);
+          width: calc(25% - 20px);
         }
     }
   }
@@ -51,9 +54,13 @@
         margin: 0 auto;
         background-color: $accent-color;
         color: white;
+        flex-grow: 0;
+        margin-bottom: 20px;
+
+
       }
 
-      &--currentlyplaying {
+      &--playing {
         border: .5px dashed;
         border-radius: 12px;
         max-width: 50%;
@@ -61,6 +68,10 @@
         margin: 0 auto;
         background-color: #A3D8F4;
         color: gray;
+        flex-grow: 0;
+        margin-bottom: 20px;
+
+
       }
 
       &--wanttoplay {
@@ -71,6 +82,10 @@
         margin: 0 auto;
         background-color: #D4C2FC;
         color: gray;
+        flex-grow: 0;
+        margin-bottom: 20px;
+
+
       }
   }
   
@@ -79,6 +94,9 @@
       width: 150px;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      flex-grow: 0;
+      align-self: flex-start;
+      flex-grow: 0;
 
       @include tablet {
         width: 100px;
@@ -86,6 +104,7 @@
     }
 
     &__myGame {
+      text-align: center;
       padding: 20px;
       border-radius: 12px;
       transition: background-color 0.2s;
@@ -107,7 +126,12 @@
   width: 26px;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   padding: 16px 0px;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  flex-grow: 1;
+
 }
 
 .card__icon {

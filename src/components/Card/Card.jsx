@@ -59,6 +59,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
           <div className="section-divider"></div>
           <img className="card__coverart" src={newUrl}/>
           <h2 className="card__title">{title}</h2>
+          <p className="card__subtitle">{genres}</p>
           <p className="card__subtitle">Personal Rating: {rating}</p>
           <p className="card__subtitle">{notes}</p>
           <p className="card__subtitle">{tags}</p> 
