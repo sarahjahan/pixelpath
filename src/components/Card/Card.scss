@@ -4,45 +4,37 @@
 
 .card {
 
-
-
   &__container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: $background-color;
-    // padding: 36px;
-    // margin: 15px 40px;
     margin: 15px;
     max-width: 100%;
     border-bottom: .5px solid lightgray;
 
+
       @include tablet {
+        margin: 10px;
+        border-radius: 10px;
         border-bottom: none;
         border: 1px solid lightgray;
-        border-radius: 10px;
         flex-wrap: wrap;
-        justify-content: space-between;
-        width: 30%;
-        width: calc(35% - 20px);
+        // justify-content: space-between;
+        width: calc(33.33% - 20px);
+        transition: background-color 0.2s;
+        
+          &:hover {
+            background-color: $secondary-color;
+          }
 
 
         @include desktop {
-          width: calc(33.33% - 20px);
+          width: calc(20% - 20px);
         }
-
-      @include tablet {
-        transition: background-color 0.3s;
-        
-        &:hover {
-          background-color: $secondary-color;
-        }
-      }
     }
   }
-
-
 
     &__title {
       font-size: 1.5rem;
@@ -83,33 +75,47 @@
   }
   
     &__coverart {
+      margin: 20px;
       width: 150px;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      @include tablet {
+        width: 100px;
+      }
     }
 
     &__myGame {
       padding: 20px;
       border-radius: 12px;
-      transition: background-color 0.3s;
+      transition: background-color 0.2s;
       
       &:hover {
         background-color: $secondary-color;
       }
-     
+    }
+
+    &__button-container {
+      display: flex;
+      gap: 12px;
     }
 
 }
 
 .card__action {
   display: flex;
-  width: 30px;
-  padding: 5px;
-  margin: 20px;
-  justify-content: left;
+  width: 26px;
+  flex-direction: row;
+  justify-content: center;
+  padding: 16px 0px;
+}
 
-  
+.card__icon {
+  transition: transform 0.2s ease;
 
+  &:hover {
+    transform: translateY(-0.25rem);
+  }
 }
   
   .section-divider {

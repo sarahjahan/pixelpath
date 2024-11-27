@@ -44,12 +44,12 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
 
     <div className="card__container">
       {isSearchPage ? ( 
-        <>
+        <div className="card__myGame">
           <img className="card__coverart" src={newUrl}/>
           <h2 className="card__title">{title}</h2>
           <p className="card__subtitle">{genres}</p>
           {/* <p className="card__subtitle">{summary}</p>  */}
-        </>
+        </div>
       ) : (
         <div className="card__myGame">
           <div className={`card__subtitle--${statusClass}`}>{status}</div>
@@ -65,15 +65,15 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
         <div className="card__action">
         {isSearchPage ? (
           isOwned ? (
-            <img className="card__action--del" src={minusicon} onClick={() => delGame(gameid)}/>
+            <img className="card__icon" src={minusicon} onClick={() => delGame(gameid)}/>
           ) : (
 
-            <img className="card__action--add" src={addicon} onClick={() => addGame(id, title, coverArt)}/>          )
+            <img className="card__icon" src={addicon} onClick={() => addGame(id, title, coverArt)}/>          )
         ) : (
-            <>
-            <img className="card__action--delete" src={minusicon} onClick={() => delGame(gameid)} />
-            <img className="card__action--edit" src={editicon} onClick={openModal} />
-            </>
+          <div className="card__button-container">
+            <img className="card__icon" src={minusicon} onClick={() => delGame(gameid)} />
+            <img className="card__icon" src={editicon} onClick={openModal} />
+          </div>
         )}
       </div>
 

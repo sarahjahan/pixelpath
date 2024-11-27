@@ -27,6 +27,11 @@
         
             @include tablet {
               width: 11.5625rem;
+              transition: background-color 0.3s;
+
+              &:hover {
+                border-color: rgb(110, 22, 22);
+              }
             }
         
             @include desktop {
