@@ -5,12 +5,14 @@ import addicon from '../../public/assets/icons/plus-circle.svg';
 import minusicon from '../../public/assets/icons/minus-circle.svg'
 import GameForm from '../GameForm/GameForm';
 import { useState, useEffect } from "react";
+import 'react-dropdown/style.css';
 
 
 
 function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage }) {
   const [modalIsOpen, setIsOpen] = useState(false);
 
+  //Code for Modal
   function openModal() {
     setIsOpen(true);
   }
@@ -18,12 +20,13 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
   function closeModal() {
     setIsOpen(false);
   }
-
+ 
+  //fix class name for status and see game object details
   const { coverArt, title, summary, status, rating, notes, tags, genres, id, isOwned} = game
-  console.log(status)
   const statusClass = status.toLowerCase().replace(/\s+/g, '')
 
 
+  //Code for Converting URL 
   // const coverBigUrl = `https://images.igdb.com/igdb/image/upload/t_cover_big/${imageId}.jpg`;
   function adjustCoverArtUrl(url, size = 't_cover_big') {
     if (!url) return '';
@@ -80,8 +83,6 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
           {modalIsOpen && (<GameForm gameid={gameid} game={game} closeModal={closeModal} getGamesLibrary={getGamesLibrary} />)}
 
       </div>  
-
-
   );
 };
 
