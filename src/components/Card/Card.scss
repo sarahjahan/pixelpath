@@ -5,16 +5,42 @@
 .card {
 
 
+
   &__container {
-    // margin: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: $background-color;
-    padding: 36px;
-    margin: 0px 90px;
-    // border-radius: 10px;
-    // min-width: 80%;
-    justify-items: center;
-    width: 100%;
-    border-bottom: .5px solid #373F47;
+    // padding: 36px;
+    // margin: 15px 40px;
+    margin: 15px;
+    max-width: 100%;
+    border-bottom: .5px solid lightgray;
+
+      @include tablet {
+        border-bottom: none;
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 30%;
+        width: calc(35% - 20px);
+
+
+        @include desktop {
+          width: calc(33.33% - 20px);
+        }
+
+      @include tablet {
+        transition: background-color 0.3s;
+        
+        &:hover {
+          background-color: $secondary-color;
+        }
+      }
+    }
+  }
 
 
 
@@ -24,21 +50,65 @@
 
     &__subtitle {
       font-size: 1rem;
-    }
+
+      &--completed {
+        border: .5px dashed;
+        border-radius: 12px;
+        max-width: 50%;
+        text-align: center;
+        margin: 0 auto;
+        background-color: $accent-color;
+        color: white;
+      }
+
+      &--currentlyplaying {
+        border: .5px dashed;
+        border-radius: 12px;
+        max-width: 50%;
+        text-align: center;
+        margin: 0 auto;
+        background-color: #A3D8F4;
+        color: gray;
+      }
+
+      &--wanttoplay {
+        border: .5px dashed #FFD1A9;
+        border-radius: 12px;
+        max-width: 50%;
+        text-align: center;
+        margin: 0 auto;
+        background-color: #D4C2FC;
+        color: gray;
+      }
   }
   
-  &__coverart {
-    width: 200px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+    &__coverart {
+      width: 150px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    &__myGame {
+      padding: 20px;
+      border-radius: 12px;
+      transition: background-color 0.3s;
+      
+      &:hover {
+        background-color: $secondary-color;
+      }
+     
+    }
+
 }
 
 .card__action {
   display: flex;
   width: 30px;
   padding: 5px;
+  margin: 20px;
   justify-content: left;
+
+  
 
 }
   

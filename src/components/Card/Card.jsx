@@ -20,6 +20,9 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
   }
 
   const { coverArt, title, summary, status, rating, notes, tags, genres, id, isOwned} = game
+  console.log(status)
+  const statusClass = status.toLowerCase().replace(/\s+/g, '')
+
 
   // const coverBigUrl = `https://images.igdb.com/igdb/image/upload/t_cover_big/${imageId}.jpg`;
   function adjustCoverArtUrl(url, size = 't_cover_big') {
@@ -45,17 +48,15 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
           <img className="card__coverart" src={newUrl}/>
           <h2 className="card__title">{title}</h2>
           <p className="card__subtitle">{genres}</p>
-          <p className="card__subtitle">{rating}</p>
-          <p className="card__subtitle">{notes}</p>
           {/* <p className="card__subtitle">{summary}</p>  */}
         </>
       ) : (
         <div className="card__myGame">
-          <p className="card__subtitle--status">{status}</p>
+          <div className={`card__subtitle--${statusClass}`}>{status}</div>
+          <div className="section-divider"></div>
           <img className="card__coverart" src={newUrl}/>
           <h2 className="card__title">{title}</h2>
-          <p className="card__subtitle">{summary}</p>
-          <p className="card__subtitle">{rating}</p>
+          <p className="card__subtitle">Personal Rating: {rating}</p>
           <p className="card__subtitle">{notes}</p>
           <p className="card__subtitle">{tags}</p> 
         </div>
