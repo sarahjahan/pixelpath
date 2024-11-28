@@ -1,13 +1,11 @@
 
 .game {
-    margin: 12px;
+    // margin: 12px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
+    flex-direction: column;
 
     &__maindetails {
-        width: 100px;
+        width: 100%;
 
     }
 
@@ -18,6 +16,6 @@
     }
 
     &__subdetails {
-        width: 70vh;
+        width: 100%;
     }
 }

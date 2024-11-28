@@ -18,7 +18,7 @@ function GameDetailsPage() {
         try {
           const { data } = await axios.get(`${BASE_URL}/api/games/${gameid}`);
             console.log(data);
-            setGameDetails(data[0]);
+            setGameDetails(data);
             console.log("Client side confirmed");
         } catch (error) {
           console.error(`Error fetching game with ${id}`, error);
