@@ -1,0 +1,23 @@
+
+.game {
+    margin: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+
+    &__maindetails {
+        width: 100px;
+
+    }
+
+    &__coverart {
+        border-radius: 12px;
+        width: 30vh;
+
+    }
+
+    &__subdetails {
+        width: 70vh;
+    }
+}

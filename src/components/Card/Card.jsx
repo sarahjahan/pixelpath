@@ -1,16 +1,20 @@
 import './Card.scss';
-import delicon from '../../public/assets/icons/trash-2.svg';
 import editicon from '../../public/assets/icons/edit-2.svg';
 import addicon from '../../public/assets/icons/plus-circle.svg';
 import minusicon from '../../public/assets/icons/minus-circle.svg'
 import GameForm from '../GameForm/GameForm';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import 'react-dropdown/style.css';
+import { useNavigate } from "react-router-dom";
+
 
 
 
 function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage }) {
   const [modalIsOpen, setIsOpen] = useState(false);
+
+  const navigate = useNavigate()
+
 
   //Code for Modal
   function openModal() {
@@ -54,7 +58,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
           {/* <p className="card__subtitle">{summary}</p>  */}
         </div>
       ) : (
-        <div className="card__myGame">
+        <div className="card__myGame" onClick={() => navigate(`/details/${gameid}`)}>
           <div className={`card__subtitle--${statusClass}`}>{status}</div>
           <div className="section-divider"></div>
           <img className="card__coverart" src={newUrl}/>

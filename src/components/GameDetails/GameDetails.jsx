@@ -20,18 +20,22 @@ function GameDetails({gameDetails}) {
       const newUrl = adjustCoverArtUrl(coverArt,'t_cover_big')
 
     return(
-        <>
-        <div>Game Details</div>
-        <h2>{title}</h2>
-        <img className="card__coverart" src={newUrl}/>
-        <p>{summary}</p>
+        <div className='game'>
+            <div className="game__main-details">
+                <h1 className="game__header">Game Details</h1>
+                <h2 className="game__title">{title}</h2>
+                <img className="game__coverart" src={newUrl}/>
+                <p className="game__summary">{summary}</p>
+            </div>
 
 
-        <p>Status: {status}</p>
-        <p>Related Tags: {tags}</p>
-        <p>Notes: {notes}</p>
-        <p>My Rating: {rating}</p>
-        </>
+            <div className="game__sub-details">
+                <p className="game__status">Status: {status}</p>
+                <p className="game__tags">Related Tags: {tags}</p>
+                <p className="game__notes">Notes: {notes}</p>
+                <p className="game__rating">My Rating: {rating}</p>
+            </div>
+        </div>
     )
 }
 
