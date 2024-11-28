@@ -7,8 +7,6 @@ function Button({onClick, actiontext}) {
       <button className="button" onClick={onClick}>{actiontext}
       {/* <img className="icon" src={minusicon} /> */}
       </button>
-      
-
     </>
   );
 };

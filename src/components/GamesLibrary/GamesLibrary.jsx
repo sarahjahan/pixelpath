@@ -4,6 +4,7 @@ import Card from "../../components/Card/Card"
 import Select from 'react-select';
 import './GamesLibrary.scss'
 import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 import Button from '../Button/Button'
 
 
@@ -17,6 +18,8 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
     
         return matchesSearch && matchesStatus;
 });
+
+const navigate = useNavigate()
     
 
 //Code for React Select
@@ -54,13 +57,16 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
                         onChange={(e) => setSearchKeyword(e.target.value)}/>
                 </div>
 
-                <div className="gamesList__button">
+                <div className="gamesList__discover-button" onClick={() => navigate('/search')}>Discover New Games</div>
+
+                <div className="gamesList__sort-button">
                     <p>Sort By:</p>
                     <Button className="gamesList__sorter"onClick={() => handleSort("title")} actiontext={"Title"}/>
                     <Button className="gamesList__sorter"onClick={() => handleSort("rating")} actiontext={"Rating"}/>
                     <Button className="gamesList__sorter"onClick={() => handleSort("status")} actiontext={"Status"}/>
                 </div>
             </div>
+            
             <div className="gamesList__container">
                 {filteredGames.length ===0? (<p className="result-message">No results found.</p>):
                 filteredGames.map((game, index) => (

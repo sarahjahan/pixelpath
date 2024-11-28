@@ -163,21 +163,21 @@ img {
 
 .button {
   @extend .button-text;
-  width: 100%;
-  height: 2.25rem;
-  padding: 0.5rem 1rem;
-  border-radius: 1.25rem;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  text-decoration: none;
+  // width: 100%;
+  // height: 2.25rem;
+  // padding: 0.5rem 1rem;
+  // border-radius: 1.25rem;
+  // text-align: center;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // cursor: pointer;
+  // text-decoration: none;
 
-  @include tablet {
-    width: auto;
-    height: 2.375rem;
-  }
+  // @include tablet {
+  //   width: auto;
+  //   height: 2.375rem;
+  // }
 }
 
 .button-primary {

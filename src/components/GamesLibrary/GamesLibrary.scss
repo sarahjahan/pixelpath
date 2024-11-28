@@ -19,19 +19,72 @@
         }
     }
 
-    &__button {
+    &__sort-button {
       width: 100%;
       padding: 12px 24px;
       display: flex;
       align-items: center;
 
-      &::after {
+      // &::after {
+      //   border: 1px solid black;
+      //   border-radius: 2px;
+      // }
+    }
+
+    &__discover-button {
+      background-image: url("../../public/assets/controller.png");
+        background-repeat: no-repeat;
+        background-position: top 0.25rem center;
+        background-size: 100px;
+
+
+        margin: 16px;
+        padding: 40px;
+        background-color: $primary-color;
         border: 1px solid gray;
-        border-radius: 8px;
+        // border-radius: 48px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        transition: transform 0.1s ease-out, background-color 0.3s ease; /* Combined transitions */
+      
+        /* Keyframes for bouncing animation */
+        @keyframes bounce {
+          0% {
+            transform: translateX(0); /* Initial position */
+          }
+          25% {
+            transform: translateX(-.25rem); /* Initial position */
+          }
+          50% {
+            transform: translateX(-0.5rem); /* Bounce up */
+          }
+          75% {
+            transform: translateX(-.25rem); /* Bounce up */
+          }
+          100% {
+            transform: translateX(-.05rem); /* Return to initial position */
+          }
+        }
+      
+        &:hover {
+          border-color: rgb(110, 22, 22);
+          transform: translateX(-0.25rem);   /* Combine X and Y translations */
+          animation: bounce 0.6s ease; /* Trigger bounce animation */
+        }
       }
 
-    
-    }
+
+
+        // transition: background-color 0.3s;
+        // transition: transform 0.2s ease;
+
+        //   &:hover {
+        //     border-color: rgb(110, 22, 22);
+        //     transform: translateX(-0.25rem);
+        //     }
+        //   }
 
     &__searcher {
             @extend .form__input;
