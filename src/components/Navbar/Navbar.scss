@@ -16,10 +16,14 @@
     &__logo {
       width: 100px;
       justify-self: center;
+      flex-grow: 0;
+      flex-shrink: 0;
+      cursor: pointer;
       }
 
     &__menu {
-      width: 20%;
+      flex-grow: 0;
+      flex-shrink: 0;
     }
 
     &__discover {
@@ -28,6 +32,8 @@
       border-radius: 8px;
       border: 1px solid gray;
       color: $text-color;
+      flex-grow: 0;
+      flex-shrink: 0;
 
       &:hover {
         background-color: $secondary-color

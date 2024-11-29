@@ -1,5 +1,5 @@
 import './Navbar.scss';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import logo from "../../public/assets/controller.png"
 
 function Navbar() {
@@ -11,14 +11,14 @@ const navigate = useNavigate()
         <>
         <div className="navbar">
             <div className="navbar__menu">
-                <a href="/library">Library</a>
-                <a href="/search">Search</a>
+                <Link to="/library">Library</Link>
+                <Link to="/search">Search</Link>
             </div>
 
             <div className="navbar__logo">
                 <img onClick={() => navigate(`library`)} className="navbar__logo-img" src={logo} />
             </div>
-            <a className="navbar__discover" href="/search">Discover New Games</a>
+            <Link to="/search" className="navbar__discover">Discover New Games</Link>
             {/* <p className="site-header">Tracking your gaming journey, one pixel at a time ... </p> */}
         </div>
         
