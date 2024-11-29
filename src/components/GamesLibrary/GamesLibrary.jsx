@@ -10,23 +10,34 @@ import MoodReco from "../MoodReco/MoodReco";
 function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary, gamesAPIList, isSearchPage }) {
     const [searchKeyword, setSearchKeyword] = useState("");
     const [statusFilter, setStatusFilter] = useState(null);
+    const [genreFilter, setGenreFilter] = useState(null);
 
     const filteredGames = (isSearchPage ? gamesAPIList : gamesList).filter((game) => {
         const matchesSearch = game.title?.toLowerCase().includes(searchKeyword.toLowerCase());
-        const matchesStatus = statusFilter ? game.status === statusFilter.value : true; // Use `statusFilter.value` to match game status
+        const matchesStatus = statusFilter ? (statusFilter.value === null || game.status === statusFilter.value) : true;        const matchesGenre = genreFilter
+    ? game.genres?.toLowerCase().split(',').some(genre => genre.trim() === genreFilter.value.toLowerCase()) 
+    : true;
+
     
-        return matchesSearch && matchesStatus;
+        return matchesSearch && matchesStatus && matchesGenre;
 });
 
 const navigate = useNavigate()
     
 
 //Code for React Select
-  const options = [
-    { value: 'no_sort', label: '' },
+  const statusOptions = [
+    { value: null, label: 'All Statuses' },
     { value: 'Playing', label: 'Playing' },
     { value: 'Completed', label: 'Completed' },
     { value: 'Want To Play', label: 'Want To Play' }
+  ]
+
+  const genreOptions = [
+    { value: 'Puzzle', label:'Puzzle',},
+    { value: 'Shooter', label: 'Shooter' },
+    { value: 'Adventure', label: 'Adventure' },
+    { value: 'Action', label: 'Action' }
   ]
 
   const handleStatusChange = (selectedOption) => {
@@ -52,11 +63,20 @@ const navigate = useNavigate()
                         onChange={(e) => setSearchKeyword(e.target.value)}/>
                 </div>
 
+
+                {isSearchPage ? (
                 <Select 
                 className="gamesList__filter"
-                options={options} 
-                placeholder={"Filter by Status..."}
+                options={genreOptions} 
+                placeholder={"Filter by Genre..."}
                 onChange={handleStatusChange}/>
+                ) : (
+                <Select 
+                className="gamesList__filter"
+                options={statusOptions} 
+                placeholder={"Filter by Status..."}
+                onChange={handleStatusChange}/> )}
+
 
                 <div className="gamesList__sort-button">
                     <p>Sort By:</p>
