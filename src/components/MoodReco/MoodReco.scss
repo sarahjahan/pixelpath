@@ -1,0 +1,40 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global";
+
+
+.moods {
+    text-align: center;
+
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+.image {
+    &__container {
+        width: 100px;
+        height: 100px;
+        margin-top: 10px;
+        transition: transform 0.2s ease;
+        filter: grayscale(0%);
+        transition: filter 0.3s ease;
+
+        &:hover {
+            transform: translateY(-0.25rem);
+        }
+
+        &:active {
+            transform: translateY(-0.25rem);
+            filter: grayscale(1000%);
+        }
+
+        &:after {
+            transform: translateY(-0.25rem);
+            filter: grayscale(1000%);
+        }
+    }
+}
