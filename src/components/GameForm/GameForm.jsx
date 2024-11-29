@@ -22,26 +22,19 @@ const customStyles = {
   
 
 
-function GameForm({gameid, onClick, getGamesLibrary, game}) {
+function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
   const [isClearable, setIsClearable] = useState(true);
   const [isSearchable, setIsSearchable] = useState(true);
-  const [modalIsOpen, setIsOpen] = useState(true);
+  // const [modalIsOpen, setIsOpen] = useState(true);
   const [gameDetails, setGameDetails] = useState({
         title: game.title,
         status: game.status || '',
         notes: game.notes || '',
       });
 
-
-
     function openModal() {
         setIsOpen(true);
       }
-  
-    function closeModal() {
-      setIsOpen(false);
-    }
-
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -100,11 +93,11 @@ function GameForm({gameid, onClick, getGamesLibrary, game}) {
 
 
 
-    useEffect(() => {
-      if (onClick) {
-          openModal();
-        }
-      }, [onClick]);
+    // useEffect(() => {
+    //   if (onClick) {
+    //       openModal();
+    //     }
+    //   }, [onClick]);
 
 
     // useEffect(() => {
@@ -123,19 +116,14 @@ function GameForm({gameid, onClick, getGamesLibrary, game}) {
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
             // style={customStyles}
-            contentLabel="Example Modal">
+            contentLabel="Example Modal"
+            appElement={document.getElementById('root')}>
               
               <h2>Edit Game</h2>
                 <div>Edit your game experiences below:</div>
                 
                 <form className="form__field" onSubmit={handleSubmit}>
-                <label> Title: 
-                    <input
-                    className="form__input"
-                    type="text"
-                    name="title"
-                    value={gameDetails.title}/>
-                </label>
+                <h3> Title: {gameDetails.title}</h3>
                 <label> Status:
                     <input
                     className="form__input"

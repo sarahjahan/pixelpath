@@ -75,8 +75,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
           isOwned ? (
             <img className="card__icon" src={minusicon} onClick={() => delGame(gameid)}/>
           ) : (
-
-            <img className="card__icon" src={addicon} onClick={() => addGame(id, title, coverArt)}/>          )
+            <img className="card__icon" src={addicon} onClick={() => addGame(id, title, coverArt)}/> )
         ) : (
           <div className="card__button-container">
             <img className="card__icon" src={minusicon} onClick={() => delGame(gameid)} />
@@ -85,7 +84,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
         )}
       </div>
 
-          {modalIsOpen && (<GameForm gameid={gameid} game={game} closeModal={closeModal} getGamesLibrary={getGamesLibrary} />)}
+          {modalIsOpen && (<GameForm gameid={gameid} game={game} closeModal={closeModal} getGamesLibrary={getGamesLibrary} modalIsOpen={modalIsOpen} />)}
 
       </div>  
   );
