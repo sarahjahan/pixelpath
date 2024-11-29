@@ -11,6 +11,7 @@ const navigate = useNavigate()
         <>
         <div className="navbar">
             <div className="navbar__menu">
+                <Link to="/">Home</Link>
                 <Link to="/library">Library</Link>
                 <Link to="/search">Search</Link>
             </div>
