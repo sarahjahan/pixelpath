@@ -1,11 +1,10 @@
 import Card from "../../components/Card/Card"
-// import Dropdown from 'react-dropdown';
-// import "react-dropdown/style.css";
 import Select from 'react-select';
 import './GamesLibrary.scss'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import Button from '../Button/Button'
+import MoodReco from "../MoodReco/MoodReco";
 
 
 function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary, gamesAPIList, isSearchPage }) {
@@ -38,8 +37,10 @@ const navigate = useNavigate()
 
     return(
         <div>
+            
+            <MoodReco />
             <div className="gamesList__header">
-            {/* <div className="gamesList__filter" onChange={(e) => setFilteredGames(e.target.value)}>Filter</div> */}
+
             <Select 
                 className="gamesList__filter"
                 options={options} 
@@ -56,8 +57,6 @@ const navigate = useNavigate()
                         placeholder="Search..."
                         onChange={(e) => setSearchKeyword(e.target.value)}/>
                 </div>
-
-                <div className="gamesList__discover-button" onClick={() => navigate('/search')}>Discover New Games</div>
 
                 <div className="gamesList__sort-button">
                     <p>Sort By:</p>

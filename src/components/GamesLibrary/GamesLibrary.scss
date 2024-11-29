@@ -31,43 +31,43 @@
       // }
     }
 
-    &__discover-button {
-        margin: 16px;
-        padding: 36px;
-        background-color: $secondary-color;
-        border: 1px solid gray;
-        // border-radius: 48px;
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        transition: transform 0.1s ease-out, background-color 0.3s ease; /* Combined transitions */
+    // &__discover-button {
+    //     margin: 16px;
+    //     padding: 36px;
+    //     background-color: $secondary-color;
+    //     border: 1px solid gray;
+    //     border-radius: 48px;
+    //     color: white;
+    //     font-weight: 600;
+    //     cursor: pointer;
+    //     transition: background-color 0.3s;
+    //     transition: transform 0.1s ease-out, background-color 0.3s ease; /* Combined transitions */
       
-        /* Keyframes for bouncing animation */
-        @keyframes bounce {
-          0% {
-            transform: translateX(0); /* Initial position */
-          }
-          25% {
-            transform: translateX(-.25rem); /* Initial position */
-          }
-          50% {
-            transform: translateX(-0.5rem); /* Bounce up */
-          }
-          75% {
-            transform: translateX(-.25rem); /* Bounce up */
-          }
-          100% {
-            transform: translateX(-.05rem); /* Return to initial position */
-          }
-        }
+    //     /* Keyframes for bouncing animation */
+    //     @keyframes bounce {
+    //       0% {
+    //         transform: translateX(0); /* Initial position */
+    //       }
+    //       25% {
+    //         transform: translateX(-.25rem); /* Initial position */
+    //       }
+    //       50% {
+    //         transform: translateX(-0.5rem); /* Bounce up */
+    //       }
+    //       75% {
+    //         transform: translateX(-.25rem); /* Bounce up */
+    //       }
+    //       100% {
+    //         transform: translateX(-.05rem); /* Return to initial position */
+    //       }
+    //     }
       
-        &:hover {
-          border-color: rgb(110, 22, 22);
-          transform: translateX(-0.25rem);   /* Combine X and Y translations */
-          animation: bounce 0.6s ease; /* Trigger bounce animation */
-        }
-      }
+    //     &:hover {
+    //       border-color: rgb(110, 22, 22);
+    //       transform: translateX(-0.25rem);   /* Combine X and Y translations */
+    //       animation: bounce 0.6s ease; /* Trigger bounce animation */
+    //     }
+    //   }
 
 
 
@@ -129,7 +129,6 @@
         @include desktop {
           width: 17.125rem;
         }
-
 
         // &:hover {
         //   border-color: rgb(110, 22, 22);
