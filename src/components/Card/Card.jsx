@@ -55,6 +55,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
           <img className="card__coverart" src={newUrl}/>
           <h2 className="card__title">{title}</h2>
           <p className="card__subtitle">{genres}</p>
+          <p className="card__subtitle">{tags}</p> 
           {/* <p className="card__subtitle">{summary}</p>  */}
         </div>
       ) : (
@@ -75,7 +76,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
           isOwned ? (
             <img className="card__icon" src={minusicon} onClick={() => delGame(gameid)}/>
           ) : (
-            <img className="card__icon" src={addicon} onClick={() => addGame(id, title, coverArt)}/> )
+            <img className="card__icon" src={addicon} onClick={() => addGame(id, title, coverArt, tags, genres)}/> )
         ) : (
           <div className="card__button-container">
             <img className="card__icon" src={minusicon} onClick={() => delGame(gameid)} />

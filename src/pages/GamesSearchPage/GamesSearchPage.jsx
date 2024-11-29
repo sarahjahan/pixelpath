@@ -12,10 +12,10 @@ function GamesSearchPage() {
     const [gamesList, setGamesList] = useState([]);
 
 
-    const addGame = async (id, title, coverArt) => {
+    const addGame = async (id, title, coverArt, tags, genres) => {
       try {
         const { data } = await axios.post(`${BASE_URL}/api/games/`, 
-        {game_id: id, user_id: 1, title, coverArt}
+        {game_id: id, user_id: 1, title, coverArt, tags, genres}
         );
         setGamesList((prevGamesList) => [...prevGamesList, data]);
         alert(`Game was sucessfully added to library. Refreshing Games list.`);
@@ -62,9 +62,6 @@ function GamesSearchPage() {
     
     return(
       <div>
-        <Link to="/library">
-          <img className="icon" src={backicon}/>
-        </Link>
         <GamesLibrary gamesAPIList={gamesAPIList} isSearchPage={true} addGame={addGame} delGame={delGame} />
       </div>
     )
