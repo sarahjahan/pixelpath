@@ -13,6 +13,7 @@ function MoodReco() {
     return (
         <div className="moods">
             <h2>How are you feeling?</h2>
+            <h5>choose a game below based on your current mood</h5>
             <div className="moods__container">
                 <div className={`image__container`}>
                     <img className="Relaxed" src={cool} onClick={() => setSelectedMood()}/>

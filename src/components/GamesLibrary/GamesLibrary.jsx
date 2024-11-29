@@ -23,6 +23,7 @@ const navigate = useNavigate()
 
 //Code for React Select
   const options = [
+    { value: 'no_sort', label: '' },
     { value: 'Playing', label: 'Playing' },
     { value: 'Completed', label: 'Completed' },
     { value: 'Want To Play', label: 'Want To Play' }
@@ -38,16 +39,9 @@ const navigate = useNavigate()
     return(
         <div>
             
-            <MoodReco />
+            {isSearchPage ? null : <MoodReco />}
+            
             <div className="gamesList__header">
-
-            <Select 
-                className="gamesList__filter"
-                options={options} 
-                placeholder={"Filter by Status..."}
-                onChange={handleStatusChange}/>
-
-
                 <div className="gamesList__search">
                     <input
                         className="gamesList__searcher"
@@ -57,6 +51,12 @@ const navigate = useNavigate()
                         placeholder="Search..."
                         onChange={(e) => setSearchKeyword(e.target.value)}/>
                 </div>
+
+                <Select 
+                className="gamesList__filter"
+                options={options} 
+                placeholder={"Filter by Status..."}
+                onChange={handleStatusChange}/>
 
                 <div className="gamesList__sort-button">
                     <p>Sort By:</p>
