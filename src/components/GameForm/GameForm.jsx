@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from 'react-modal';
 import CreatableSelect from 'react-select/creatable';
+import Dropdown from 'react-dropdown'
 
 
 const BASE_URL = import.meta.env.VITE_API_URL;
@@ -17,6 +18,7 @@ const customStyles = {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      padding: '30px',
     },
   };
   
@@ -80,7 +82,6 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
           });
     
           if (response.ok) {
-            // Optionally, you can update the tags state here if you want to immediately reflect the added tag
             console.log("Tag created successfully");
           } else {
             console.error("Failed to add tag:", response.data.message)
@@ -92,38 +93,20 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
       };
 
 
-
-    // useEffect(() => {
-    //   if (onClick) {
-    //       openModal();
-    //     }
-    //   }, [onClick]);
-
-
-    // useEffect(() => {
-    //     const fetchGameDetails = async () => {
-    //       const response = await axios.get(`/api/games/${gameid}`);
-    //       setGameDetails(response.data); // Pre-populate form with game data
-    //     };
-    //     fetchGameDetails();
-    //   }, [gameid]);
-
-
-
     return(
         <div>
           <Modal
+           className="modal"
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
-            // style={customStyles}
+            style={customStyles}
             contentLabel="Example Modal"
             appElement={document.getElementById('root')}>
               
-              <h2>Edit Game</h2>
-                <div>Edit your game experiences below:</div>
+              <h2 className="modal__heading">Edit {gameDetails.title}</h2>
                 
-                <form className="form__field" onSubmit={handleSubmit}>
-                <h3> Title: {gameDetails.title}</h3>
+                <div className="modal__content">
+                <form className="form__field " onSubmit={handleSubmit}>
                 <label> Status:
                     <input
                     className="form__input"
@@ -156,6 +139,7 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
                 <button type="submit">Save</button>
                 <button onClick={closeModal}>Close</button>
                 </form>
+                </div>
               
             </Modal>
           </div>
