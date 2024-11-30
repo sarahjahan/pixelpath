@@ -22,9 +22,13 @@ const customStyles = {
 function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
   const [isClearable, setIsClearable] = useState(true);
   const [isSearchable, setIsSearchable] = useState(true);
+  const [removedTags, setRemovedTags] = useState([])
   const [tagOptions, setTagOptions] = useState([]);
-  const [tags, setTags] = useState([]);
-
+  const [originalTags, setOriginalTags] = useState((game.tags || []).map((tag) => ({
+    id: tag.id,
+    name: tag.name,
+  })));
+  const [tags, setTags] = useState(originalTags);
   const [gameDetails, setGameDetails] = useState({
         title: game.title,
         status: game.status || '',
@@ -49,12 +53,14 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
           status: game.status || '',
           notes: game.notes || '',
         });
-        setTags(
-          (game.tags || []).map((tag) => ({
-            id: tag.id || null,
-            name: tag.name || tag.label || tag.value,
-          }))
-        );
+        setOriginalTags((game.tags || []).map((tag) => ({
+          id: tag.id,
+          name: tag.name,
+        })));
+        setTags((game.tags || []).map((tag) => ({
+          id: tag.id,
+          name: tag.name,
+        })));
       }, [game]);
       
     const handleSubmit = async (e) => {
@@ -64,7 +70,7 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
         name: tag.name,
       }));
       try {
-        const { data } = await axios.put(`${BASE_URL}/api/games/${gameid}`, {...gameDetails, tags: sanitizedTags,});
+        const { data } = await axios.put(`${BASE_URL}/api/games/${gameid}`, {...gameDetails, tags: sanitizedTags, removedTags,});
         alert(`${game.title} was sucessfully updated. Refreshing Games list.`);
         closeModal(); 
         getGamesLibrary();
@@ -84,7 +90,12 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
         id: tag.id || null, // Preserve the `id` if available
         name: tag.label || tag.value, // Use `label` or `value` as `name`
       }));
+      const removedTags = originalTags.filter(
+        (tag) => !updatedTags.some((updatedTag) => updatedTag.id === tag.id)
+      );
+    
       setTags(updatedTags);
+      setRemovedTags(removedTags);
     };
 
 
