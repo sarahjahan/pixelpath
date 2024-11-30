@@ -3,12 +3,9 @@ import './GameForm.scss'
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from 'react-modal';
-import CreatableSelect from 'react-select/creatable';
-import Dropdown from 'react-dropdown'
-
+import Select from 'react-select';
 
 const BASE_URL = import.meta.env.VITE_API_URL;
-
 
 const customStyles = {
     content: {
@@ -21,27 +18,53 @@ const customStyles = {
       padding: '30px',
     },
   };
-  
-
 
 function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
   const [isClearable, setIsClearable] = useState(true);
   const [isSearchable, setIsSearchable] = useState(true);
-  // const [modalIsOpen, setIsOpen] = useState(true);
+  const [tagOptions, setTagOptions] = useState([]);
+  const [tags, setTags] = useState([]);
+
   const [gameDetails, setGameDetails] = useState({
         title: game.title,
         status: game.status || '',
         notes: game.notes || '',
       });
 
-    function openModal() {
-        setIsOpen(true);
-      }
+      useEffect(() => {
+        // Fetch all tags from backend
+        const getTags = async () => {
+          try {
+            const { data } = await axios.get(`${BASE_URL}/api/tags`);
+            setTagOptions(data.map((tag) => ({ label: tag.name, value: tag.name, id: tag.id })));
+          } catch (error) {
+            console.error('Error fetching tags:', error);
+          }
+        };
+    
+        getTags();
 
+        setGameDetails({
+          title: game.title,
+          status: game.status || '',
+          notes: game.notes || '',
+        });
+        setTags(
+          (game.tags || []).map((tag) => ({
+            id: tag.id || null,
+            name: tag.name || tag.label || tag.value,
+          }))
+        );
+      }, [game]);
+      
     const handleSubmit = async (e) => {
       e.preventDefault();
+      const sanitizedTags = tags.map((tag) => ({
+        id: tag.id,
+        name: tag.name,
+      }));
       try {
-        const { data } = await axios.put(`${BASE_URL}/api/games/${gameid}`, gameDetails);
+        const { data } = await axios.put(`${BASE_URL}/api/games/${gameid}`, {...gameDetails, tags: sanitizedTags,});
         alert(`${game.title} was sucessfully updated. Refreshing Games list.`);
         closeModal(); 
         getGamesLibrary();
@@ -51,46 +74,18 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
       }
     };
 
-
     const handleInputChange = (e) => {
       const { name, value } = e.target;
       setGameDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
     };
 
-    // const handleTagCreation = (selectedTags) => {
-    //   const newTags = selectedTags.map((tag) => tag.label); // Only store tag labels
-    //   setGameDetails((prevDetails) => ({ ...prevDetails, tags: newTags }));
-    // };
-
-  const tagOptions = Array.isArray(game.tags)
-      ? game.tags.map(tag => ({
-          label: tag,
-          value: tag.toLowerCase().replace(/\s+/g, "_") // Create a value for react-select
-      }))
-      : [];
-
-      const handleTagCreation = async (selectedTags) => {
-        const newTag = selectedTags[selectedTags.length - 1]; // get most recently selected or created tag
-    
-        if (!newTag || newTag.value === "") return; // checks if the tag is empty or invalid
-    
-        try {
-          const response = await axios.post(`${BASE_URL}/api/tags/`, {
-            tagName: newTag.label, // Send the tag's label (name) to the backend
-            gameId: game.id, 
-       
-          });
-    
-          if (response.ok) {
-            console.log("Tag created successfully");
-          } else {
-            console.error("Failed to add tag:", response.data.message)
-            console.log(response.data.message);
-          }
-        } catch (error) {
-          console.error("Error creating tag:", error);
-        }
-      };
+    const handleTagChange = (selectedTags) => {
+      const updatedTags = selectedTags.map((tag) => ({
+        id: tag.id || null, // Preserve the `id` if available
+        name: tag.label || tag.value, // Use `label` or `value` as `name`
+      }));
+      setTags(updatedTags);
+    };
 
 
     return(
@@ -125,16 +120,23 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
                     onChange={handleInputChange}/>
                 </label>
                 <label> Tags:
-                  <CreatableSelect 
+                  <Select 
                     className="gamesList__tags"
                     isMulti
                     isSearchable={isSearchable}
                     isClearable={isClearable}
                     name="tags"
                     options={tagOptions} 
-                    placeholder={"Add your own tags..."}
-                    onChange={handleTagCreation}/>
-                  </label>
+                    placeholder={"Add your tags..."}
+                    value={tags.map((tag) => ({
+                      label: tag.name,
+                      value: tag.name,
+                      id: tag.id,
+                    }))}
+                    onChange={handleTagChange} // Update tags on selection
+                  
+                  />
+                </label>
 
                 <button type="submit">Save</button>
                 <button onClick={closeModal}>Close</button>
