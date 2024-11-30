@@ -2,11 +2,10 @@ import './GameDetails.scss'
 
 function GameDetails({gameDetails}) {
     
-    const {title, coverArt, notes, rating, status, summary, genres = [], tags = [], id} = gameDetails;
+    const {title, coverArt, notes, rating, status, summary, tags = [], id} = gameDetails;
     const statusClass = (status || 'default').toLowerCase().replace(/\s+/g, '') || 'default-status';
 
-    console.log('Game Details:', gameDetails);
-    console.log('Status:', status);
+    console.log('Tags:', tags.name);
 
     function adjustCoverArtUrl(url, size = 't_cover_big') {
         if (!url) return '';
@@ -25,7 +24,7 @@ function GameDetails({gameDetails}) {
                 <h2 className="game__title">{title}</h2>
                 <img className="game__coverart" src={newUrl}/>
                 <p className="game__summary">{summary}</p>
-                <p className="game__genre">{genres}</p>
+                {/* <p className="game__genre">{tags}</p> */}
             </div>
 
             <div className="game__sub-details">
@@ -35,14 +34,15 @@ function GameDetails({gameDetails}) {
               </div>
               <div className="labels">
                 <label className="label-text__game">Related Tags:</label>
-                  {tags.length === 0 ? (
-                    <p className="result-message">No tags found.</p>
-                  ) : (
-                    tags.map((tag, index) => (
-                      <div className="game__tags-container">
-                        <p className="game__tags"key={index}>{tag}</p> 
-                      </div>
+                {tags && tags.filter((tag) => tag && tag.name).length > 0 ? (
+                  tags.filter((tag) => tag && tag.name)
+                  .map((tag) => (
+                    <div className="game__tags-container" key={tag.id}>
+                      <p className="game__tags">{tag.name}</p> 
+                    </div> 
                   ))
+                  ) : (
+                    <p className="result-message">No tags found.</p>
                   )}
               </div>
              <div className="labels">
