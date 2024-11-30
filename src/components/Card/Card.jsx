@@ -26,7 +26,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
   }
  
   //fix class name for status and see game object details
-  const { coverArt, title, summary, status, rating, notes, tags, genres, id, isOwned} = game
+  const { coverArt, title, summary, status, rating, notes, tags, id, isOwned} = game
   const statusClass = status.toLowerCase().replace(/\s+/g, '')
 
 
@@ -54,8 +54,7 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
         <div className="card__myGame">
           <img className="card__coverart" src={newUrl}/>
           <h2 className="card__title">{title}</h2>
-          <p className="card__subtitle">{genres}</p>
-          <p className="card__subtitle">{tags}</p> 
+          <p className="card__subtitle">{tags}</p>
           {/* <p className="card__subtitle">{summary}</p>  */}
         </div>
       ) : (
@@ -64,10 +63,9 @@ function Card({ game, delGame, addGame, gameid, getGamesLibrary, isSearchPage })
           <div className="section-divider"></div>
           <img className="card__coverart" src={newUrl}/>
           <h2 className="card__title">{title}</h2>
-          <p className="card__subtitle">{genres}</p>
+          <p className="card__subtitle">{""}</p>
           <p className="card__subtitle">Personal Rating: {rating}</p>
           <p className="card__subtitle">{notes}</p>
-          <p className="card__subtitle">{tags}</p> 
         </div>
       )}
 
