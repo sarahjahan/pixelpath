@@ -12,11 +12,10 @@
     align-items: center;
     background-color: $background-color;
     margin: 15px;
-    max-width: 100%;
+    min-width: 100%;
     border-bottom: .5px solid lightgray;
     flex-shrink: 0;
     flex-grow: 0;
-
 
       @include tablet {
         margin: 10px;
@@ -26,18 +25,21 @@
         flex-wrap: wrap;
         // justify-content: space-between;
         width: calc(33.33% - 20px);
-        transition: background-color 0.2s;
+        transition: background-color 0.3s;
+        min-width: 0%;
+
         
           &:hover {
             background-color: $secondary-color;
-          }
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
+          }
 
         @include desktop {
           width: calc(25% - 20px);
         }
+      }
     }
-  }
 
     &__title {
       font-size: 1.5rem;
@@ -56,8 +58,6 @@
         color: white;
         flex-grow: 0;
         margin-bottom: 20px;
-
-
       }
 
       &--playing {
@@ -70,8 +70,6 @@
         color: gray;
         flex-grow: 0;
         margin-bottom: 20px;
-
-
       }
 
       &--wanttoplay {
@@ -84,22 +82,20 @@
         color: gray;
         flex-grow: 0;
         margin-bottom: 20px;
-
-
       }
+
   }
   
     &__coverart {
-      margin: 20px;
-      width: 150px;
+      // margin: 20px;
+      width: 200px;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       flex-grow: 0;
       align-self: flex-start;
-      flex-grow: 0;
 
       @include tablet {
-        width: 100px;
+        width: 150px;
       }
     }
 
@@ -118,8 +114,7 @@
       display: flex;
       gap: 12px;
     }
-
-}
+  }
 
 .card__action {
   display: flex;
@@ -131,7 +126,6 @@
   justify-content: flex-end;
   flex-shrink: 0;
   flex-grow: 1;
-
 }
 
 .card__icon {
@@ -142,7 +136,7 @@
   }
 }
   
-  .section-divider {
-    border-bottom: 2px solid var(--accent-color);
-    margin: 20px;
-  }
+.section-divider {
+  border-bottom: 2px solid var(--accent-color);
+  margin: 20px;
+}
