@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from 'react-modal';
 import Select from 'react-select';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -71,11 +73,11 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
       }));
       try {
         const { data } = await axios.put(`${BASE_URL}/api/games/${gameid}`, {...gameDetails, tags: sanitizedTags, removedTags,});
-        alert(`${game.title} was sucessfully updated. Refreshing Games list.`);
+        toast.success(`${game.title} was sucessfully updated. Refreshing Games list.`);
         closeModal(); 
         getGamesLibrary();
       } catch (error) {
-        alert(`Error updating ${game.title}`, error);
+        toast.error(`Error updating ${game.title}`, error);
         console.log(error.response?.data?.message || error);
       }
     };
