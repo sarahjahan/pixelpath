@@ -20,27 +20,28 @@
         width: 100px;
         height: 100px;
         margin-top: 10px;
+        position: relative;
         filter: grayscale(0%);
-        transition: filter 0.3s;
+        transition: filter 0.3s, transform 0.3s; 
 
-        &.unselected img {
-            transform: translateY(-0.25rem);
-            filter: grayscale(100%);  // Full color when selected
+        &.unselected {
+            filter: grayscale(100%);
           }
-
-        &:active {
+      
+          &:active {
             transform: translateY(-0.25rem);
             filter: grayscale(100%);
-        }
-
-        &:after {
+          }
+      
+          &:after {
+            position: absolute; 
             transform: translateY(-0.25rem);
             filter: grayscale(100%);
-        }
-
-        &:hover {
+          }
+      
+          &:hover {
             transform: translateY(-0.25rem);
-            filter: none;
+            filter: grayscale(0%); 
         }
     }
 }
