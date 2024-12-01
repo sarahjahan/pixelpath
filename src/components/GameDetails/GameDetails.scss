@@ -1,12 +1,20 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global";
 
 .game {
     text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 0px 24px;
-    gap: 12px;
+    align-items: flex-start;
+    margin: 30px 24px;
+    gap: 24px;
 
+
+    @include tablet {
+        flex-direction: row;
+        height: 100%;
+    }
     
     &__main-details {
         width: 100%;
@@ -14,16 +22,25 @@
         justify-content: space-between;
         text-align: center;
         padding: 20px;
+
+        @include tablet {
+        background-color: lavender; 
+        border-radius: 28px;
+
+        }
     }
 
     &__title {
         margin-bottom: 20px;
+        text-align: center;
+
     }
 
     &__summary {
         margin: 24px 0px;
         padding: 0px 42px;
     }
+
     &__coverart {
         border-radius: 12px;
         width: 200px; 
@@ -40,15 +57,47 @@
 
     &__tags-container {
         background-color: pink;
-        border-radius: 8px;
+        border-radius: 4px;
         text-align: center;
         padding: 6px;
+    }
+
+    &__status {
+
+        &--completed {
+            border: .5px dashed;
+            border-radius: 12px;
+            width: 50%;
+            text-align: center;
+            background-color: $accent-color;
+            color: white;
+          }
+    
+          &--playing {
+            border: .5px dashed;
+            border-radius: 12px;
+            width: 50%;
+            text-align: center;
+            background-color: #A3D8F4;
+            color: gray;
+    
+          }
+    
+          &--wanttoplay {
+            border: .5px dashed #FFD1A9;
+            border-radius: 12px;
+            width: 50%;
+            text-align: center;
+            background-color: #D4C2FC;
+            color: gray;
+          }
     }
 }
 
 .labels {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 12px;
     align-items: center;
 }
@@ -56,6 +105,12 @@
 .label-text {
     &__game {
         flex-direction: space-between;
+        text-align: center;
+        margin: .5rem;
+        font-weight: 600;
     }
+}
 
+.result-message {
+    color: gray;
 }
