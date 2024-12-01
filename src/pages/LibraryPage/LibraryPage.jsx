@@ -1,8 +1,7 @@
 import GamesLibrary from "../../components/GamesLibrary/GamesLibrary";
 import { useEffect, useState } from 'react'
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -24,14 +23,9 @@ function LibraryPage() {
       }
     };
 
-    // useEffect(() => {
-    //     setGameToDelete()
-    // }, [gamesList, gameToDelete]);
-
     const getGamesLibrary = async () => {
         try {
           const { data } = await axios.get(`${BASE_URL}/api/games`, {
-            // params: { filter: selectedFilter, sort: selectedSort }
           });
             setGamesList(data);
             setFilteredGames(data);
@@ -67,17 +61,6 @@ function LibraryPage() {
 
     return(
         <div> 
-          <ToastContainer
-            position="top-right"
-            autoClose={2000}
-            hideProgressBar={true}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            stacked/>
           <GamesLibrary isSearchPage={false} gamesList={gamesList} handleSort={handleSort} delGame={delGame} getGamesLibrary={getGamesLibrary} />
         </div>
        
