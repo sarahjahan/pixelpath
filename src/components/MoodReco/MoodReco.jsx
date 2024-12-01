@@ -6,13 +6,13 @@ import happy from '../../public/assets/happy.png'
 import { useState } from 'react';
 
 
-function MoodReco({setMoodFilter}) {
-    const [selectedMood, setSelectedMood ] = useState(null)
+function MoodReco({setMoodFilter, selectedMood, setSelectedMood}) {
     
     const handleMoodClick = (mood) => {
         setMoodFilter(mood); // Pass selected mood to GamesLibrary
         setSelectedMood(mood);
       };
+    
     
 
     return (
