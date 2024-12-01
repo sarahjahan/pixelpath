@@ -2,33 +2,38 @@ import Card from "../../components/Card/Card"
 import Select from 'react-select';
 import './GamesLibrary.scss'
 import { useState } from 'react'
-import { useNavigate } from "react-router-dom";
 import Button from '../Button/Button'
 import MoodReco from "../MoodReco/MoodReco";
 import themeToMoodMap from '../../utils/themeToMoodMap'
 
-function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary, gamesAPIList, isSearchPage }) {
+function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary, gamesAPIList, isSearchPage, handleClearMood }) {
     const [searchKeyword, setSearchKeyword] = useState("");
     const [statusFilter, setStatusFilter] = useState(null);
     const [genreFilter, setGenreFilter] = useState(null);
     const [moodFilter, setMoodFilter ] = useState(null)
+    const [selectedMood, setSelectedMood] = useState(null)
+
 
 
     const filteredGames = (isSearchPage ? gamesAPIList : gamesList).filter((game) => {
         const matchesSearch = game.title?.toLowerCase().includes(searchKeyword.toLowerCase());
         const matchesStatus = statusFilter ? (statusFilter.value === null || game.status === statusFilter.value) : true;        
         const matchesGenre = genreFilter ? game.tags?.toLowerCase().split(',').some(tags => tags.trim() === genreFilter.value.toLowerCase()) : true;
-        const matchesMood = moodFilter
-        ? game.tags?.some((tag) => {
-            console.log("Tag:", tag);
-            const tagName = typeof tag === "string" ? tag : tag.name; // Handle both cases
-            console.log("Mapped Mood:", themeToMoodMap[tagName], "Mood Filter:", moodFilter);
-            return themeToMoodMap[tagName] === moodFilter;
-          })
-        : true;
+        const matchesMood = moodFilter ? game.tags?.some((tag) => {
+            const tagName = typeof tag === "string" ? tag : tag.name;
+            return themeToMoodMap[tagName] === moodFilter; }) 
+            : true;
     
         return matchesSearch && matchesStatus && matchesGenre && matchesMood;
-});
+        });
+
+  const handleClearFilters = () => {
+    setSearchKeyword("");
+    setStatusFilter(null);
+    setGenreFilter(null);
+    setMoodFilter(null);
+    setSelectedMood(null);
+  };
 
 
 //Code for React Select
@@ -56,7 +61,7 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
     return(
         <div>
             
-            {isSearchPage ? null : <MoodReco setMoodFilter={setMoodFilter}/>}
+            {isSearchPage ? null : <MoodReco setMoodFilter={setMoodFilter} setSelectedMood={setSelectedMood} selectedMood={selectedMood} />}
             
             <div className="gamesList__header">
                 <div className="gamesList__search">
@@ -84,13 +89,17 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
                 onChange={handleStatusChange}/> )}
 
 
-                <div className="gamesList__sort-button">
-                    <p>Sort By:</p>
-                    <Button className="gamesList__sorter"onClick={() => handleSort("title")} actiontext={"Title"}/>
-                    <Button className="gamesList__sorter"onClick={() => handleSort("rating")} actiontext={"Rating"}/>
-                    <Button className="gamesList__sorter"onClick={() => handleSort("status")} actiontext={"Status"}/>
+                <div className="gamesList__sorter">
+                  <div className="gamesList__sort-label label-text">Sort By:</div>
+                    <Button className="gamesList__sort-button" onClick={() => handleSort("title")} actiontext={"Title"}/>
+                    <Button className="gamesList__sort-button" onClick={() => handleSort("rating")} actiontext={"Rating"}/>
+                    <Button className="gamesList__sort-button" onClick={() => handleSort("status")} actiontext={"Status"}/>
+                    <Button className="gamesList__clear-button" onClick={handleClearFilters} actiontext="Clear All Filters"/>
                 </div>
+
             </div>
+
+
             
             <div className="gamesList__container">
                 {filteredGames.length ===0? (<p className="result-message">No results found.</p>):

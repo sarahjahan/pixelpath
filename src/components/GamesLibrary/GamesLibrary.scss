@@ -19,11 +19,16 @@
         }
     }
 
-    &__sort-button {
+    &__sorter {
       width: 100%;
       padding: 0px 24px;
       display: flex;
       align-items: center;
+    }
+
+    &__clear-button {
+      justify-self: flex-end;
+  
     }
 
 
@@ -56,11 +61,11 @@
 
     }
 
-    &__sorter {
-        width: 60vh;
-        font-size: .75rem;
-        font-weight: 600;
-    }
+    // &__sorter {
+    //     width: 60vh;
+    //     font-size: .75rem;
+    //     font-weight: 600;
+    // }
 
     &__filter {
       @extend .body-medium;
