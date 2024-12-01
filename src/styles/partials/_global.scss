@@ -19,21 +19,6 @@ button {
   color: $text-color;
 }
 
-// body {
-//   background: linear-gradient(
-//     rgba(35, 41, 65, 1) 200px,
-//     rgba(247, 248, 249, 1) 200px
-//   );
-//   min-height: 100vh;
-
-//   @include tablet {
-//     background: linear-gradient(
-//       rgba(35, 41, 65, 1) 196px,
-//       rgba(247, 248, 249, 1) 196px
-//     );
-//   }
-// }
-
 button {
   border: none;
   background: none;
@@ -347,4 +332,23 @@ img {
 .result-message{
   text-align: center;
   margin: 1rem;
+}
+
+.css-t3ipsp-control {
+  outline: none !important;
+  border-color: unset !important;
+  box-shadow: none !important;
+
+  &:hover {
+    border-color: none !important;
+}}
+
+.css-13cymwt-control {
+  outline: none !important;;
+  border-color: none !important;
+  box-shadow: none !important;
+
+  &:hover {
+    border-color: none !important;
+  }
 }
