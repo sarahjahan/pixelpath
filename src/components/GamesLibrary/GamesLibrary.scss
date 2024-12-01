@@ -6,50 +6,26 @@
 .gamesList {
 
     &__header {
+        margin-top: 20px;
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
         justify-content: space-around;
-        // gap: 10px;
 
         @include tablet {
-          width: 100%;
+          flex-direction: row;
           justify-content: space-between;
+          align-items: center;
         }
     }
 
     &__sort-button {
       width: 100%;
-      padding: 12px 24px;
+      padding: 0px 24px;
       display: flex;
       align-items: center;
-
-      // &::after {
-      //   border: 1px solid black;
-      //   border-radius: 2px;
-      // }
     }
 
-   
-    //     /* Keyframes for bouncing animation */
-    //     @keyframes bounce {
-    //       0% {
-    //         transform: translateX(0); /* Initial position */
-    //       }
-    //       25% {
-    //         transform: translateX(-.25rem); /* Initial position */
-    //       }
-    //       50% {
-    //         transform: translateX(-0.5rem); /* Bounce up */
-    //       }
-    //       75% {
-    //         transform: translateX(-.25rem); /* Bounce up */
-    //       }
-    //       100% {
-    //         transform: translateX(-.05rem); /* Return to initial position */
-    //       }
-    //     }
-    
 
     &__searcher {
             @extend .form__input;
@@ -57,16 +33,15 @@
             background-repeat: no-repeat;
             background-position: right 0.75rem center;
             background-size: 1.5rem 1.5rem;
-            
             width: 60vh;
             margin: 0px 16px;
-            margin-top: 60px;
 
             &::placeholder {
               color: gray;
             }
         
             @include tablet {
+              margin-top: 0px;
               transition: background-color 0.3s;
 
               &:hover {
@@ -82,7 +57,6 @@
 
     &__sorter {
         width: 60vh;
-        padding: 16px;
         font-size: .75rem;
         font-weight: 600;
     }
