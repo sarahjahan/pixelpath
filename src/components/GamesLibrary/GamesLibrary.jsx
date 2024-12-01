@@ -5,25 +5,31 @@ import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import Button from '../Button/Button'
 import MoodReco from "../MoodReco/MoodReco";
-
+import themeToMoodMap from '../../utils/themeToMoodMap'
 
 function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary, gamesAPIList, isSearchPage }) {
     const [searchKeyword, setSearchKeyword] = useState("");
     const [statusFilter, setStatusFilter] = useState(null);
     const [genreFilter, setGenreFilter] = useState(null);
+    const [moodFilter, setMoodFilter ] = useState(null)
+
 
     const filteredGames = (isSearchPage ? gamesAPIList : gamesList).filter((game) => {
         const matchesSearch = game.title?.toLowerCase().includes(searchKeyword.toLowerCase());
-        const matchesStatus = statusFilter ? (statusFilter.value === null || game.status === statusFilter.value) : true;        const matchesGenre = genreFilter
-    ? game.genres?.toLowerCase().split(',').some(genre => genre.trim() === genreFilter.value.toLowerCase()) 
-    : true;
-
+        const matchesStatus = statusFilter ? (statusFilter.value === null || game.status === statusFilter.value) : true;        
+        const matchesGenre = genreFilter ? game.tags?.toLowerCase().split(',').some(tags => tags.trim() === genreFilter.value.toLowerCase()) : true;
+        const matchesMood = moodFilter
+        ? game.tags?.some((tag) => {
+            console.log("Tag:", tag);
+            const tagName = typeof tag === "string" ? tag : tag.name; // Handle both cases
+            console.log("Mapped Mood:", themeToMoodMap[tagName], "Mood Filter:", moodFilter);
+            return themeToMoodMap[tagName] === moodFilter;
+          })
+        : true;
     
-        return matchesSearch && matchesStatus && matchesGenre;
+        return matchesSearch && matchesStatus && matchesGenre && matchesMood;
 });
 
-const navigate = useNavigate()
-    
 
 //Code for React Select
   const statusOptions = [
@@ -50,7 +56,7 @@ const navigate = useNavigate()
     return(
         <div>
             
-            {isSearchPage ? null : <MoodReco />}
+            {isSearchPage ? null : <MoodReco setMoodFilter={setMoodFilter}/>}
             
             <div className="gamesList__header">
                 <div className="gamesList__search">
