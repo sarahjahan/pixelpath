@@ -23,16 +23,13 @@
         border-bottom: none;
         border: 1px solid lightgray;
         flex-wrap: wrap;
-        // justify-content: space-between;
         width: calc(33.33% - 20px);
         transition: background-color 0.3s;
         min-width: 0%;
-
         
           &:hover {
             background-color: $secondary-color;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
           }
 
         @include desktop {
@@ -87,7 +84,6 @@
   }
   
     &__coverart {
-      // margin: 20px;
       width: 250px;
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
