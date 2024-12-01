@@ -204,7 +204,7 @@ img {
   align-items: center;
   gap: 0.25rem;
   text-decoration: none;
-  color: indigo;
+  color: $secondary-color;
 
   &:hover {
     text-decoration: underline;
@@ -243,18 +243,13 @@ img {
 
   &__input,
   &__textarea {
-    @extend .body-medium;
     width: 100%;
     height: 2.25rem;
     padding: 0.5rem 1rem;
     border-radius: .25rem;
     border: 1px solid lightgray;
     outline: none;
-    background-color: white;
-
-    @include tablet {
-      width: auto;
-    }
+    background-color: $background-color;
 
     &::placeholder {
       color: lightgray;
@@ -269,7 +264,7 @@ img {
     }
 
     &:hover {
-      border-color: gray;
+      border-color: 1px solid gray;
     }
   }
 
@@ -280,7 +275,7 @@ img {
   }
 
   &__textarea {
-    height: 7.5rem;
+    // height: 6.5rem;
     resize: none;
   }
 

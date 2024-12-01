@@ -3,8 +3,6 @@
 @use "../../styles/partials/global";
 
 
-//potential styling for gameform Modal
-
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -15,7 +13,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Make sure it's on top */
+    z-index: 1000;
   }
   
   .modal {
@@ -29,14 +27,11 @@
     bottom: auto;
     margin-right: -50%;
     transform: translate(50%, 50%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
 
     &__heading {
       justify-self: center;
-
-      //   @include tablet {
-      //   padding-left: 2.5rem;
-      //   margin-top: 1rem;
-      // }
     }
  
     &__content {
@@ -44,11 +39,18 @@
     }
   }
 
+  .button__container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
 
-  // .form__input {
-  //   @include tablet {
-  //     width: 100%;
-  //   }
-  // }
+  .form__tags {
+    background-color: $background-color;
+    border-radius: 4px;
+  }
   
-  
+  .css-13cymwt-control {
+    background-color: none !important;
+
+   }

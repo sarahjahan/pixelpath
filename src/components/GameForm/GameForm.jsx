@@ -1,11 +1,9 @@
 import './GameForm.scss'
-// import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from 'react-modal';
 import Select from 'react-select';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -38,7 +36,6 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
       });
 
       useEffect(() => {
-        // Fetch all tags from backend
         const getTags = async () => {
           try {
             const { data } = await axios.get(`${BASE_URL}/api/tags`);
@@ -89,8 +86,8 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
 
     const handleTagChange = (selectedTags) => {
       const updatedTags = selectedTags.map((tag) => ({
-        id: tag.id || null, // Preserve the `id` if available
-        name: tag.label || tag.value, // Use `label` or `value` as `name`
+        id: tag.id || null,
+        name: tag.label || tag.value,
       }));
       const removedTags = originalTags.filter(
         (tag) => !updatedTags.some((updatedTag) => updatedTag.id === tag.id)
@@ -114,47 +111,47 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
               <h2 className="modal__heading">Edit {gameDetails.title}</h2>
                 
                 <div className="modal__content">
-                <form className="form__field " onSubmit={handleSubmit}>
-                <label> Status:
-                    <input
-                    className="form__input"
-                    type="text"
-                    name="status"
-                    value={gameDetails.status}
-                    onChange={handleInputChange}/>
-                </label>
-                <label> Notes:
-                    <input
-                    className="form__input"
-                    type="text"
-                    name="notes"
-                    value={gameDetails.notes}
-                    placeholder={"Add your own notes..."}
-                    onChange={handleInputChange}/>
-                </label>
-                <label> Tags:
-                  <Select 
-                    className="gamesList__tags"
-                    isMulti
-                    isSearchable={isSearchable}
-                    isClearable={isClearable}
-                    name="tags"
-                    options={tagOptions} 
-                    placeholder={"Add your tags..."}
-                    value={tags.map((tag) => ({
-                      label: tag.name,
-                      value: tag.name,
-                      id: tag.id,
-                    }))}
-                    onChange={handleTagChange} // Update tags on selection
-                  
-                  />
-                </label>
+                  <form className="form__field " onSubmit={handleSubmit}>
+                  <label> Status:
+                      <input
+                      className="form__input"
+                      type="text"
+                      name="status"
+                      value={gameDetails.status}
+                      onChange={handleInputChange}/>
+                  </label>
+                  <label> Notes:
+                      <input
+                      className="form__textarea"
+                      type="text"
+                      name="notes"
+                      value={gameDetails.notes}
+                      placeholder={"Add your own notes..."}
+                      onChange={handleInputChange}/>
+                  </label>
+                  <label> Tags:
+                    <Select 
+                      className="form__tags"
+                      isMulti
+                      isSearchable={isSearchable}
+                      isClearable={isClearable}
+                      name="tags"
+                      options={tagOptions} 
+                      placeholder={"Add your tags..."}
+                      value={tags.map((tag) => ({
+                        label: tag.name,
+                        value: tag.name,
+                        id: tag.id,
+                      }))}
+                      onChange={handleTagChange}  />
+                  </label>
 
-                <button type="submit">Save</button>
-                <button onClick={closeModal}>Close</button>
+                  <div className="button__container">
+                    <button className="button" type="submit">Save</button>
+                    <button className="button" onClick={closeModal}>Close</button>
+                  </div>
                 </form>
-                </div>
+              </div>
               
             </Modal>
           </div>
