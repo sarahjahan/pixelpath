@@ -20,22 +20,27 @@
         width: 100px;
         height: 100px;
         margin-top: 10px;
-        transition: transform 0.2s ease;
         filter: grayscale(0%);
-        transition: filter 0.3s ease;
+        transition: filter 0.3s;
 
-        &:hover {
+        &.unselected img {
             transform: translateY(-0.25rem);
-        }
+            filter: grayscale(100%);  // Full color when selected
+          }
 
         &:active {
             transform: translateY(-0.25rem);
-            filter: grayscale(1000%);
+            filter: grayscale(100%);
         }
 
         &:after {
             transform: translateY(-0.25rem);
-            filter: grayscale(1000%);
+            filter: grayscale(100%);
+        }
+
+        &:hover {
+            transform: translateY(-0.25rem);
+            filter: none;
         }
     }
 }
