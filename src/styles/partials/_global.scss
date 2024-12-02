@@ -188,7 +188,6 @@ img {
   }
 
   &__textarea {
-    // height: 6.5rem;
     resize: none;
   }
 
@@ -203,10 +202,9 @@ img {
     gap: 0.5rem;
   }
 
-  // &__radio-label {
-  //   @extend .body-medium;
-  //   color: gray;
-  // }
+  &__radio-label {
+    color: gray;
+  }
 
   &__radio-input:checked + label {
     color: black;
