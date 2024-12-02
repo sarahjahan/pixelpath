@@ -7,8 +7,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 30px 24px;
-  gap: 24px;
+  margin: 30rem 24rem;
+  gap: 24rem;
 
   @include tablet {
     flex-direction: row;
@@ -20,27 +20,27 @@
     align-items: center;
     justify-content: space-between;
     text-align: center;
-    padding: 20px;
+    padding: 20rem;
 
     @include tablet {
       background-color: lavender;
-      border-radius: 28px;
+      border-radius: 28rem;
     }
   }
 
   &__title {
-    margin-bottom: 20px;
+    margin-bottom: 20rem;
     text-align: center;
   }
 
   &__summary {
-    margin: 24px 0px;
-    padding: 0px 42px;
+    margin: 24rem 0rem;
+    padding: 0rem 42rem;
   }
 
   &__coverart {
-    border-radius: 12px;
-    width: 200px;
+    border-radius: 12rem;
+    width: 200rem;
   }
 
   &__sub-details {
@@ -48,21 +48,21 @@
     align-items: center;
     text-align: left;
     background-color: lavender;
-    border-radius: 28px;
-    padding: 20px;
+    border-radius: 28rem;
+    padding: 20rem;
   }
 
   &__tags-container {
     background-color: pink;
-    border-radius: 4px;
+    border-radius: 4rem;
     text-align: center;
-    padding: 6px;
+    padding: 6rem;
   }
 
   &__status {
     &--completed {
-      border: 0.5px dashed;
-      border-radius: 12px;
+      border: 0.5rem dashed;
+      border-radius: 12rem;
       width: 50%;
       text-align: center;
       background-color: $accent-color;
@@ -70,8 +70,8 @@
     }
 
     &--playing {
-      border: 0.5px dashed;
-      border-radius: 12px;
+      border: 0.5rem dashed;
+      border-radius: 12rem;
       width: 50%;
       text-align: center;
       background-color: #a3d8f4;
@@ -79,8 +79,8 @@
     }
 
     &--wanttoplay {
-      border: 0.5px dashed;
-      border-radius: 12px;
+      border: 0.5rem dashed;
+      border-radius: 12rem;
       width: 50%;
       text-align: center;
       background-color: #d4c2fc;
@@ -94,7 +94,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
+  gap: 6rem;
 }
 
 .label-text {
@@ -108,5 +108,5 @@
 
 .result-message {
   color: gray;
-  font-size: 12px;
+  font-size: 12rem;
 }

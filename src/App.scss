@@ -3,30 +3,30 @@
 @use "../src/styles/partials/global";
 
 .logo {
-  height: 250px;
-  width: 250px;
+  height: 250rem;
+  width: 250rem;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
-  border-radius: 48px;
+  border-radius: 48rem;
   margin: 0 auto;
 
   @include tablet {
-    height: 400px;
-    width: 400px;
+    height: 400rem;
+    width: 400rem;
   }
 }
 
 .signin {
-  margin-top: 20px;
+  margin-top: 20rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  gap: 12px;
+  gap: 12rem;
 }
 
 .welcome-message {
-  margin: 16px;
-  padding: 0px 50px;
+  margin: 16rem;
+  padding: 0rem 50rem;
 }

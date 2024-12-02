@@ -4,7 +4,7 @@
 
 .gamesList {
   &__header {
-    margin-top: 20px;
+    margin-top: 20rem;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -22,11 +22,11 @@
   }
 
   &__sorter {
-    margin: 0px 12px;
+    margin: 0rem 12rem;
     display: flex;
     align-items: center;
-    border-bottom: 0.5px solid lightgray;
-    border-top: 0.5px solid lightgray;
+    border-bottom: 0.5rem solid lightgray;
+    border-top: 0.5rem solid lightgray;
     justify-content: space-evenly;
     width: 80vw;
 
@@ -57,7 +57,7 @@
     background-color: white;
     background-size: 1.5rem 1.5rem;
     width: 80vw;
-    margin: 0px 16px;
+    margin: 0rem 16rem;
     overflow: hidden;
     transition: border-color 0.3s;
 
@@ -70,7 +70,7 @@
     }
 
     @include tablet {
-      margin-top: 0px;
+      margin-top: 0rem;
     }
 
     @include desktop {
@@ -88,7 +88,7 @@
     display: flex;
     flex-direction: column;
     width: 80vw;
-    margin: 16px;
+    margin: 16rem;
 
     @include tablet {
       font-size: 0.875rem;
@@ -109,7 +109,7 @@
     }
 
     &:focus {
-      border: 1px solid gray;
+      border: 1rem solid gray;
     }
   }
 
@@ -117,14 +117,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 0px 24px;
-    margin-top: 20px;
+    margin: 0rem 24rem;
+    margin-top: 20rem;
   }
 
   &__discover {
     width: 100%;
-    margin: 0px 24px;
-    margin-bottom: 20px;
+    margin: 0rem 24rem;
+    margin-bottom: 20rem;
     text-align: center;
   }
 }

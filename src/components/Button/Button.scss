@@ -9,13 +9,13 @@
   font-weight: bold;
   transition: background-color 0.3s;
   border-radius: 1.25rem;
-  margin: 6px;
-  padding: 4px 8px;
+  margin: 6rem;
+  padding: 4rem 8rem;
   text-transform: uppercase;
 
   @include tablet {
     padding: 0.5rem 1rem;
-    margin: 6px;
+    margin: 6rem;
   }
 
   &:hover {
@@ -24,6 +24,6 @@
   }
 
   &:focus {
-    border: 1px solid gray;
+    border: 1rem solid gray;
   }
 }
