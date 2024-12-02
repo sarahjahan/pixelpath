@@ -10,29 +10,29 @@
     justify-content: flex-start;
     align-items: center;
     background-color: $background-color;
-    margin: 15px;
+    margin: .9375rem;
     min-width: 100%;
-    border-bottom: 0.5px solid lightgray;
+    border-bottom: .0313rem solid lightgray;
     flex-shrink: 1;
     flex-grow: 0;
 
     @include tablet {
-      margin: 10px;
-      border-radius: 10px;
+      margin: .625rem;
+      border-radius: .625rem;
       border-bottom: none;
-      border: 1px solid lightgray;
+      border: .0625rem solid lightgray;
       flex-wrap: wrap;
-      width: calc(33.33% - 20px);
+      width: calc(33.33% - 1.25rem);
       transition: background-color 0.3s;
       min-width: 0%;
 
       &:hover {
         background-color: $secondary-color;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 .25rem .375rem rgba(0, 0, 0, 0.1);
       }
 
       @include desktop {
-        width: calc(25% - 20px);
+        width: calc(25% - 1.25rem);
       }
     }
   }
@@ -45,62 +45,62 @@
     font-size: 1rem;
 
     &--completed {
-      border: 0.5px dashed;
-      border-radius: 12px;
+      border: .0313rem dashed;
+      border-radius: .75rem;
       max-width: 50%;
       text-align: center;
       margin: 0 auto;
       background-color: $accent-color;
       color: white;
       flex-grow: 0;
-      margin-bottom: 20px;
+      margin-bottom: 1.25rem;
     }
 
     &--playing {
-      border: 0.5px dashed;
-      border-radius: 12px;
+      border: .0313rem dashed;
+      border-radius: .75rem;
       max-width: 50%;
       text-align: center;
       margin: 0 auto;
       background-color: #a3d8f4;
       color: gray;
       flex-grow: 0;
-      margin-bottom: 20px;
+      margin-bottom: 1.25rem;
     }
 
     &--wanttoplay {
-      border: 0.5px dashed #ffd1a9;
-      border-radius: 12px;
+      border: .0313rem dashed #ffd1a9;
+      border-radius: .75rem;
       max-width: 50%;
       text-align: center;
       margin: 0 auto;
       background-color: #d4c2fc;
       color: gray;
       flex-grow: 0;
-      margin-bottom: 20px;
+      margin-bottom: 1.25rem;
     }
   }
 
   &__coverart {
-    width: 200px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 12.5rem;
+    border-radius: .625rem;
+    box-shadow: 0 .25rem .375rem rgba(0, 0, 0, 0.1);
     flex-grow: 0;
     align-self: flex-start;
 
     @include tablet {
-      width: 150px;
+      width: 9.375rem;
     }
   }
 
   &__myGame {
     text-align: center;
-    padding: 10px;
-    border-radius: 12px;
+    padding: .625rem;
+    border-radius: .75rem;
     width: 100%;
 
     @include tablet {
-      padding: 20px;
+      padding: 1.25rem;
       transition: background-color 0.2s;
 
       &:hover {
@@ -111,17 +111,17 @@
 
   &__button-container {
     display: flex;
-    gap: 12px;
+    gap: .75rem;
     justify-content: center;
   }
 }
 
 .card__action {
   display: flex;
-  width: 26px;
+  width: 1.625rem;
   flex-direction: row;
   align-items: flex-end;
-  padding-bottom: 20px;
+  padding-bottom: 1.25rem;
   flex-shrink: 0;
   flex-grow: 1;
 }
@@ -135,6 +135,6 @@
 }
 
 .section-divider {
-  border-bottom: 2px solid var(--accent-color);
-  margin: 20px;
+  border-bottom: .125rem solid var(--accent-color);
+  margin: 1.25rem;
 }

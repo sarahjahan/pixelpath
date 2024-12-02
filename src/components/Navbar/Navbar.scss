@@ -5,7 +5,7 @@
 .navbar {
   color: $background-color;
   background-color: $primary-color;
-  border: 1px solid gray;
+  border: .0625rem solid gray;
   color: white;
   font-weight: 600;
   display: flex;
@@ -14,18 +14,18 @@
 
   @include tablet {
     justify-content: space-between;
-    padding: 0px 24px;
+    padding: 0rem 1.5rem;
   }
 
   &__logo {
-    width: 60px;
+    width: 3.75rem;
     justify-self: center;
     flex-grow: 0;
     flex-shrink: 0;
     cursor: pointer;
 
     @include tablet {
-      width: 100px;
+      width: 6.25rem;
     }
   }
 
@@ -41,13 +41,13 @@
 
   &__discover {
     background-color: lavender;
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid gray;
+    padding: .5rem;
+    border-radius: .5rem;
+    border: .0625rem solid gray;
     color: $text-color;
 
     @include tablet {
-      padding: 10px;
+      padding: .625rem;
       flex-grow: 0;
       flex-shrink: 0;
     }
@@ -61,7 +61,7 @@
 a {
   color: white;
   text-decoration: none;
-  margin: 0px 10px;
+  margin: 0rem .625rem;
 
   &:hover {
     color: $text-color;

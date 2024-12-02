@@ -159,7 +159,7 @@ img {
     height: 2.25rem;
     padding: 0.5rem 1rem;
     border-radius: 0.25rem;
-    border: 1px solid lightgray;
+    border: .0625rem solid lightgray;
     outline: none;
     background-color: white;
 
@@ -168,15 +168,15 @@ img {
     }
 
     &:focus {
-      border: 1px solid gray;
+      border: .0625rem solid gray;
     }
 
     &.error {
-      border: 1px solid red;
+      border: .0625rem solid red;
     }
 
     &:hover {
-      border-color: 1px solid gray;
+      border-color: .0625rem solid gray;
     }
   }
 

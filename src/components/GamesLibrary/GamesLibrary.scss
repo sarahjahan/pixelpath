@@ -4,7 +4,7 @@
 
 .gamesList {
   &__header {
-    margin-top: 20px;
+    margin-top: 1.25rem;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -22,11 +22,11 @@
   }
 
   &__sorter {
-    margin: 0px 12px;
+    margin: 0rem .75rem;
     display: flex;
     align-items: center;
-    border-bottom: 0.5px solid lightgray;
-    border-top: 0.5px solid lightgray;
+    border-bottom: .0313rem solid lightgray;
+    border-top: .0313rem solid lightgray;
     justify-content: space-evenly;
     width: 80vw;
 
@@ -53,11 +53,11 @@
     @extend .form__input;
     background-image: url("../../public/assets/icons/search.png");
     background-repeat: no-repeat;
-    background-position: right 0.75rem center;
+    background-position: right .75rem center;
     background-color: white;
     background-size: 1.5rem 1.5rem;
     width: 80vw;
-    margin: 0px 16px;
+    margin: 0rem 1rem;
     overflow: hidden;
     transition: border-color 0.3s;
 
@@ -70,7 +70,7 @@
     }
 
     @include tablet {
-      margin-top: 0px;
+      margin-top: 0rem;
     }
 
     @include desktop {
@@ -79,7 +79,7 @@
   }
 
   &__filter {
-    font-size: 0.8125rem;
+    font-size: .8125rem;
     line-height: 1.25rem;
     font-weight: $regular;
     width: 100%;
@@ -88,10 +88,10 @@
     display: flex;
     flex-direction: column;
     width: 80vw;
-    margin: 16px;
+    margin: 1rem;
 
     @include tablet {
-      font-size: 0.875rem;
+      font-size: .875rem;
       line-height: 1.375rem;
       transition: border-color 0.3s;
 
@@ -109,7 +109,7 @@
     }
 
     &:focus {
-      border: 1px solid gray;
+      border: .0625rem solid gray;
     }
   }
 
@@ -117,14 +117,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 0px 24px;
-    margin-top: 20px;
+    margin: 0rem 1.5rem;
+    margin-top: 1.25rem;
   }
 
   &__discover {
     width: 100%;
-    margin: 0px 24px;
-    margin-bottom: 20px;
+    margin: 0rem 1.5rem;
+    margin-bottom: 1.25rem;
     text-align: center;
   }
 }
