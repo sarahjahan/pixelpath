@@ -16,14 +16,18 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
     const filteredGames = (isSearchPage ? gamesAPIList : gamesList).filter((game) => {
         const matchesSearch = game.title?.toLowerCase().includes(searchKeyword.toLowerCase());
         const matchesStatus = statusFilter ? (statusFilter.value === null || game.status === statusFilter.value) : true;        
-        const matchesGenre = genreFilter ? game.tags?.toLowerCase().split(',').some(tags => tags.trim() === genreFilter.value.toLowerCase()) : true;
+        const matchesGenre = !genreFilter?.value || game.tags?.split(',')
+          .map(tag => tag.trim().toLowerCase())
+          .some(tag => tag === genreFilter.value.toLowerCase()); 
         const matchesMood = moodFilter ? game.tags?.some((tag) => {
             const tagName = typeof tag === "string" ? tag : tag.name;
             return themeToMoodMap[tagName] === moodFilter; }) 
             : true;
-    
+
         return matchesSearch && matchesStatus && matchesGenre && matchesMood;
         });
+    
+        
 
   const handleClearFilters = () => {
     setSearchKeyword("");
@@ -33,8 +37,6 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
     setSelectedMood(null);
   };
 
-
-//Code for React Select
   const statusOptions = [
     { value: null, label: 'All Statuses' },
     { value: 'Playing', label: 'Playing' },
@@ -43,6 +45,7 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
   ]
 
   const genreOptions = [
+    { value: null, label: 'All Genres' },
     { value: 'Puzzle', label:'Puzzle',},
     { value: 'Shooter', label: 'Shooter' },
     { value: 'Adventure', label: 'Adventure' },
@@ -53,12 +56,23 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
     setStatusFilter(selectedOption);
   };
 
+  const handleGenreChange = (selectedOption) => {
+    setGenreFilter(selectedOption);
+  };
+
+
     if (!gamesList && !gamesAPIList) return <div>Loading games...</div>;
 
     return(
         <div>
             
-          {isSearchPage ? null : <MoodReco setMoodFilter={setMoodFilter} setSelectedMood={setSelectedMood} selectedMood={selectedMood} />}
+          {isSearchPage ? (
+            <div className="gamesList__header">
+              <h3 className="gamesList__discover">Welcome to the Discover Games Page.</h3>
+              <p className="gamesList__discover label-text">Explore top-rated games tailored to your interests. Select "+" to add favorites to your library and start building your ultimate collection! 🎮✨</p>
+            </div>
+            ) : ( 
+            <MoodReco setMoodFilter={setMoodFilter} setSelectedMood={setSelectedMood} selectedMood={selectedMood} />)}
             
             <div className="gamesList__header">
               <div className="gamesList__search">
@@ -77,7 +91,7 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
                 className="gamesList__filter"
                 options={genreOptions} 
                 placeholder={"Filter by Genre..."}
-                onChange={handleStatusChange}/>
+                onChange={handleGenreChange}/>
                 ) : (
                 <Select 
                 className="gamesList__filter"
@@ -85,14 +99,15 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
                 placeholder={"Filter by Status..."}
                 onChange={handleStatusChange}/> )}
 
-
+            {isSearchPage ? null : 
                 <div className="gamesList__sorter">
                   <div className="gamesList__sort-label label-text">Sort By:</div>
                     <Button className="gamesList__sort-button" onClick={() => handleSort("title")} actiontext={"Title"}/>
                     <Button className="gamesList__sort-button" onClick={() => handleSort("rating")} actiontext={"Rating"}/>
                     <Button className="gamesList__sort-button" onClick={() => handleSort("status")} actiontext={"Status"}/>
                     <Button className="gamesList__clear-button" onClick={handleClearFilters} actiontext="Clear Filters"/>
-                </div>
+                </div>}
+
             </div>
             
             <div className="gamesList__container">
