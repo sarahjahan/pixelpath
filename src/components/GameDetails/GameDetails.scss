@@ -1,0 +1,112 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global";
+
+.game {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 1.875rem 1.5rem;
+  gap: 1.5rem;
+
+  @include tablet {
+    flex-direction: row;
+    height: 100%;
+  }
+
+  &__main-details {
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding: 1.25rem;
+
+    @include tablet {
+      background-color: lavender;
+      border-radius: 1.75rem;
+    }
+  }
+
+  &__title {
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+
+  &__summary {
+    margin: 1.5rem 0rem;
+    padding: 0rem 2.625rem;
+  }
+
+  &__coverart {
+    border-radius: .75rem;
+    width: 12.5rem;
+  }
+
+  &__sub-details {
+    width: 100%;
+    align-items: center;
+    text-align: left;
+    background-color: lavender;
+    border-radius: 1.75rem;
+    padding: 1.25rem;
+  }
+
+  &__tags-container {
+    background-color: pink;
+    border-radius: .25rem;
+    text-align: center;
+    padding: .375rem;
+  }
+
+  &__status {
+    &--completed {
+      border: .0313rem dashed;
+      border-radius: .75rem;
+      width: 50%;
+      text-align: center;
+      background-color: $accent-color;
+      color: white;
+    }
+
+    &--playing {
+      border: .0313rem dashed;
+      border-radius: .75rem;
+      width: 50%;
+      text-align: center;
+      background-color: #a3d8f4;
+      color: gray;
+    }
+
+    &--wanttoplay {
+      border: .0313rem dashed;
+      border-radius: .75rem;
+      width: 50%;
+      text-align: center;
+      background-color: #d4c2fc;
+      color: gray;
+    }
+  }
+}
+
+.labels {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .375rem;
+}
+
+.label-text {
+  &__game {
+    flex-direction: space-between;
+    text-align: center;
+    margin: .5rem;
+    font-weight: 600;
+  }
+}
+
+.result-message {
+  color: gray;
+  font-size: .75rem;
+}

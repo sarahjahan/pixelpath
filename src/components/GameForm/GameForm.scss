@@ -1,0 +1,49 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global";
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: $secondary-color;
+  border-radius: .75rem;
+  width: 25rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(50%, 50%);
+  box-shadow: 0 .25rem .375rem rgba(0, 0, 0, 0.1);
+
+  &__heading {
+    justify-self: center;
+  }
+
+  &__content {
+    padding: 1rem;
+  }
+}
+
+.button__container {
+  margin-top: .625rem;
+  display: flex;
+  justify-content: center;
+}
+
+.form__tags {
+  background-color: $background-color;
+  border-radius: .25rem;
+}

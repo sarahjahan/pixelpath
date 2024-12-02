@@ -1,0 +1,32 @@
+@use "../src/styles/partials/variables" as *;
+@use "../src/styles/partials/mixins" as *;
+@use "../src/styles/partials/global";
+
+.logo {
+  height: 15.625rem;
+  width: 15.625rem;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+  border-radius: 3rem;
+  margin: 0 auto;
+
+  @include tablet {
+    height: 25rem;
+    width: 25rem;
+  }
+}
+
+.signin {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: .75rem;
+}
+
+.welcome-message {
+  margin: 1rem;
+  padding: 0rem 3.125rem;
+}

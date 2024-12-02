@@ -1,0 +1,246 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+input,
+textarea,
+button {
+  background-color: $background-color;
+  font-family: "Titillium Web", sans-serif;
+  color: $text-color;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+img {
+  width: 100%;
+}
+
+// Typography
+
+.page-header {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  font-weight: $semibold;
+
+  @include tablet {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+
+.subheader {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: $semibold;
+
+  @include tablet {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+.label-text,
+.link-text,
+.button-text {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  font-weight: $semibold;
+
+  @include tablet {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+}
+
+.table-header,
+.tag-text {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  font-weight: $semibold;
+  text-transform: uppercase;
+
+  @include tablet {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+}
+
+// Layout
+
+.container {
+  padding: 0 1rem;
+
+  @include tablet {
+    padding: 0 2.25rem;
+  }
+
+  @include desktop {
+    padding: 0 8.125rem;
+  }
+}
+
+// Icons
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  color: $secondary-color;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &__copy {
+    @extend .link-text;
+  }
+
+  &__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover .link__icon {
+    transform: trangrayX(0.25rem);
+  }
+}
+
+// Form Fields
+
+.form {
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border: 0;
+    width: 100%;
+  }
+
+  &__label {
+    @extend .label-text;
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    height: 2.25rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    border: .0625rem solid lightgray;
+    outline: none;
+    background-color: white;
+
+    &::placeholder {
+      color: lightgray;
+    }
+
+    &:focus {
+      border: .0625rem solid gray;
+    }
+
+    &.error {
+      border: .0625rem solid red;
+    }
+
+    &:hover {
+      border-color: .0625rem solid gray;
+    }
+  }
+
+  &__input {
+    @include tablet {
+      height: 2.375rem;
+    }
+  }
+
+  &__textarea {
+    resize: none;
+  }
+
+  &__radio-group {
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  &__radio-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__radio-label {
+    color: gray;
+  }
+
+  &__radio-input:checked + label {
+    color: black;
+  }
+}
+
+// Tags
+
+.tag {
+  @extend .tag-text;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  height: 1.5rem;
+  border-radius: 1.25rem;
+
+  @include tablet {
+    height: 1.625rem;
+  }
+}
+
+.css-t3ipsp-control {
+  outline: none !important;
+  border-color: unset !important;
+  box-shadow: none !important;
+
+  &:hover {
+    border-color: none !important;
+  }
+}
+
+.css-13cymwt-control {
+  outline: none !important;
+  border-color: none !important;
+  box-shadow: none !important;
+
+  &:hover {
+    border-color: none !important;
+  }
+}

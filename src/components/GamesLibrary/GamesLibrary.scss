@@ -1,0 +1,135 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global";
+
+.gamesList {
+  &__header {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    flex-direction: row;
+
+    @include tablet {
+      align-items: center;
+    }
+
+    @include desktop {
+      align-items: center;
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__sorter {
+    margin: 0rem .75rem;
+    display: flex;
+    align-items: center;
+    border-bottom: .0313rem solid lightgray;
+    border-top: .0313rem solid lightgray;
+    justify-content: space-evenly;
+    width: 80vw;
+
+    @include tablet {
+      justify-content: flex-start;
+    }
+
+    @include desktop {
+      justify-content: space-between;
+      align-items: center;
+      width: 35vw;
+    }
+  }
+
+  &__sort-label {
+    text-transform: uppercase;
+  }
+
+  &__clear-button {
+    justify-self: flex-end;
+  }
+
+  &__searcher {
+    @extend .form__input;
+    background-image: url("../../public/assets/icons/search.png");
+    background-repeat: no-repeat;
+    background-position: right .75rem center;
+    background-color: white;
+    background-size: 1.5rem 1.5rem;
+    width: 80vw;
+    margin: 0rem 1rem;
+    overflow: hidden;
+    transition: border-color 0.3s;
+
+    &:hover {
+      border-color: gray;
+    }
+
+    &::placeholder {
+      color: gray;
+    }
+
+    @include tablet {
+      margin-top: 0rem;
+    }
+
+    @include desktop {
+      width: 17.125rem;
+    }
+  }
+
+  &__filter {
+    font-size: .8125rem;
+    line-height: 1.25rem;
+    font-weight: $regular;
+    width: 100%;
+    height: 2.25rem;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    margin: 1rem;
+
+    @include tablet {
+      font-size: .875rem;
+      line-height: 1.375rem;
+      transition: border-color 0.3s;
+
+      &:hover {
+        border-color: gray;
+      }
+    }
+
+    @include desktop {
+      width: 17.125rem;
+    }
+
+    &::placeholder {
+      color: lightgray;
+    }
+
+    &:focus {
+      border: .0625rem solid gray;
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0rem 1.5rem;
+    margin-top: 1.25rem;
+  }
+
+  &__discover {
+    width: 100%;
+    margin: 0rem 1.5rem;
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+}
+
+.css-13cymwt-control,
+.css-t3ipsp-control {
+  background-color: white !important;
+}

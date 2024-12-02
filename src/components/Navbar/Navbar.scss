@@ -1,0 +1,87 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global";
+
+.navbar {
+  color: $background-color;
+  background-color: $primary-color;
+  border: .0625rem solid gray;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  @include tablet {
+    justify-content: space-between;
+    padding: 0rem 1.5rem;
+  }
+
+  &__logo {
+    width: 3.75rem;
+    justify-self: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+
+    @include tablet {
+      width: 6.25rem;
+    }
+  }
+
+  &__menu {
+    display: none;
+
+    @include tablet {
+      display: flex;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
+
+  &__discover {
+    background-color: lavender;
+    padding: .5rem;
+    border-radius: .5rem;
+    border: .0625rem solid gray;
+    color: $text-color;
+
+    @include tablet {
+      padding: .625rem;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background-color: $secondary-color;
+    }
+  }
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  margin: 0rem .625rem;
+
+  &:hover {
+    color: $text-color;
+  }
+
+  &:active {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &:after {
+    text-decoration: underline;
+  }
+}
+
+.site-header {
+  color: $background-color;
+  text-align: right;
+  font-size: small;
+}
