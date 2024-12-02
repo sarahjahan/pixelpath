@@ -2,139 +2,134 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/global";
 
-
 .gamesList {
+  &__header {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    flex-direction: row;
 
-    &__header {
-        margin-top: 20px;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        justify-content: center;
-        flex-direction: row;
-
-        @include tablet {
-          align-items: center;
-        }
-
-        @include desktop {
-          align-items: center;
-          flex-direction: row-reverse;
-        }
-    }
-
-    &__sorter {
-      margin: 0px 12px;
-      display: flex;
+    @include tablet {
       align-items: center;
-      border-bottom: .5px solid lightgray;
-      border-top: .5px solid lightgray;
-      justify-content: space-evenly;
-      width: 80vw;
-
-      @include tablet {
-        justify-content: flex-start;
-
-      }
-
-      @include desktop {
-        justify-content: space-between;
-        align-items: center;
-        width: 35vw;
-      }
     }
 
-    &__sort-label {
-      text-transform: uppercase;
+    @include desktop {
+      align-items: center;
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__sorter {
+    margin: 0px 12px;
+    display: flex;
+    align-items: center;
+    border-bottom: 0.5px solid lightgray;
+    border-top: 0.5px solid lightgray;
+    justify-content: space-evenly;
+    width: 80vw;
+
+    @include tablet {
+      justify-content: flex-start;
     }
 
-    &__clear-button {
-      justify-self: flex-end;
+    @include desktop {
+      justify-content: space-between;
+      align-items: center;
+      width: 35vw;
+    }
+  }
+
+  &__sort-label {
+    text-transform: uppercase;
+  }
+
+  &__clear-button {
+    justify-self: flex-end;
+  }
+
+  &__searcher {
+    @extend .form__input;
+    background-image: url("../../public/assets/icons/search.png");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-color: white;
+    background-size: 1.5rem 1.5rem;
+    width: 80vw;
+    margin: 0px 16px;
+    overflow: hidden;
+    transition: border-color 0.3s;
+
+    &:hover {
+      border-color: gray;
     }
 
+    &::placeholder {
+      color: gray;
+    }
 
-    &__searcher {
-      @extend .form__input;
-      background-image: url("../../public/assets/icons/search.png");
-      background-repeat: no-repeat;
-      background-position: right 0.75rem center;
-      background-color: white;
-      background-size: 1.5rem 1.5rem;
-      width: 80vw;
-      margin: 0px 16px;
-      overflow: hidden;
+    @include tablet {
+      margin-top: 0px;
+    }
+
+    @include desktop {
+      width: 17.125rem;
+    }
+  }
+
+  &__filter {
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    font-weight: $regular;
+    width: 100%;
+    height: 2.25rem;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    margin: 16px;
+
+    @include tablet {
+      font-size: 0.875rem;
+      line-height: 1.375rem;
       transition: border-color 0.3s;
 
       &:hover {
         border-color: gray;
       }
-      
-      &::placeholder {
-        color: gray;
-      }
-  
-      @include tablet {
-        margin-top: 0px;
-      }
-  
-      @include desktop {
-        width: 17.125rem;
-      }
     }
 
-    &__filter {
-      font-size: 0.8125rem;
-      line-height: 1.25rem;
-      font-weight: $regular;
-      width: 100%;
-      height: 2.25rem;
-      outline: none;
-      display: flex;
-      flex-direction: column;
-      width: 80vw;
-      margin: 16px;
-
-      @include tablet {
-        font-size: 0.875rem;
-        line-height: 1.375rem;
-        transition: border-color 0.3s;
-
-        &:hover {
-          border-color: gray;
-        }
-      }
-  
-      @include desktop {
-        width: 17.125rem;
-      }
-
-  
-      &::placeholder {
-        color: lightgray;
-      }
-  
-      &:focus {
-        border: 1px solid gray;
-      }
+    @include desktop {
+      width: 17.125rem;
     }
 
-    &__container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin: 0px 24px;
-        margin-top: 20px;
+    &::placeholder {
+      color: lightgray;
     }
 
-    &__discover {
-      width: 100%;
-      margin: 0px 24px;
-      margin-bottom: 20px;
-      text-align: center;
+    &:focus {
+      border: 1px solid gray;
     }
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0px 24px;
+    margin-top: 20px;
+  }
+
+  &__discover {
+    width: 100%;
+    margin: 0px 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
 }
 
-
-.css-13cymwt-control, .css-t3ipsp-control {
+.css-13cymwt-control,
+.css-t3ipsp-control {
   background-color: white !important;
- }
+}

@@ -13,7 +13,6 @@
   padding: 4px 8px;
   text-transform: uppercase;
 
-
   @include tablet {
     padding: 0.5rem 1rem;
     margin: 6px;
@@ -21,7 +20,7 @@
 
   &:hover {
     background-color: $primary-color;
-    color: $background-color; 
+    color: $background-color;
   }
 
   &:focus {

@@ -3,116 +3,110 @@
 @use "../../styles/partials/global";
 
 .game {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 30px 24px;
-    gap: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 30px 24px;
+  gap: 24px;
 
+  @include tablet {
+    flex-direction: row;
+    height: 100%;
+  }
+
+  &__main-details {
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding: 20px;
 
     @include tablet {
-        flex-direction: row;
-        height: 100%;
+      background-color: lavender;
+      border-radius: 28px;
     }
-    
-    &__main-details {
-        width: 100%;
-        align-items: center;
-        justify-content: space-between;
-        text-align: center;
-        padding: 20px;
+  }
 
-        @include tablet {
-        background-color: lavender; 
-        border-radius: 28px;
+  &__title {
+    margin-bottom: 20px;
+    text-align: center;
+  }
 
-        }
-    }
+  &__summary {
+    margin: 24px 0px;
+    padding: 0px 42px;
+  }
 
-    &__title {
-        margin-bottom: 20px;
-        text-align: center;
+  &__coverart {
+    border-radius: 12px;
+    width: 200px;
+  }
 
-    }
+  &__sub-details {
+    width: 100%;
+    align-items: center;
+    text-align: left;
+    background-color: lavender;
+    border-radius: 28px;
+    padding: 20px;
+  }
 
-    &__summary {
-        margin: 24px 0px;
-        padding: 0px 42px;
-    }
+  &__tags-container {
+    background-color: pink;
+    border-radius: 4px;
+    text-align: center;
+    padding: 6px;
+  }
 
-    &__coverart {
-        border-radius: 12px;
-        width: 200px; 
-    }
-
-    &__sub-details {
-        width: 100%;
-        align-items: center;
-        text-align: left;
-        background-color: lavender; 
-        border-radius: 28px;
-        padding: 20px;
-    }
-
-    &__tags-container {
-        background-color: pink;
-        border-radius: 4px;
-        text-align: center;
-        padding: 6px;
+  &__status {
+    &--completed {
+      border: 0.5px dashed;
+      border-radius: 12px;
+      width: 50%;
+      text-align: center;
+      background-color: $accent-color;
+      color: white;
     }
 
-    &__status {
-
-        &--completed {
-            border: .5px dashed;
-            border-radius: 12px;
-            width: 50%;
-            text-align: center;
-            background-color: $accent-color;
-            color: white;
-          }
-    
-          &--playing {
-            border: .5px dashed;
-            border-radius: 12px;
-            width: 50%;
-            text-align: center;
-            background-color: #A3D8F4;
-            color: gray;
-    
-          }
-    
-          &--wanttoplay {
-            border: .5px dashed;
-            border-radius: 12px;
-            width: 50%;
-            text-align: center;
-            background-color: #D4C2FC;
-            color: gray;
-          }
+    &--playing {
+      border: 0.5px dashed;
+      border-radius: 12px;
+      width: 50%;
+      text-align: center;
+      background-color: #a3d8f4;
+      color: gray;
     }
+
+    &--wanttoplay {
+      border: 0.5px dashed;
+      border-radius: 12px;
+      width: 50%;
+      text-align: center;
+      background-color: #d4c2fc;
+      color: gray;
+    }
+  }
 }
 
 .labels {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
 }
 
 .label-text {
-
-    &__game {
-        flex-direction: space-between;
-        text-align: center;
-        margin: .5rem;
-        font-weight: 600;
-    }
+  &__game {
+    flex-direction: space-between;
+    text-align: center;
+    margin: 0.5rem;
+    font-weight: 600;
+  }
 }
 
 .result-message {
-    color: gray;
-    font-size: 12px;
+  color: gray;
+  font-size: 12px;
 }

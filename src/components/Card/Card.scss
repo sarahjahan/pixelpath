@@ -3,7 +3,6 @@
 @use "../../styles/partials/global";
 
 .card {
-
   &__container {
     text-align: center;
     display: flex;
@@ -13,110 +12,109 @@
     background-color: $background-color;
     margin: 15px;
     min-width: 100%;
-    border-bottom: .5px solid lightgray;
+    border-bottom: 0.5px solid lightgray;
     flex-shrink: 1;
     flex-grow: 0;
 
-      @include tablet {
-        margin: 10px;
-        border-radius: 10px;
-        border-bottom: none;
-        border: 1px solid lightgray;
-        flex-wrap: wrap;
-        width: calc(33.33% - 20px);
-        transition: background-color 0.3s;
-        min-width: 0%;
-        
-          &:hover {
-            background-color: $secondary-color;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          }
-
-        @include desktop {
-          width: calc(25% - 20px);
-        }
-      }
-    }
-
-    &__title {
-      font-size: 1.5rem;
-    }
-
-    &__subtitle {
-      font-size: 1rem;
-
-      &--completed {
-        border: .5px dashed;
-        border-radius: 12px;
-        max-width: 50%;
-        text-align: center;
-        margin: 0 auto;
-        background-color: $accent-color;
-        color: white;
-        flex-grow: 0;
-        margin-bottom: 20px;
-      }
-
-      &--playing {
-        border: .5px dashed;
-        border-radius: 12px;
-        max-width: 50%;
-        text-align: center;
-        margin: 0 auto;
-        background-color: #A3D8F4;
-        color: gray;
-        flex-grow: 0;
-        margin-bottom: 20px;
-      }
-
-      &--wanttoplay {
-        border: .5px dashed #FFD1A9;
-        border-radius: 12px;
-        max-width: 50%;
-        text-align: center;
-        margin: 0 auto;
-        background-color: #D4C2FC;
-        color: gray;
-        flex-grow: 0;
-        margin-bottom: 20px;
-      }
-
-  }
-  
-    &__coverart {
-      width: 200px;
+    @include tablet {
+      margin: 10px;
       border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      flex-grow: 0;
-      align-self: flex-start;
+      border-bottom: none;
+      border: 1px solid lightgray;
+      flex-wrap: wrap;
+      width: calc(33.33% - 20px);
+      transition: background-color 0.3s;
+      min-width: 0%;
 
-      @include tablet {
-        width: 150px;
+      &:hover {
+        background-color: $secondary-color;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
-    }
 
-    &__myGame {
-      text-align: center;
-      padding: 10px;
-      border-radius: 12px;
-      width: 100%;
-
-      @include tablet {
-        padding: 20px;
-        transition: background-color 0.2s;
-
-        &:hover {
-          background-color: $secondary-color;
-        }
+      @include desktop {
+        width: calc(25% - 20px);
       }
-    }
-
-    &__button-container {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
     }
   }
+
+  &__title {
+    font-size: 1.5rem;
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+
+    &--completed {
+      border: 0.5px dashed;
+      border-radius: 12px;
+      max-width: 50%;
+      text-align: center;
+      margin: 0 auto;
+      background-color: $accent-color;
+      color: white;
+      flex-grow: 0;
+      margin-bottom: 20px;
+    }
+
+    &--playing {
+      border: 0.5px dashed;
+      border-radius: 12px;
+      max-width: 50%;
+      text-align: center;
+      margin: 0 auto;
+      background-color: #a3d8f4;
+      color: gray;
+      flex-grow: 0;
+      margin-bottom: 20px;
+    }
+
+    &--wanttoplay {
+      border: 0.5px dashed #ffd1a9;
+      border-radius: 12px;
+      max-width: 50%;
+      text-align: center;
+      margin: 0 auto;
+      background-color: #d4c2fc;
+      color: gray;
+      flex-grow: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__coverart {
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-grow: 0;
+    align-self: flex-start;
+
+    @include tablet {
+      width: 150px;
+    }
+  }
+
+  &__myGame {
+    text-align: center;
+    padding: 10px;
+    border-radius: 12px;
+    width: 100%;
+
+    @include tablet {
+      padding: 20px;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: $secondary-color;
+      }
+    }
+  }
+
+  &__button-container {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+}
 
 .card__action {
   display: flex;
@@ -135,7 +133,7 @@
     transform: translateY(-0.25rem);
   }
 }
-  
+
 .section-divider {
   border-bottom: 2px solid var(--accent-color);
   margin: 20px;
