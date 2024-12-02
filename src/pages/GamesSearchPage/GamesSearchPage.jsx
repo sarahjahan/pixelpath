@@ -26,7 +26,7 @@ function GamesSearchPage() {
     const delGame = async (id) => {
       try {
         const { data } = await axios.delete(`${BASE_URL}/api/games/${id}`);
-        setGamesList(gamesList.filter(game => game.id !== id)); // Remove from state
+        setGamesList(gamesList.filter(game => game.id !== id)); 
         toast.success(`The game you selected was removed from your library. Refreshing Games list.`);
       } catch (error) {
         toast.error(`Error deleting game: ${error}`);

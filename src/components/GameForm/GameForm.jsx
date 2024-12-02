@@ -20,8 +20,6 @@ const customStyles = {
   };
 
 function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
-  const [isClearable, setIsClearable] = useState(true);
-  const [isSearchable, setIsSearchable] = useState(true);
   const [removedTags, setRemovedTags] = useState([])
   const [tagOptions, setTagOptions] = useState([]);
   const [originalTags, setOriginalTags] = useState((game.tags || []).map((tag) => ({
@@ -170,16 +168,16 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
                     <Select 
                       className="form__tags"
                       isMulti
-                      isSearchable={isSearchable}
-                      isClearable={isClearable}
                       name="tags"
                       options={tagOptions} 
-                      placeholder={"Add your tags..."}
-                      value={tags.map((tag) => ({
-                        label: tag.name,
-                        value: tag.name,
-                        id: tag.id,
-                      }))}
+                      placeholder={"Add your own tags..."}
+                      value={tags.length > 0
+                        ? tags.map((tag) => ({
+                            label: tag.name,
+                            value: tag.name,
+                            id: tag.id,
+                          }))
+                        : null}
                       onChange={handleTagChange}  />
                   </label>
 

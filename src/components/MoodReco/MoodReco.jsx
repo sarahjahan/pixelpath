@@ -1,19 +1,14 @@
 import './MoodReco.scss'
 import angry from '../../public/assets/angry.png'
 import chill from '../../public/assets/chill.png'
-import cool from '../../public/assets/cool.png'
 import happy from '../../public/assets/happy.png'
-import { useState } from 'react';
-
 
 function MoodReco({setMoodFilter, selectedMood, setSelectedMood}) {
     
     const handleMoodClick = (mood) => {
-        setMoodFilter(mood); // Pass selected mood to GamesLibrary
+        setMoodFilter(mood);
         setSelectedMood(mood);
       };
-    
-    
 
     return (
         <div className="moods">
