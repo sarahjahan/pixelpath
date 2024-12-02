@@ -33,6 +33,7 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
         title: game.title,
         status: game.status || '',
         notes: game.notes || '',
+        rating: game.rating || null,
       });
 
       useEffect(() => {
@@ -51,6 +52,7 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
           title: game.title,
           status: game.status || '',
           notes: game.notes || '',
+          rating: game.rating || null,
         });
         setOriginalTags((game.tags || []).map((tag) => ({
           id: tag.id,
@@ -112,13 +114,48 @@ function GameForm({gameid, getGamesLibrary, game, modalIsOpen, closeModal}) {
                 
                 <div className="modal__content">
                   <form className="form__field " onSubmit={handleSubmit}>
-                  <label> Status:
-                      <input
-                      className="form__input"
-                      type="text"
+                  <label>
+                    Status: <br />
+                    <input
+                      type="radio"
+                      id="Want To Play"
                       name="status"
-                      value={gameDetails.status}
-                      onChange={handleInputChange}/>
+                      value="Want To Play"
+                      checked={gameDetails.status === "Want To Play"}
+                      onChange={handleInputChange}
+                    />
+                    <label htmlFor="Want To Play"> Want to Play<br /></label>
+
+                    <input
+                      type="radio"
+                      id="playing"
+                      name="status"
+                      value="Playing"
+                      checked={gameDetails.status === "Playing"}
+                      onChange={handleInputChange}
+                    />
+                    <label htmlFor="playing"> Playing<br /></label>
+
+                    <input
+                      type="radio"
+                      id="completed"
+                      name="status"
+                      value="Completed"
+                      checked={gameDetails.status === "Completed"}
+                      onChange={handleInputChange}
+                    />
+                    <label htmlFor="completed"> Completed<br /></label>
+                  </label>
+                  <label> Rating:
+                      <input
+                        className="form__textarea"
+                        type="number"
+                        min="1"
+                        max="5"
+                        name="rating"
+                        value={gameDetails.rating}
+                        placeholder={"Add a personal rating..."}
+                        onChange={handleInputChange}/>
                   </label>
                   <label> Notes:
                       <input

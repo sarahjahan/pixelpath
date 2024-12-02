@@ -1,16 +1,21 @@
-@import '../../styles/partials/global.scss';
-@import '../../styles/partials/variables.scss';
-
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global";
 
 .button {
   background-color: $background-color;
   color: $text-color;
   border: none;
   font-weight: bold;
-  margin: 8px;
   transition: background-color 0.3s;
   border-radius: 1.25rem;
-  padding: 0.5rem 1rem;
+  margin: 6px;
+  padding: 4px 8px;
+
+  @include tablet {
+    padding: 0.5rem 1rem;
+    margin: 6px;
+  }
 
   &:hover {
     background-color: $primary-color;
@@ -19,6 +24,5 @@
 
   &:focus {
     border: 1px solid gray;
-    text-decoration: underline;
   }
 }

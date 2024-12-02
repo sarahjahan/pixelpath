@@ -21,7 +21,7 @@ return(
                 <div className="navbar__logo">
                     <img onClick={() => navigate(`library`)} className="navbar__logo-img" src={logo} />
                 </div>
-                <Link to="/search" className="navbar__discover">Discover New Games</Link>
+                <Link to="/search" className="navbar__discover">Discover Games</Link>
             </div>
             <div>
                 <ToastContainer
