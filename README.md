@@ -8,6 +8,7 @@
 2. Change to project directory `cd <project folder name>`
 2. Install dependencies: `npm install`
 3. Setup environment variables in a `.env` file for both client and server following env sample provided.
+4. Run migrations and seed data.
 
 ## Run
 - Start the server: `npm start`
