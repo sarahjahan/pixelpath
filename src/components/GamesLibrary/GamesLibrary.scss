@@ -10,62 +10,72 @@
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: center;
+        flex-direction: row;
 
         @include tablet {
-          flex-direction: row;
-          justify-content: space-between;
           align-items: center;
+        }
+
+        @include desktop {
+          align-items: center;
+          flex-direction: row-reverse;
         }
     }
 
     &__sorter {
-      width: 100%;
-      padding: 0px 24px;
+      margin: 0px 24px;
       display: flex;
       align-items: center;
+      border-bottom: .5px solid lightgray;
+      border-top: .5px solid lightgray;
+      justify-content: space-evenly;
+      width: 80vw;
+
+      @include tablet {
+        justify-content: flex-start;
+      }
+
+      @include desktop {
+        justify-content: space-between;
+        align-items: center;
+        width: 35vw;
+      }
     }
 
     &__clear-button {
       justify-self: flex-end;
-  
     }
 
 
     &__searcher {
-            @extend .form__input;
-            background-image: url("../../public/assets/icons/search.png");
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            background-color: white;
-            background-size: 1.5rem 1.5rem;
-            width: 60vh;
-            margin: 0px 16px;
+      @extend .form__input;
+      background-image: url("../../public/assets/icons/search.png");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-color: white;
+      background-size: 1.5rem 1.5rem;
+      width: 80vw;
+      margin: 0px 16px;
+      overflow: hidden;
+      transition: border-color 0.3s;
 
-            &::placeholder {
-              color: gray;
-            }
-        
-            @include tablet {
-              margin-top: 0px;
-              transition: background-color 0.3s;
-
-              &:hover {
-                border-color: lightgray;
-              }
-            }
-        
-            @include desktop {
-              width: 17.125rem;
-            }
-
+      &:hover {
+        border-color: gray;
+      }
+      
+      &::placeholder {
+        color: gray;
+      }
+  
+      @include tablet {
+        margin-top: 0px;
+      }
+  
+      @include desktop {
+        width: 17.125rem;
+      }
     }
-
-    // &__sorter {
-    //     width: 60vh;
-    //     font-size: .75rem;
-    //     font-weight: 600;
-    // }
 
     &__filter {
       @extend .body-medium;
@@ -74,11 +84,11 @@
       outline: none;
       display: flex;
       flex-direction: column;
-      width: 60vh;
+      width: 80vw;
       margin: 16px;
 
       @include tablet {
-        transition: background-color 0.3s;
+        transition: border-color 0.3s;
 
         &:hover {
           border-color: gray;
@@ -103,6 +113,12 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-
+        margin: 0px 24px;
+        margin-top: 20px;
     }
 }
+
+
+.css-13cymwt-control, .css-t3ipsp-control {
+  background-color: white !important;
+ }

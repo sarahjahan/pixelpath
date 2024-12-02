@@ -13,8 +13,6 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
     const [moodFilter, setMoodFilter ] = useState(null)
     const [selectedMood, setSelectedMood] = useState(null)
 
-
-
     const filteredGames = (isSearchPage ? gamesAPIList : gamesList).filter((game) => {
         const matchesSearch = game.title?.toLowerCase().includes(searchKeyword.toLowerCase());
         const matchesStatus = statusFilter ? (statusFilter.value === null || game.status === statusFilter.value) : true;        
@@ -57,22 +55,21 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
 
     if (!gamesList && !gamesAPIList) return <div>Loading games...</div>;
 
-
     return(
         <div>
             
-            {isSearchPage ? null : <MoodReco setMoodFilter={setMoodFilter} setSelectedMood={setSelectedMood} selectedMood={selectedMood} />}
+          {isSearchPage ? null : <MoodReco setMoodFilter={setMoodFilter} setSelectedMood={setSelectedMood} selectedMood={selectedMood} />}
             
             <div className="gamesList__header">
-                <div className="gamesList__search">
-                    <input
-                        className="gamesList__searcher"
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Search..."
-                        onChange={(e) => setSearchKeyword(e.target.value)}/>
-                </div>
+              <div className="gamesList__search">
+                  <input
+                    className="gamesList__searcher"
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Search..."
+                    onChange={(e) => setSearchKeyword(e.target.value)}/>
+              </div>
 
 
                 {isSearchPage ? (
@@ -94,12 +91,9 @@ function GamesLibrary({ gamesList, handleSort, delGame, addGame, getGamesLibrary
                     <Button className="gamesList__sort-button" onClick={() => handleSort("title")} actiontext={"Title"}/>
                     <Button className="gamesList__sort-button" onClick={() => handleSort("rating")} actiontext={"Rating"}/>
                     <Button className="gamesList__sort-button" onClick={() => handleSort("status")} actiontext={"Status"}/>
-                    <Button className="gamesList__clear-button" onClick={handleClearFilters} actiontext="Clear All Filters"/>
+                    <Button className="gamesList__clear-button" onClick={handleClearFilters} actiontext="Clear Filters"/>
                 </div>
-
             </div>
-
-
             
             <div className="gamesList__container">
                 {filteredGames.length ===0? (<p className="result-message">No results found.</p>):
