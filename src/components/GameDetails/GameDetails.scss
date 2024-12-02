@@ -98,11 +98,12 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 12px;
     align-items: center;
+    gap: 6px;
 }
 
 .label-text {
+
     &__game {
         flex-direction: space-between;
         text-align: center;
@@ -113,4 +114,5 @@
 
 .result-message {
     color: gray;
+    font-size: 12px;
 }

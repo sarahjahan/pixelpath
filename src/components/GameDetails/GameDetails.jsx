@@ -46,7 +46,7 @@ function GameDetails({gameDetails}) {
                   tags.filter((tag) => tag && tag.name)
                   .map((tag) => (
                     <div className="game__tags-container" key={tag.id}>
-                      <p className="game__tags">{tag.name}</p> 
+                      <p className="game__tags tag-text">{tag.name}</p> 
                     </div> 
                   ))
                   ) : (

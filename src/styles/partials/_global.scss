@@ -89,39 +89,6 @@ img {
   }
 }
 
-.body-large {
-  font-size: 0.9375rem;
-  line-height: 1.625rem;
-  font-weight: $regular;
-
-  @include tablet {
-    font-size: 1rem;
-    line-height: 1.75rem;
-  }
-}
-
-.body-medium {
-  font-size: 0.8125rem;
-  line-height: 1.25rem;
-  font-weight: $regular;
-
-  @include tablet {
-    font-size: 0.875rem;
-    line-height: 1.375rem;
-  }
-}
-
-.body-small {
-  font-size: 0.6875rem;
-  line-height: 1rem;
-  font-weight: $regular;
-
-  @include tablet {
-    font-size: 0.75rem;
-    line-height: 1.125rem;
-  }
-}
-
 // Layout
 
 .container {
@@ -144,60 +111,6 @@ img {
   cursor: pointer;
 }
 
-// Buttons and Links
-
-.button {
-  @extend .button-text;
-  // width: 100%;
-  // height: 2.25rem;
-  // padding: 0.5rem 1rem;
-  // border-radius: 1.25rem;
-  // text-align: center;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // cursor: pointer;
-  // text-decoration: none;
-
-  // @include tablet {
-  //   width: auto;
-  //   height: 2.375rem;
-  // }
-}
-
-.button-primary {
-  @extend .button;
-  background-color: $background-color;
-  color: white;
-  border: none;
-
-  &:hover {
-    background-color: gray;
-  }
-}
-
-.button-secondary {
-  @extend .button;
-  background-color: white;
-  color: gray;
-  border: 1px solid lightgray;
-
-  &:hover {
-    color: $secondary-color;
-    border-color: gray;
-  }
-}
-
-.button-delete {
-  @extend .button;
-  background-color: red;
-  color: white;
-  border: none;
-
-  &:hover {
-    background-color: gray;
-  }
-}
 
 .link {
   display: flex;
@@ -290,10 +203,10 @@ img {
     gap: 0.5rem;
   }
 
-  &__radio-label {
-    @extend .body-medium;
-    color: gray;
-  }
+  // &__radio-label {
+  //   @extend .body-medium;
+  //   color: gray;
+  // }
 
   &__radio-input:checked + label {
     color: black;
@@ -314,20 +227,6 @@ img {
     height: 1.625rem;
   }
 }
-
-// Responsive Displays
-
-.mobile-only {
-  @include tablet {
-    display: none;
-  }
-}
-
-//Seach Results
-// .result-message{
-//   text-align: center;
-//   margin: 1rem;
-// }
 
 .css-t3ipsp-control {
   outline: none !important;

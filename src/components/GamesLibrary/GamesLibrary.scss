@@ -43,6 +43,10 @@
       }
     }
 
+    &__sort-label {
+      text-transform: uppercase;
+    }
+
     &__clear-button {
       justify-self: flex-end;
     }
@@ -78,7 +82,9 @@
     }
 
     &__filter {
-      @extend .body-medium;
+      font-size: 0.8125rem;
+      line-height: 1.25rem;
+      font-weight: $regular;
       width: 100%;
       height: 2.25rem;
       outline: none;
@@ -88,6 +94,8 @@
       margin: 16px;
 
       @include tablet {
+        font-size: 0.875rem;
+        line-height: 1.375rem;
         transition: border-color 0.3s;
 
         &:hover {
