@@ -1,10 +1,13 @@
 # PixelPath
 
 ## Setup
-1. Clone the repository: `git clone https://github.com/sarahjahan/pixelpath.git`
+1. Clone the client and server repository: 
+- `git clone https://github.com/sarahjahan/pixelpath.git` 
+- `git clone https://github.com/sarahjahan/pixelpath-api.git`
+
 2. Change to project directory `cd <project folder name>`
 2. Install dependencies: `npm install`
-3. Set environment variables in a `.env` file for both client and server following env sample provided.
+3. Setup environment variables in a `.env` file for both client and server following env sample provided.
 
 ## Run
 - Start the server: `npm start`
