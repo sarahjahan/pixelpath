@@ -114,6 +114,7 @@ function GameForm({ gameid, getGamesLibrary, game, modalIsOpen, closeModal }) {
     setRemovedTags(removedTags);
   };
 
+
   return (
     <div>
       <Modal
@@ -173,16 +174,14 @@ function GameForm({ gameid, getGamesLibrary, game, modalIsOpen, closeModal }) {
             <label>
               {" "}
               Rating:
-              <input
-                className="form__textarea"
-                type="number"
-                min="1"
-                max="5"
-                name="rating"
-                value={gameDetails.rating}
-                placeholder={"Add a personal rating..."}
-                onChange={handleInputChange}
-              />
+              <select className="form__textarea" name="rating" id="rating">
+                <option value="">Add your own rating</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                </select>
             </label>
             <label>
               {" "}
