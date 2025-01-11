@@ -64,13 +64,14 @@ function SigninPage() {
         connect with your games!
       </p>
 
-      <div>
-            <h2>{isRegistering ? 'Register' : 'Login'}</h2>
+      <div className="loginform">
+            <h2 className="loginform__header">{isRegistering ? 'Register' : 'Login'}</h2>
             <form onSubmit={handleSubmit}>
                 {isRegistering && (
                     <div>
                         <label>Username:</label>
                         <input
+                            className="form__textarea"
                             type="text"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
@@ -81,6 +82,7 @@ function SigninPage() {
                 <div>
                     <label>Email:</label>
                     <input
+                        className="form__textarea"
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -90,13 +92,14 @@ function SigninPage() {
                 <div>
                     <label>Password:</label>
                     <input
+                        className="form__textarea"
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>
-                <button type="submit">{isRegistering ? 'Register' : 'Login'}</button>
+                <button className="button" type="submit">{isRegistering ? 'Register' : 'Login'}</button>
             </form>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <p>
