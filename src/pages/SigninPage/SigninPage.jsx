@@ -8,38 +8,46 @@ const BASE_URL = import.meta.env.VITE_API_URL;
 
 
 function SigninPage() {
-  const [formData, setFormData] = useState({
-    email: "",
-    username: "",
-    password: "",
-  });
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
+  const [isRegistering, setIsRegistering] = useState(false); // Toggle state
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState(''); // Only for registration
+    const [error, setError] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+    // Handle form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setMessage("");
-    setError("");
+        try {
+            if (isRegistering) {
+                // Registration Logic
+                await axios.post(`${BASE_URL}/auth/register`, {
+                    username,
+                    email,
+                    password,
+                });
+                alert('Registration successful! You can now log in.');
+                setIsRegistering(false); // Switch to login after successful registration
+            } else {
+                // Login Logic
+                const response = await axios.post(`${BASE_URL}/auth/login`, {
+                    email,
+                    password,
+                });
+                const { token } = response.data;
 
-    try {
-      const response = await axios.post(`${BASE_URL}/auth/register`, formData);
-      setMessage(response.data.message);
-      setFormData({ email: "", username: "", password: "" });
-    } catch (err) {
-      if (err.response) {
-        setError(err.response.data.error || "An error occurred.");
-      } else {
-        setError("Failed to connect to the server.");
-      }
-    }
-  };
+                localStorage.setItem('token', token);
+                alert('Login successful!');
+            }
+        } catch (err) {
+            if (err.response) {
+                setError(err.response.data.error || 'An error occurred.');
+            } else {
+                setError('Unable to connect to the server.');
+            }
+        }
+    };
 
   return (
     <>
@@ -56,44 +64,54 @@ function SigninPage() {
         connect with your games!
       </p>
 
-      <div className="loginform">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+      <div>
+            <h2>{isRegistering ? 'Register' : 'Login'}</h2>
+            <form onSubmit={handleSubmit}>
+                {isRegistering && (
+                    <div>
+                        <label>Username:</label>
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                        />
+                    </div>
+                )}
+                <div>
+                    <label>Email:</label>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <button type="submit">{isRegistering ? 'Register' : 'Login'}</button>
+            </form>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            <p>
+                {isRegistering
+                    ? 'Already have an account? '
+                    : "Don't have an account? "}
+                <button
+                    type="button"
+                    onClick={() => setIsRegistering(!isRegistering)}
+                    style={{ background: 'none', border: 'none', color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}
+                >
+                    {isRegistering ? 'Login' : 'Register'}
+                </button>
+            </p>
         </div>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Register</button>
-      </form>
-      {message && <p style={{ color: "green" }}>{message}</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
-    </div>
 
     </div>
 </>
