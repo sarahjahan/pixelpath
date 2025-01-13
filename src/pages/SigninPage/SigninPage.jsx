@@ -50,7 +50,7 @@ function SigninPage() {
     };
 
   return (
-    <>
+    <div className="page">
     <div className="signin">
       <p className="welcome-message">
         Welcome to PixelPath, tracking your gaming journey, one pixel at a time!
@@ -63,6 +63,7 @@ function SigninPage() {
         mood, PixelPath has you covered. Join us and transform the way you
         connect with your games!
       </p>
+      </div>
 
       <div className="loginform">
             <h2 className="loginform__header">{isRegistering ? 'Register' : 'Login'}</h2>
@@ -115,9 +116,7 @@ function SigninPage() {
                 </button>
             </p>
         </div>
-
-    </div>
-</>
+</div>
   );
 }
 

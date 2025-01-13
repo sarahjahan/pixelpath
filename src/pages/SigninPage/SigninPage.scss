@@ -2,14 +2,29 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/global";
 
+.page {
+    display: flex;
+    flex-direction: row;
+}
+.signin {
+    width: 60vw;
+}
+
 .loginform {
-    background-color: white;
+    background-color: transparent;
     border: 1px solid black;
-    margin: 1.875rem 2.5rem;
-    padding: 6rem;
+    border-radius: 2rem;
+    margin: 3rem 2rem;
+    margin-top: 6rem;
+    padding: 2rem;
+    width: 40vw;
+    height: 50vh;
+    text-align: center;
+
 
     &__header {
         padding-bottom: 2rem;
+        text-align: center;
     }
 
     
