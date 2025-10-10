@@ -33,14 +33,14 @@ function LibraryPage() {
     try {
       setLoading(true);
       
-      // Hardcoded demo data for portfolio
+      // Hardcoded demo data for portfolio - with reliable image URLs
       const demoLibrary = [
         {
           id: 2001,
           game_id: 2001,
           user_id: 1,
           title: "The Witcher 3: Wild Hunt",
-          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1wyy.jpg",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg",
           status: "Completed",
           rating: 5,
           notes: "Absolutely incredible RPG! The side quests are just as engaging as the main story. Geralt's journey is unforgettable.",
@@ -57,7 +57,7 @@ function LibraryPage() {
           game_id: 2002,
           user_id: 1,
           title: "Super Mario Odyssey",
-          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1l7z.jpg",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/8/8d/Super_Mario_Odyssey.jpg",
           status: "Currently Playing",
           rating: 4,
           notes: "Pure joy in game form! The hat mechanics are so creative and every kingdom feels unique.",
@@ -74,7 +74,7 @@ function LibraryPage() {
           game_id: 2003,
           user_id: 1,
           title: "Ori and the Will of the Wisps",
-          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rb3.jpg",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/f/f9/Ori_and_the_Will_of_the_Wisps.jpg",
           status: "Completed",
           rating: 5,
           notes: "Breathtakingly beautiful with amazing soundtrack. The emotional story and tight platforming make this a masterpiece.",
@@ -91,7 +91,7 @@ function LibraryPage() {
           game_id: 2004,
           user_id: 1,
           title: "Ghost of Tsushima",
-          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rbh.jpg",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/b/b6/Ghost_of_Tsushima.jpg",
           status: "Want to Play",
           rating: null,
           notes: "Heard amazing things about the samurai combat and beautiful Japanese setting. Can't wait to start!",
@@ -108,7 +108,7 @@ function LibraryPage() {
           game_id: 2005,
           user_id: 1,
           title: "Celeste",
-          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.jpg",
+          coverArt: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Celeste_box_art_final.png",
           status: "Currently Playing",
           rating: 4,
           notes: "Challenging but fair platforming with an amazing story about mental health. The music is incredible too.",
@@ -125,7 +125,7 @@ function LibraryPage() {
           game_id: 2006,
           user_id: 1,
           title: "Minecraft",
-          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1l7y.jpg",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png",
           status: "Completed",
           rating: 4,
           notes: "Endless creativity and relaxation. Perfect for building and exploring with friends.",

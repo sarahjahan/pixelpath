@@ -45,13 +45,13 @@ function GamesSearchPage() {
     try {
       setLoading(true);
       
-      // Hardcoded demo data for portfolio
+      // Hardcoded demo data for portfolio - with reliable image URLs
       const demoGames = [
         {
           id: 1001,
           title: "The Legend of Zelda: Breath of the Wild",
           tags: "Adventure, Action, Open World",
-          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1nss.jpg",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg",
           summary: "Step into a world of discovery, exploration, and adventure in The Legend of Zelda: Breath of the Wild.",
           isOwned: false,
           status: "Want to Play"
@@ -60,7 +60,7 @@ function GamesSearchPage() {
           id: 1002,
           title: "Red Dead Redemption 2",
           tags: "Action, Adventure, Western",
-          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1q1f.jpg",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/4/44/Red_Dead_Redemption_II.jpg",
           summary: "An epic tale of life in America's unforgiving heartland with incredible attention to detail.",
           isOwned: false,
           status: "Want to Play"
@@ -69,7 +69,7 @@ function GamesSearchPage() {
           id: 1003,
           title: "Hollow Knight",
           tags: "Metroidvania, Indie, Platformer",
-          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rg1.jpg",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/0/04/Hollow_Knight_first_cover_art.webp",
           summary: "A challenging 2D action-adventure through a vast ruined kingdom of insects and heroes.",
           isOwned: false,
           status: "Want to Play"
@@ -78,7 +78,7 @@ function GamesSearchPage() {
           id: 1004,
           title: "Cyberpunk 2077",
           tags: "RPG, Action, Sci-Fi",
-          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2rtm.jpg",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg",
           summary: "An open-world action-adventure RPG set in the megalopolis of Night City.",
           isOwned: false,
           status: "Want to Play"
@@ -87,7 +87,7 @@ function GamesSearchPage() {
           id: 1005,
           title: "Stardew Valley",
           tags: "Simulation, Indie, Farming",
-          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x1z.jpg",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/f/fd/Logo_of_Stardew_Valley.png",
           summary: "Escape to the countryside and create the farm of your dreams in this charming simulation.",
           isOwned: false,
           status: "Want to Play"
@@ -96,7 +96,7 @@ function GamesSearchPage() {
           id: 1006,
           title: "God of War",
           tags: "Action, Adventure, Norse",
-          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.jpg",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg",
           summary: "Journey with Kratos and Atreus through the Norse realms in this emotional adventure.",
           isOwned: false,
           status: "Want to Play"
@@ -105,7 +105,7 @@ function GamesSearchPage() {
           id: 1007,
           title: "Hades",
           tags: "Roguelike, Indie, Action",
-          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2145.jpg",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/c/cc/Hades_cover_art.jpg",
           summary: "Defy the god of the dead in this award-winning hack-and-slash roguelike.",
           isOwned: false,
           status: "Want to Play"
@@ -114,7 +114,7 @@ function GamesSearchPage() {
           id: 1008,
           title: "Animal Crossing: New Horizons",
           tags: "Simulation, Social, Casual",
-          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1mfw.jpg",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/1/1f/Animal_Crossing_New_Horizons.jpg",
           summary: "Create your perfect island paradise and live the life you want in this relaxing simulation.",
           isOwned: false,
           status: "Want to Play"
