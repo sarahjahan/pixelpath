@@ -79,7 +79,7 @@ function GameForm({ gameid, getGamesLibrary, game, modalIsOpen, closeModal }) {
     }));
     
     try {
-      const { data } = await axios.put(`${BASE_URL}/api/games/${gameid}`, {
+      await axios.put(`${BASE_URL}/api/games/${gameid}`, {
         ...gameDetails,
         tags: sanitizedTags,
         removedTags,
@@ -114,9 +114,9 @@ function GameForm({ gameid, getGamesLibrary, game, modalIsOpen, closeModal }) {
     setRemovedTags(removedTags);
   };
 
-  const handleStarClick = (rating) => {
-    setGameDetails((prevDetails) => ({ ...prevDetails, rating }));
-  };
+  // const handleStarClick = (rating) => {
+  //   setGameDetails((prevDetails) => ({ ...prevDetails, rating }));
+  // };
 
   return createPortal(
     <AnimatePresence>

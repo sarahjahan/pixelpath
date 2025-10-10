@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { AlertCircle, Gamepad2 } from "lucide-react";
+import { AlertCircle } from "lucide-react";
 import GameDetails from "../../components/GameDetails/GameDetails";
 import { GameDetailsSkeleton } from "../../components/ui/Skeleton";
 import axios from "axios";

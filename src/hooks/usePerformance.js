@@ -1,4 +1,5 @@
 import { useMemo, useCallback, useRef, useEffect, useState } from 'react';
+import themeToMoodMap from '../utils/themeToMoodMap';
 
 /**
  * Debounce hook for performance optimization

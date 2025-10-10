@@ -1,7 +1,7 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Edit2, PlusCircle, MinusCircle, Star, ChevronDown, ChevronUp } from "lucide-react";
+import { Edit2, PlusCircle, MinusCircle, Star } from "lucide-react";
 import GameForm from "../GameForm/GameForm";
 import adjustCoverArtUrl from "../../utils/adjustCoverArtUrl";
 import { useIntersectionObserver } from "../../hooks/usePerformance";
@@ -33,7 +33,7 @@ function Card({
     setIsOpen(false);
   }
 
-  const { coverArt, title, summary, status, rating, notes, tags, id, isOwned } = game;
+  const { coverArt, title, status, rating, notes, tags, id, isOwned } = game;
   const newUrl = adjustCoverArtUrl(coverArt, "t_cover_big");
 
   const getStatusBadgeClass = (status) => {

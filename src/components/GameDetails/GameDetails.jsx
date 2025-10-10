@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Star, Calendar, BookOpen, Tag, ArrowLeft, Edit } from "lucide-react";
+import { Star, BookOpen, Tag, ArrowLeft, Edit } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import adjustCoverArtUrl from "../../utils/adjustCoverArtUrl";
 import clsx from "clsx";

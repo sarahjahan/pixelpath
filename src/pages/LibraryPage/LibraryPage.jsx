@@ -1,7 +1,7 @@
 import GamesLibrary from "../../components/GamesLibrary/GamesLibrary";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Library, BookOpen, Plus } from "lucide-react";
+import { Library, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { AnimatedCounter } from "../../components/ui/MicroInteractions";
 import axios from "axios";
@@ -12,8 +12,6 @@ const BASE_URL = import.meta.env.VITE_API_URL;
 function LibraryPage() {
   const [gamesList, setGamesList] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
-  const [searchKeyword, setSearchKeyword] = useState("");
-  const [filteredGames, setFilteredGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const delGame = async (id) => {
@@ -21,7 +19,6 @@ function LibraryPage() {
       await axios.delete(`${BASE_URL}/api/games/${id}`);
       const updatedGames = gamesList.filter((game) => game.id !== id);
       setGamesList(updatedGames);
-      setFilteredGames(updatedGames);
       toast.success("Game removed from your library");
     } catch (error) {
       toast.error("Error removing game from library");
@@ -74,7 +71,7 @@ function LibraryPage() {
           game_id: 2003,
           user_id: 1,
           title: "Ori and the Will of the Wisps",
-          coverArt: "https://upload.wikimedia.org/wikipedia/en/f/f9/Ori_and_the_Will_of_the_Wisps.jpg",
+          coverArt: "https://cdn.akamai.steamstatic.com/steam/apps/1057090/library_600x900.jpg",
           status: "Completed",
           rating: 5,
           notes: "Breathtakingly beautiful with amazing soundtrack. The emotional story and tight platforming make this a masterpiece.",
@@ -108,7 +105,7 @@ function LibraryPage() {
           game_id: 2005,
           user_id: 1,
           title: "Celeste",
-          coverArt: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Celeste_box_art_final.png",
+          coverArt: "https://cdn.akamai.steamstatic.com/steam/apps/504230/library_600x900.jpg",
           status: "Currently Playing",
           rating: 4,
           notes: "Challenging but fair platforming with an amazing story about mental health. The music is incredible too.",
@@ -125,7 +122,7 @@ function LibraryPage() {
           game_id: 2006,
           user_id: 1,
           title: "Minecraft",
-          coverArt: "https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png",
+          coverArt: "https://cdn.akamai.steamstatic.com/steam/apps/1286830/library_600x900.jpg",
           status: "Completed",
           rating: 4,
           notes: "Endless creativity and relaxation. Perfect for building and exploring with friends.",
@@ -140,7 +137,6 @@ function LibraryPage() {
       ];
       
       setGamesList(demoLibrary);
-      setFilteredGames(demoLibrary);
     } catch (error) {
       console.error("Error fetching games", error);
       toast.error("Failed to load your game library");
@@ -153,14 +149,13 @@ function LibraryPage() {
     getGamesLibrary();
   }, []);
 
-  const handleSort = async (sortBy = "title" || "status" || "rating") => {
+  const handleSort = async (sortBy = "title") => {
     try {
       const { data } = await axios.get(`${BASE_URL}/api/games/`, {
         params: { sortBy, order: sortOrder },
       });
       setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
       setGamesList(data);
-      setFilteredGames(data);
     } catch (error) {
       console.error("Error sorting games", error);
       toast.error("Failed to sort games");

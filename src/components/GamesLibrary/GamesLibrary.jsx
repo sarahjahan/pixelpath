@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Search, Filter, X } from "lucide-react";
+import { Search, X } from "lucide-react";
 import Card from "../../components/Card/Card";
 import Select from "react-select";
 import Button from "../Button/Button";
@@ -17,7 +17,6 @@ function GamesLibrary({
   getGamesLibrary,
   gamesAPIList,
   isSearchPage,
-  handleClearMood,
   loading = false,
 }) {
   const [searchKeyword, setSearchKeyword] = useState("");

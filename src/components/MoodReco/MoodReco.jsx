@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Sparkles, X } from "lucide-react";
-import angry from "../../public/assets/angry.png";
-import chill from "../../public/assets/chill.png";
-import happy from "../../public/assets/happy.png";
+const angry = "/assets/angry.png";
+const chill = "/assets/chill.png";
+const happy = "/assets/happy.png";
 import clsx from "clsx";
 
 const moods = [

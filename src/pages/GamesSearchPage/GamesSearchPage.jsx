@@ -1,7 +1,7 @@
 import GamesLibrary from "../../components/GamesLibrary/GamesLibrary";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Search, Gamepad2 } from "lucide-react";
+import { Search } from "lucide-react";
 import axios from "axios";
 import { toast } from "react-toastify";
 

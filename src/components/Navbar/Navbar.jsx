@@ -1,6 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import logo from "../../public/assets/controller.png";
+const logo = "/assets/controller.png";
 
 function Navbar() {
   const navigate = useNavigate();

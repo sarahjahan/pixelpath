@@ -3,9 +3,9 @@ import { useState, useCallback } from 'react';
 /**
  * Custom hook for handling async operations with loading and error states
  * @param {Function} asyncFunction - The async function to execute
- * @param {boolean} immediate - Whether to execute immediately on mount
+ * @param {boolean} _immediate - Whether to execute immediately on mount (unused parameter)
  */
-export function useAsync(asyncFunction, immediate = false) {
+export function useAsync(asyncFunction, _immediate = false) {
   const [status, setStatus] = useState('idle');
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);

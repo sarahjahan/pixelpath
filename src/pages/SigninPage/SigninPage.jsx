@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, GamepadIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../public/assets/pixelpath-home-logo.jpg";
+const logo = "/assets/pixelpath-home-logo.jpg";
 import Button from "../../components/ui/Button";
 
 function SigninPage() {
