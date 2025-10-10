@@ -1,10 +1,13 @@
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { Search, X } from "lucide-react";
 import Card from "../../components/Card/Card";
 import Select from "react-select";
-import "./GamesLibrary.scss";
-import { useState } from "react";
 import Button from "../Button/Button";
 import MoodReco from "../MoodReco/MoodReco";
 import themeToMoodMap from "../../utils/themeToMoodMap";
+import { MotionGrid, MotionGridItem } from "../ui/MotionWrapper";
+import { GridSkeleton } from "../ui/Skeleton";
 
 function GamesLibrary({
   gamesList,
@@ -14,7 +17,7 @@ function GamesLibrary({
   getGamesLibrary,
   gamesAPIList,
   isSearchPage,
-  handleClearMood,
+  loading = false,
 }) {
   const [searchKeyword, setSearchKeyword] = useState("");
   const [statusFilter, setStatusFilter] = useState(null);
@@ -36,11 +39,18 @@ function GamesLibrary({
           ?.split(",")
           .map((tag) => tag.trim().toLowerCase())
           .some((tag) => tag === genreFilter.value.toLowerCase());
+      
+      // Fix mood filtering for both search page (string tags) and library page (array tags)
       const matchesMood = moodFilter
-        ? game.tags?.some((tag) => {
-            const tagName = typeof tag === "string" ? tag : tag.name;
-            return themeToMoodMap[tagName] === moodFilter;
-          })
+        ? isSearchPage 
+          ? game.tags
+              ?.split(",")
+              .map((tag) => tag.trim())
+              .some((tag) => themeToMoodMap[tag] === moodFilter)
+          : game.tags?.some((tag) => {
+              const tagName = typeof tag === "string" ? tag : tag.name;
+              return themeToMoodMap[tagName] === moodFilter;
+            })
         : true;
 
       return matchesSearch && matchesStatus && matchesGenre && matchesMood;
@@ -78,21 +88,58 @@ function GamesLibrary({
     setGenreFilter(selectedOption);
   };
 
-  if (!gamesList && !gamesAPIList) return <div>Loading games...</div>;
+  // Show skeleton loading state
+  if (loading) {
+    return (
+      <div>
+        {isSearchPage ? (
+          <motion.div 
+            className="text-center py-8 px-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <h3 className="page-header mb-4 bg-gradient-to-r from-pixelpath-primary to-pixelpath-accent bg-clip-text text-transparent">
+              Discover Games
+            </h3>
+            <p className="body-text max-w-2xl mx-auto">
+              Explore top-rated games tailored to your interests. Select "+" to
+              add favorites to your library and start building your ultimate
+              collection! 🎮✨
+            </p>
+          </motion.div>
+        ) : (
+          <MoodReco
+            setMoodFilter={setMoodFilter}
+            setSelectedMood={setSelectedMood}
+            selectedMood={selectedMood}
+          />
+        )}
+        
+        {/* Skeleton Loading Grid */}
+        <GridSkeleton count={8} />
+      </div>
+    );
+  }
+
+  if (!gamesList && !gamesAPIList) return <GridSkeleton count={6} />;
 
   return (
     <div>
       {isSearchPage ? (
-        <div className="gamesList__header">
-          <h3 className="gamesList__discover">
-            Welcome to the Discover Games Page.
+        <motion.div 
+          className="text-center py-8 px-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h3 className="page-header mb-4 bg-gradient-to-r from-pixelpath-primary to-pixelpath-accent bg-clip-text text-transparent">
+            Discover Games
           </h3>
-          <p className="gamesList__discover label-text">
+          <p className="body-text max-w-2xl mx-auto">
             Explore top-rated games tailored to your interests. Select "+" to
             add favorites to your library and start building your ultimate
             collection! 🎮✨
           </p>
-        </div>
+        </motion.div>
       ) : (
         <MoodReco
           setMoodFilter={setMoodFilter}
@@ -101,79 +148,256 @@ function GamesLibrary({
         />
       )}
 
-      <div className="gamesList__header">
-        <div className="gamesList__search">
-          <input
-            className="gamesList__searcher"
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Search..."
-            onChange={(e) => setSearchKeyword(e.target.value)}
-          />
-        </div>
+      {/* Modern Search and Filter Bar */}
+      <motion.div 
+        className="container-responsive py-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        <div className="max-w-4xl mx-auto">
+          {/* Search Input */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+            <div className="flex-1">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                <motion.input
+                  type="text"
+                  placeholder="Search games..."
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
+                  className="w-full pl-10 pr-12 py-3 bg-white border border-gray-200 rounded-xl 
+                           focus:border-pixelpath-primary focus:ring-2 focus:ring-pixelpath-primary/20 
+                           transition-all duration-200 text-pixelpath-text placeholder-gray-400
+                           hover:border-gray-300 focus:outline-none shadow-sm hover:shadow-md focus:shadow-md"
+                  whileFocus={{ scale: 1.01 }}
+                  transition={{ duration: 0.2 }}
+                />
+                {searchKeyword && (
+                  <motion.button
+                    onClick={() => setSearchKeyword('')}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1.5 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition-colors"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <X className="w-4 h-4" />
+                  </motion.button>
+                )}
+              </div>
+            </div>
 
-        {isSearchPage ? (
-          <Select
-            className="gamesList__filter"
-            options={genreOptions}
-            placeholder={"Filter by Genre..."}
-            onChange={handleGenreChange}
-          />
-        ) : (
-          <Select
-            className="gamesList__filter"
-            options={statusOptions}
-            placeholder={"Filter by Status..."}
-            onChange={handleStatusChange}
-          />
-        )}
-
-        {isSearchPage ? null : (
-          <div className="gamesList__sorter">
-            <div className="gamesList__sort-label label-text">Sort By:</div>
-            <Button
-              className="gamesList__sort-button"
-              onClick={() => handleSort("title")}
-              actiontext={"Title"}
-            />
-            <Button
-              className="gamesList__sort-button"
-              onClick={() => handleSort("rating")}
-              actiontext={"Rating"}
-            />
-            <Button
-              className="gamesList__sort-button"
-              onClick={() => handleSort("status")}
-              actiontext={"Status"}
-            />
-            <Button
-              className="gamesList__clear-button"
-              onClick={handleClearFilters}
-              actiontext="Clear Filters"
-            />
+            {/* Filter Dropdown */}
+            <div className="w-full sm:w-64">
+              <Select
+                options={isSearchPage ? genreOptions : statusOptions}
+                placeholder={isSearchPage ? "Filter by Genre..." : "Filter by Status..."}
+                onChange={isSearchPage ? handleGenreChange : handleStatusChange}
+                value={isSearchPage ? genreFilter : statusFilter}
+                isClearable
+                className="react-select-container"
+                classNamePrefix="react-select"
+                styles={{
+                  control: (base, state) => ({
+                    ...base,
+                    minHeight: '48px',
+                    borderColor: state.isFocused ? '#9a7aa0' : '#e5e7eb',
+                    boxShadow: state.isFocused ? '0 0 0 2px rgba(154, 122, 160, 0.2)' : 'none',
+                    borderRadius: '12px',
+                    '&:hover': {
+                      borderColor: '#9a7aa0'
+                    }
+                  }),
+                  placeholder: (base) => ({
+                    ...base,
+                    color: '#9ca3af'
+                  }),
+                  option: (base, state) => ({
+                    ...base,
+                    backgroundColor: state.isSelected ? '#9a7aa0' : state.isFocused ? '#f3f0f5' : 'white',
+                    color: state.isSelected ? 'white' : '#2d333a',
+                    ':active': {
+                      backgroundColor: '#9a7aa0'
+                    }
+                  })
+                }}
+              />
+            </div>
           </div>
-        )}
-      </div>
 
-      <div className="gamesList__container">
+          {/* Sort Buttons - Only for Library Page */}
+          {!isSearchPage && (
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="text-sm font-medium text-gray-600">Sort by:</span>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  variant="subtle"
+                  size="sm"
+                  onClick={() => handleSort("title")}
+                  className="hover:bg-pixelpath-primary hover:text-white transition-colors"
+                >
+                  Title
+                </Button>
+                <Button
+                  variant="subtle"
+                  size="sm"
+                  onClick={() => handleSort("rating")}
+                  className="hover:bg-pixelpath-primary hover:text-white transition-colors"
+                >
+                  Rating
+                </Button>
+                <Button
+                  variant="subtle"
+                  size="sm"
+                  onClick={() => handleSort("status")}
+                  className="hover:bg-pixelpath-primary hover:text-white transition-colors"
+                >
+                  Status
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={handleClearFilters}
+                  className="ml-2"
+                >
+                  Clear All
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {/* Active Filters Display */}
+          {(searchKeyword || statusFilter || genreFilter || moodFilter) && (
+            <motion.div 
+              className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-gray-200"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+            >
+              <span className="text-sm font-medium text-gray-600">Active filters:</span>
+              {searchKeyword && (
+                <div className="inline-flex items-center px-3 py-1 bg-pixelpath-primary/10 text-pixelpath-primary rounded-full text-sm">
+                  Search: "{searchKeyword}"
+                  <button
+                    onClick={() => setSearchKeyword('')}
+                    className="ml-2 hover:bg-pixelpath-primary/20 rounded-full p-0.5"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </div>
+              )}
+              {statusFilter && (
+                <div className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+                  Status: {statusFilter.label}
+                  <button
+                    onClick={() => setStatusFilter(null)}
+                    className="ml-2 hover:bg-blue-200 rounded-full p-0.5"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </div>
+              )}
+              {genreFilter && (
+                <div className="inline-flex items-center px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
+                  Genre: {genreFilter.label}
+                  <button
+                    onClick={() => setGenreFilter(null)}
+                    className="ml-2 hover:bg-green-200 rounded-full p-0.5"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </div>
+              )}
+              {moodFilter && (
+                <div className="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">
+                  Mood: {moodFilter}
+                  <button
+                    onClick={() => {setMoodFilter(null); setSelectedMood(null);}}
+                    className="ml-2 hover:bg-purple-200 rounded-full p-0.5"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          )}
+        </div>
+      </motion.div>
+
+      <MotionGrid className="flex flex-wrap justify-center gap-4 mt-8 px-4">
         {filteredGames.length === 0 ? (
-          <p className="result-message">No results found.</p>
+          <motion.div
+            className="w-full text-center py-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <motion.div
+              className="text-6xl mb-4"
+              animate={{ 
+                rotate: [0, 10, -10, 0],
+                scale: [1, 1.1, 1] 
+              }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity, 
+                repeatDelay: 3 
+              }}
+            >
+              🎮
+            </motion.div>
+            <h3 className="text-xl font-semibold text-pixelpath-text mb-2">
+              No games found
+            </h3>
+            <p className="result-message text-gray-600 mb-6">
+              {searchKeyword || statusFilter || genreFilter || moodFilter
+                ? "No games match your current filters. Try adjusting your search criteria."
+                : isSearchPage 
+                  ? "No games available to discover right now."
+                  : "Your collection is empty. Start adding some games!"
+              }
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              {(searchKeyword || statusFilter || genreFilter || moodFilter) && (
+                <Button 
+                  variant="secondary" 
+                  onClick={handleClearFilters}
+                >
+                  Clear All Filters
+                </Button>
+              )}
+              {!isSearchPage && (
+                <Button 
+                  variant="primary" 
+                  onClick={() => window.location.href = '/search'}
+                >
+                  Discover Games
+                </Button>
+              )}
+            </div>
+          </motion.div>
         ) : (
           filteredGames.map((game, index) => (
-            <Card
-              key={game.id}
-              game={game}
-              gameid={game.id}
-              title={game.title}
-              delGame={delGame}
-              addGame={addGame}
-              getGamesLibrary={getGamesLibrary}
-              isSearchPage={isSearchPage}
-            />
+            <MotionGridItem key={game.id}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05, duration: 0.4 }}
+                whileHover={{ y: -4 }}
+              >
+                <Card
+                  game={game}
+                  gameid={game.id}
+                  title={game.title}
+                  delGame={delGame}
+                  addGame={addGame}
+                  getGamesLibrary={getGamesLibrary}
+                  isSearchPage={isSearchPage}
+                />
+              </motion.div>
+            </MotionGridItem>
           ))
         )}
-      </div>
+      </MotionGrid>
     </div>
   );
 }

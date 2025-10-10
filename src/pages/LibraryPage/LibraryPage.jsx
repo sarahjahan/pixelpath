@@ -1,5 +1,9 @@
 import GamesLibrary from "../../components/GamesLibrary/GamesLibrary";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Library, Plus } from "lucide-react";
+import { Link } from "react-router-dom";
+import { AnimatedCounter } from "../../components/ui/MicroInteractions";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -8,31 +12,136 @@ const BASE_URL = import.meta.env.VITE_API_URL;
 function LibraryPage() {
   const [gamesList, setGamesList] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
-  const [searchKeyword, setSearchKeyword] = useState("");
-  const [filteredGames, setFilteredGames] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const delGame = async (id) => {
     try {
-      const { data } = await axios.delete(`${BASE_URL}/api/games/${id}`);
-      setGamesList(gamesList.filter((game) => game.id !== id));
-      toast.success(
-        `The game you selected was removed from your library. Games list refreshed.`
-      );
+      await axios.delete(`${BASE_URL}/api/games/${id}`);
+      const updatedGames = gamesList.filter((game) => game.id !== id);
+      setGamesList(updatedGames);
+      toast.success("Game removed from your library");
     } catch (error) {
-      toast.error(`Error deleting game: ${error}`);
+      toast.error("Error removing game from library");
       console.log(error.response);
     }
   };
 
   const getGamesLibrary = async () => {
     try {
-      const { data } = await axios.get(`${BASE_URL}/api/games`, {});
-      setGamesList(data);
-      setFilteredGames(data);
-      console.log(data);
-      console.log("Client side confirmed");
+      setLoading(true);
+      
+      // Hardcoded demo data for portfolio - with reliable image URLs
+      const demoLibrary = [
+        {
+          id: 2001,
+          game_id: 2001,
+          user_id: 1,
+          title: "The Witcher 3: Wild Hunt",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg",
+          status: "Completed",
+          rating: 5,
+          notes: "Absolutely incredible RPG! The side quests are just as engaging as the main story. Geralt's journey is unforgettable.",
+          tags: [
+            { id: 1, name: "RPG" },
+            { id: 2, name: "Open World" },
+            { id: 3, name: "Fantasy" }
+          ],
+          createdAt: "2024-01-15",
+          updatedAt: "2024-03-20"
+        },
+        {
+          id: 2002,
+          game_id: 2002,
+          user_id: 1,
+          title: "Super Mario Odyssey",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/8/8d/Super_Mario_Odyssey.jpg",
+          status: "Currently Playing",
+          rating: 4,
+          notes: "Pure joy in game form! The hat mechanics are so creative and every kingdom feels unique.",
+          tags: [
+            { id: 4, name: "Platformer" },
+            { id: 5, name: "Adventure" },
+            { id: 6, name: "Nintendo" }
+          ],
+          createdAt: "2024-02-10",
+          updatedAt: "2024-10-05"
+        },
+        {
+          id: 2003,
+          game_id: 2003,
+          user_id: 1,
+          title: "Ori and the Will of the Wisps",
+          coverArt: "https://cdn.akamai.steamstatic.com/steam/apps/1057090/library_600x900.jpg",
+          status: "Completed",
+          rating: 5,
+          notes: "Breathtakingly beautiful with amazing soundtrack. The emotional story and tight platforming make this a masterpiece.",
+          tags: [
+            { id: 7, name: "Metroidvania" },
+            { id: 8, name: "Indie" },
+            { id: 9, name: "Emotional" }
+          ],
+          createdAt: "2024-01-05",
+          updatedAt: "2024-02-28"
+        },
+        {
+          id: 2004,
+          game_id: 2004,
+          user_id: 1,
+          title: "Ghost of Tsushima",
+          coverArt: "https://upload.wikimedia.org/wikipedia/en/b/b6/Ghost_of_Tsushima.jpg",
+          status: "Want to Play",
+          rating: null,
+          notes: "Heard amazing things about the samurai combat and beautiful Japanese setting. Can't wait to start!",
+          tags: [
+            { id: 10, name: "Action" },
+            { id: 11, name: "Samurai" },
+            { id: 12, name: "Open World" }
+          ],
+          createdAt: "2024-09-15",
+          updatedAt: "2024-09-15"
+        },
+        {
+          id: 2005,
+          game_id: 2005,
+          user_id: 1,
+          title: "Celeste",
+          coverArt: "https://cdn.akamai.steamstatic.com/steam/apps/504230/library_600x900.jpg",
+          status: "Currently Playing",
+          rating: 4,
+          notes: "Challenging but fair platforming with an amazing story about mental health. The music is incredible too.",
+          tags: [
+            { id: 13, name: "Platformer" },
+            { id: 14, name: "Indie" },
+            { id: 15, name: "Challenging" }
+          ],
+          createdAt: "2024-08-20",
+          updatedAt: "2024-10-01"
+        },
+        {
+          id: 2006,
+          game_id: 2006,
+          user_id: 1,
+          title: "Minecraft",
+          coverArt: "https://cdn.akamai.steamstatic.com/steam/apps/1286830/library_600x900.jpg",
+          status: "Completed",
+          rating: 4,
+          notes: "Endless creativity and relaxation. Perfect for building and exploring with friends.",
+          tags: [
+            { id: 16, name: "Sandbox" },
+            { id: 17, name: "Creative" },
+            { id: 18, name: "Multiplayer" }
+          ],
+          createdAt: "2023-12-01",
+          updatedAt: "2024-05-15"
+        }
+      ];
+      
+      setGamesList(demoLibrary);
     } catch (error) {
       console.error("Error fetching games", error);
+      toast.error("Failed to load your game library");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -40,7 +149,7 @@ function LibraryPage() {
     getGamesLibrary();
   }, []);
 
-  const handleSort = async (sortBy = "title" || "status" || "rating") => {
+  const handleSort = async (sortBy = "title") => {
     try {
       const { data } = await axios.get(`${BASE_URL}/api/games/`, {
         params: { sortBy, order: sortOrder },
@@ -48,24 +157,131 @@ function LibraryPage() {
       setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
       setGamesList(data);
     } catch (error) {
-      console.error("Error getting warehouse data from API call", error);
+      console.error("Error sorting games", error);
+      toast.error("Failed to sort games");
     }
   };
 
-  if (!gamesList.length === 0) {
-    return <div>no games found...</div>;
+  if (loading) {
+    return (
+      <div className="container-responsive py-16">
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <motion.div
+            className="inline-block p-6 bg-white rounded-2xl shadow-cozy mb-6"
+            animate={{ 
+              scale: [1, 1.05, 1],
+              rotate: [0, 2, -2, 0]
+            }}
+            transition={{ 
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <Library className="w-12 h-12 text-pixelpath-primary mx-auto" />
+          </motion.div>
+          <h2 className="text-2xl font-semibold text-pixelpath-text mb-2">
+            Loading Your Library
+          </h2>
+          <p className="text-gray-600">Gathering your game collection...</p>
+        </motion.div>
+      </div>
+    );
+  }
+
+  if (gamesList.length === 0) {
+    return (
+      <div className="container-responsive py-16">
+        <motion.div
+          className="text-center max-w-lg mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <div className="bg-gradient-to-br from-pixelpath-primary/5 to-pixelpath-secondary/5 rounded-2xl p-8">
+            <div className="text-6xl mb-6">📚</div>
+            <h2 className="text-3xl font-semibold text-pixelpath-text mb-4">
+              Your Library is Empty
+            </h2>
+            <p className="text-gray-600 mb-8 leading-relaxed">
+              Ready to start your gaming journey? Discover and add games to build your personal collection!
+            </p>
+            <Link to="/search">
+              <motion.button
+                className="btn-primary inline-flex items-center"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Plus className="w-5 h-5 mr-2" />
+                Discover Games
+              </motion.button>
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+    );
   }
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      {/* Page Header */}
+      <div className="bg-gradient-to-r from-pixelpath-primary to-pixelpath-secondary text-white py-12">
+        <div className="container-responsive">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col md:flex-row md:items-center justify-between"
+          >
+            <div className="mb-6 md:mb-0">
+              <div className="flex items-center mb-4">
+                <Library className="w-8 h-8 mr-3" />
+                <h1 className="text-3xl lg:text-4xl font-bold">My Game Library</h1>
+              </div>
+              <p className="text-pixelpath-secondary text-lg">
+                <AnimatedCounter 
+                  value={gamesList.length} 
+                  duration={1.5}
+                  className="font-semibold"
+                /> {gamesList.length === 1 ? ' game' : ' games'} in your collection
+              </p>
+            </div>
+            
+            <Link to="/search">
+              <motion.button
+                className="bg-white text-pixelpath-primary px-6 py-3 rounded-xl font-semibold 
+                         border border-gray-200 transition-all duration-200
+                         hover:bg-pixelpath-secondary hover:text-white hover:shadow-cozy
+                         focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2
+                         inline-flex items-center"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Plus className="w-5 h-5 mr-2" />
+                Add More Games
+              </motion.button>
+            </Link>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Games Library */}
       <GamesLibrary
         isSearchPage={false}
         gamesList={gamesList}
         handleSort={handleSort}
         delGame={delGame}
         getGamesLibrary={getGamesLibrary}
+        loading={loading}
       />
-    </div>
+    </motion.div>
   );
 }
 

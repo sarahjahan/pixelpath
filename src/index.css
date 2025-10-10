@@ -1,0 +1,253 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Titillium+Web:wght@400;600&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #f7f3eb; /* pixelpath-bg */
+    color: #2d333a; /* pixelpath-text */
+    font-family: 'Inter', 'Titillium Web', system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Focus styles for accessibility */
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid #9a7aa0;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Typography Classes */
+  .page-header {
+    @apply text-2xl lg:text-3xl font-semibold;
+    color: #2d333a;
+  }
+  
+  .subheader {
+    @apply text-lg lg:text-xl font-semibold;
+    color: #2d333a;
+  }
+  
+  .label-text,
+  .link-text,
+  .button-text {
+    @apply text-sm lg:text-base font-semibold;
+    color: #2d333a;
+  }
+  
+  .table-header,
+  .tag-text {
+    @apply text-xs lg:text-sm font-semibold uppercase tracking-wide;
+    color: #5f6368;
+  }
+  
+  .body-text {
+    @apply text-base leading-relaxed;
+    color: #2d333a;
+  }
+  
+  /* Button Variants */
+  .btn-primary {
+    @apply px-4 py-2 rounded-lg font-semibold transition-all duration-200;
+    background-color: #9a7aa0; /* pixelpath-primary */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-primary:hover {
+    background-color: #826689;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-secondary {
+    @apply px-4 py-2 rounded-lg font-semibold transition-all duration-200;
+    background-color: #bdcfb5; /* pixelpath-secondary */
+    color: #2d333a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-secondary:hover {
+    background-color: #9bb891;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-subtle {
+    @apply px-4 py-2 rounded-lg font-semibold transition-all duration-200;
+    background-color: #f1ede5;
+    color: #2d333a;
+  }
+  
+  .btn-subtle:hover {
+    background-color: #ebe6dd;
+  }
+  
+  /* Card Component */
+  .card {
+    @apply bg-white rounded-xl border transition-all duration-300;
+    border-color: #e8eaed;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Enhanced Shadow Utilities */
+  .shadow-cozy {
+    box-shadow: 0 4px 16px rgba(154, 122, 160, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .shadow-cozy-lg {
+    box-shadow: 0 8px 32px rgba(154, 122, 160, 0.15), 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Badge/Tag Component */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+  }
+  
+  .badge-primary {
+    background-color: #f3f0f5;
+    color: #6d5372;
+  }
+  
+  .badge-secondary {
+    background-color: #e9f5e3;
+    color: #4d6746;
+  }
+  
+  .badge-accent {
+    background-color: #ebebf7;
+    color: #5e589e;
+  }
+  
+  .badge-success {
+    background-color: #c0f8d1; /* pixelpath-success */
+    color: #15803d;
+  }
+  
+  /* Status indicators */
+  .status-completed {
+    @apply badge;
+    background-color: #c0f8d1;
+    color: #15803d;
+  }
+  
+  .status-playing {
+    @apply badge;
+    background-color: #a3d8f4;
+    color: #1e40af;
+  }
+  
+  .status-want-to-play {
+    @apply badge;
+    background-color: #d4c2fc;
+    color: #7c3aed;
+  }
+  
+  /* Form Elements */
+  .form-input {
+    @apply w-full px-4 py-2 rounded-md border bg-white transition-colors duration-200;
+    height: 2.25rem;
+    border-color: #dadce0;
+    color: #2d333a;
+  }
+  
+  .form-input:focus {
+    border-color: #9a7aa0;
+    outline: 2px solid rgba(154, 122, 160, 0.2);
+    outline-offset: 2px;
+  }
+  
+  .form-input:hover {
+    border-color: #bdc1c6;
+  }
+  
+  .form-input::placeholder {
+    color: #9aa0a6;
+  }
+  
+  .form-textarea {
+    @apply form-input;
+    height: auto;
+    min-height: 2.25rem;
+    resize: none;
+  }
+  
+  /* Container utilities */
+  .container-responsive {
+    @apply px-4 md:px-6 lg:px-8 xl:px-32;
+  }
+  
+  /* Result/empty state messages */
+  .result-message {
+    @apply text-sm text-center py-4;
+    color: #9aa0a6;
+  }
+  
+  /* Line clamp utilities */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* React Select Styling */
+  .react-select-container .react-select__control {
+    border-color: #e5e7eb !important;
+    border-radius: 12px !important;
+    min-height: 48px !important;
+    box-shadow: none !important;
+  }
+  
+  .react-select-container .react-select__control--is-focused {
+    border-color: #9a7aa0 !important;
+    box-shadow: 0 0 0 2px rgba(154, 122, 160, 0.2) !important;
+  }
+  
+  .react-select-container .react-select__menu {
+    border-radius: 12px !important;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid #e5e7eb !important;
+  }
+  
+  .react-select-container .react-select__option--is-selected {
+    background-color: #9a7aa0 !important;
+  }
+  
+  .react-select-container .react-select__option--is-focused {
+    background-color: #f3f0f5 !important;
+    color: #2d333a !important;
+  }
+}
