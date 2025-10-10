@@ -44,8 +44,84 @@ function GamesSearchPage() {
   const getGamesAPI = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`${BASE_URL}/api/games/search`);
-      setGamesAPIList(data);
+      
+      // Hardcoded demo data for portfolio
+      const demoGames = [
+        {
+          id: 1001,
+          title: "The Legend of Zelda: Breath of the Wild",
+          tags: "Adventure, Action, Open World",
+          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1nss.jpg",
+          summary: "Step into a world of discovery, exploration, and adventure in The Legend of Zelda: Breath of the Wild.",
+          isOwned: false,
+          status: "Want to Play"
+        },
+        {
+          id: 1002,
+          title: "Red Dead Redemption 2",
+          tags: "Action, Adventure, Western",
+          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1q1f.jpg",
+          summary: "An epic tale of life in America's unforgiving heartland with incredible attention to detail.",
+          isOwned: false,
+          status: "Want to Play"
+        },
+        {
+          id: 1003,
+          title: "Hollow Knight",
+          tags: "Metroidvania, Indie, Platformer",
+          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rg1.jpg",
+          summary: "A challenging 2D action-adventure through a vast ruined kingdom of insects and heroes.",
+          isOwned: false,
+          status: "Want to Play"
+        },
+        {
+          id: 1004,
+          title: "Cyberpunk 2077",
+          tags: "RPG, Action, Sci-Fi",
+          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2rtm.jpg",
+          summary: "An open-world action-adventure RPG set in the megalopolis of Night City.",
+          isOwned: false,
+          status: "Want to Play"
+        },
+        {
+          id: 1005,
+          title: "Stardew Valley",
+          tags: "Simulation, Indie, Farming",
+          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x1z.jpg",
+          summary: "Escape to the countryside and create the farm of your dreams in this charming simulation.",
+          isOwned: false,
+          status: "Want to Play"
+        },
+        {
+          id: 1006,
+          title: "God of War",
+          tags: "Action, Adventure, Norse",
+          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.jpg",
+          summary: "Journey with Kratos and Atreus through the Norse realms in this emotional adventure.",
+          isOwned: false,
+          status: "Want to Play"
+        },
+        {
+          id: 1007,
+          title: "Hades",
+          tags: "Roguelike, Indie, Action",
+          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2145.jpg",
+          summary: "Defy the god of the dead in this award-winning hack-and-slash roguelike.",
+          isOwned: false,
+          status: "Want to Play"
+        },
+        {
+          id: 1008,
+          title: "Animal Crossing: New Horizons",
+          tags: "Simulation, Social, Casual",
+          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1mfw.jpg",
+          summary: "Create your perfect island paradise and live the life you want in this relaxing simulation.",
+          isOwned: false,
+          status: "Want to Play"
+        }
+      ];
+      
+      setGamesAPIList(demoGames);
     } catch (error) {
       console.error("Error fetching games", error);
       toast.error("Failed to load games");

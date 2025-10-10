@@ -32,9 +32,115 @@ function LibraryPage() {
   const getGamesLibrary = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`${BASE_URL}/api/games`);
-      setGamesList(data);
-      setFilteredGames(data);
+      
+      // Hardcoded demo data for portfolio
+      const demoLibrary = [
+        {
+          id: 2001,
+          game_id: 2001,
+          user_id: 1,
+          title: "The Witcher 3: Wild Hunt",
+          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1wyy.jpg",
+          status: "Completed",
+          rating: 5,
+          notes: "Absolutely incredible RPG! The side quests are just as engaging as the main story. Geralt's journey is unforgettable.",
+          tags: [
+            { id: 1, name: "RPG" },
+            { id: 2, name: "Open World" },
+            { id: 3, name: "Fantasy" }
+          ],
+          createdAt: "2024-01-15",
+          updatedAt: "2024-03-20"
+        },
+        {
+          id: 2002,
+          game_id: 2002,
+          user_id: 1,
+          title: "Super Mario Odyssey",
+          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1l7z.jpg",
+          status: "Currently Playing",
+          rating: 4,
+          notes: "Pure joy in game form! The hat mechanics are so creative and every kingdom feels unique.",
+          tags: [
+            { id: 4, name: "Platformer" },
+            { id: 5, name: "Adventure" },
+            { id: 6, name: "Nintendo" }
+          ],
+          createdAt: "2024-02-10",
+          updatedAt: "2024-10-05"
+        },
+        {
+          id: 2003,
+          game_id: 2003,
+          user_id: 1,
+          title: "Ori and the Will of the Wisps",
+          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rb3.jpg",
+          status: "Completed",
+          rating: 5,
+          notes: "Breathtakingly beautiful with amazing soundtrack. The emotional story and tight platforming make this a masterpiece.",
+          tags: [
+            { id: 7, name: "Metroidvania" },
+            { id: 8, name: "Indie" },
+            { id: 9, name: "Emotional" }
+          ],
+          createdAt: "2024-01-05",
+          updatedAt: "2024-02-28"
+        },
+        {
+          id: 2004,
+          game_id: 2004,
+          user_id: 1,
+          title: "Ghost of Tsushima",
+          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rbh.jpg",
+          status: "Want to Play",
+          rating: null,
+          notes: "Heard amazing things about the samurai combat and beautiful Japanese setting. Can't wait to start!",
+          tags: [
+            { id: 10, name: "Action" },
+            { id: 11, name: "Samurai" },
+            { id: 12, name: "Open World" }
+          ],
+          createdAt: "2024-09-15",
+          updatedAt: "2024-09-15"
+        },
+        {
+          id: 2005,
+          game_id: 2005,
+          user_id: 1,
+          title: "Celeste",
+          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.jpg",
+          status: "Currently Playing",
+          rating: 4,
+          notes: "Challenging but fair platforming with an amazing story about mental health. The music is incredible too.",
+          tags: [
+            { id: 13, name: "Platformer" },
+            { id: 14, name: "Indie" },
+            { id: 15, name: "Challenging" }
+          ],
+          createdAt: "2024-08-20",
+          updatedAt: "2024-10-01"
+        },
+        {
+          id: 2006,
+          game_id: 2006,
+          user_id: 1,
+          title: "Minecraft",
+          coverArt: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1l7y.jpg",
+          status: "Completed",
+          rating: 4,
+          notes: "Endless creativity and relaxation. Perfect for building and exploring with friends.",
+          tags: [
+            { id: 16, name: "Sandbox" },
+            { id: 17, name: "Creative" },
+            { id: 18, name: "Multiplayer" }
+          ],
+          createdAt: "2023-12-01",
+          updatedAt: "2024-05-15"
+        }
+      ];
+      
+      setGamesList(demoLibrary);
+      setFilteredGames(demoLibrary);
     } catch (error) {
       console.error("Error fetching games", error);
       toast.error("Failed to load your game library");
