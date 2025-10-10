@@ -1,23 +1,29 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import Layout from "./components/layout/Layout";
 import SigninPage from "./pages/SigninPage/SigninPage";
-import LibraryPage from "../src/pages/LibraryPage/LibraryPage";
+import LibraryPage from "./pages/LibraryPage/LibraryPage";
 import GamesSearchPage from "./pages/GamesSearchPage/GamesSearchPage";
 import GameDetailsPage from "./pages/GameDetailsPage/GameDetailsPage";
-import "./App.scss";
-import Navbar from "./components/Navbar/Navbar";
+import ErrorBoundary from "./components/ui/ErrorBoundary";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<SigninPage />} />
-        <Route path="/library" element={<LibraryPage />} />
-        <Route path="/details/:gameid" element={<GameDetailsPage />} />
-        <Route path="/search" element={<GamesSearchPage />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </BrowserRouter>
+    <ErrorBoundary showDetails={import.meta.env.DEV}>
+      <BrowserRouter>
+        <Layout>
+          <AnimatePresence mode="wait">
+            <Routes>
+              <Route path="/" element={<SigninPage />} />
+              <Route path="/library" element={<LibraryPage />} />
+              <Route path="/details/:gameid" element={<GameDetailsPage />} />
+              <Route path="/search" element={<GamesSearchPage />} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          </AnimatePresence>
+        </Layout>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 
