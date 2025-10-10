@@ -138,7 +138,7 @@ function GamesSearchPage() {
               <Search className="w-8 h-8 mr-3" />
               <h1 className="text-3xl lg:text-4xl font-bold">Discover Games</h1>
             </div>
-            <p className="text-pixelpath-secondary text-lg max-w-2xl mx-auto">
+            <p className="text-white/90 text-lg max-w-2xl mx-auto">
               Explore our curated collection of amazing games and add your favorites to your personal library
             </p>
           </motion.div>

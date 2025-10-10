@@ -149,7 +149,7 @@ function LibraryPage() {
                   value={gamesList.length} 
                   duration={1.5}
                   className="font-semibold"
-                /> {gamesList.length === 1 ? 'game' : 'games'} in your collection
+                /> {gamesList.length === 1 ? ' game' : ' games'} in your collection
               </p>
             </div>
             

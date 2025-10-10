@@ -28,7 +28,7 @@ const pageTransition = {
 
 function Layout({ children, className = "" }) {
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-pixelpath-bg flex flex-col">
       <Navbar />
       
       <motion.main
